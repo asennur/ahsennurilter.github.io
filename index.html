@@ -47,7 +47,7 @@
   .stat-number { font-family: var(--serif); font-size: 2.4rem; font-weight: 700; line-height: 1; margin-bottom: 0.45rem; }
   .stat-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
 
-  /* FEATURED */
+  /* FEATURED DISHDASH */
   .featured-inner { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
   .featured-media { border-right: 1px solid var(--border); background: #1a0e08; position: relative; min-height: 520px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
   .featured-media img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; opacity: 0.85; }
@@ -64,57 +64,110 @@
   .detail-row:last-child { border-bottom: none; }
   .detail-label { color: var(--muted); }
   .detail-value { font-weight: 500; }
-
-  /* VIDEO SECTION (featured) */
   .video-section { padding: 3rem 3rem 5rem; border-bottom: 1px solid var(--border); }
   .video-label { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin-bottom: 1rem; }
-  .video-wrapper { width: 100%; aspect-ratio: 16/9; background: #1a0e08; border: 1px solid var(--border); overflow: hidden; position: relative; }
-  .video-wrapper iframe { width: 100%; height: 100%; border: none; }
-  .video-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; color: rgba(248,244,238,0.4); font-family: var(--sans); min-height: 360px; }
-  .video-placeholder p { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .video-wrapper { width: 100%; aspect-ratio: 16/9; background: #1a0e08; border: 1px solid var(--border); overflow: hidden; }
+  .video-wrapper iframe { width: 100%; height: 100%; border: none; display: block; }
 
-  /* PROJECTS */
-  .projects-section { padding: 5rem 3rem; border-bottom: 1px solid var(--border); }
+  /* PROJECTS — thumbnail grid */
+  .projects-section { padding: 5rem 3rem 0; }
   .section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 3rem; padding-bottom: 1.2rem; border-bottom: 1px solid var(--border); }
   .section-title { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; }
   .section-meta { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
-  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .project-card { background: var(--card); border: 1px solid var(--border); overflow: hidden; transition: transform 0.25s, box-shadow 0.25s; display: flex; flex-direction: column; }
-  .project-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(15,14,12,0.1); }
 
-  /* card thumbnail — clickable overlay */
-  .project-thumb { width: 100%; aspect-ratio: 16/10; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-  .project-thumb-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; font-family: var(--serif); font-size: 1.4rem; font-weight: 700; }
-  .play-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.35); opacity: 0; transition: opacity 0.2s; z-index: 2; }
-  .project-thumb:hover .play-overlay { opacity: 1; }
-  .play-circle { width: 56px; height: 56px; border-radius: 50%; border: 2px solid #fff; display: flex; align-items: center; justify-content: center; }
-  .play-circle svg { width: 22px; height: 22px; fill: #fff; margin-left: 3px; }
+  .projects-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-bottom: none; }
 
-  /* modal */
-  .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; }
-  .modal-backdrop.open { display: flex; }
-  .modal-box { position: relative; width: 90vw; max-width: 960px; aspect-ratio: 16/9; background: #000; }
-  .modal-box iframe { width: 100%; height: 100%; border: none; }
-  .modal-close { position: absolute; top: -2.5rem; right: 0; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; font-family: var(--sans); opacity: 0.7; transition: opacity 0.2s; }
-  .modal-close:hover { opacity: 1; }
+  /* thumbnail card */
+  .proj-thumb {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    cursor: pointer;
+    background: #111;
+  }
+  .proj-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease, opacity 0.3s; opacity: 0.75; }
+  .proj-thumb:hover img { transform: scale(1.04); opacity: 1; }
+  .proj-thumb-bg { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; transition: opacity 0.3s; }
+  .proj-thumb:hover .proj-thumb-bg { opacity: 0.8; }
+  .proj-thumb-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 1.2rem 1.3rem;
+    background: linear-gradient(to top, rgba(15,14,12,0.75) 0%, transparent 60%);
+    transition: background 0.3s;
+  }
+  .proj-thumb:hover .proj-thumb-label { background: linear-gradient(to top, rgba(15,14,12,0.88) 0%, transparent 60%); }
+  .proj-thumb-name { font-family: var(--serif); font-size: 1rem; font-weight: 700; color: #f8f4ee; line-height: 1.2; }
+  .proj-thumb-sub { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(248,244,238,0.65); margin-top: 0.25rem; font-weight: 500; }
+  .proj-thumb-arrow {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(248,244,238,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s, background 0.2s;
+  }
+  .proj-thumb:hover .proj-thumb-arrow { opacity: 1; }
+  .proj-thumb.active .proj-thumb-arrow { opacity: 1; background: var(--accent); border-color: var(--accent); transform: rotate(45deg); }
+  .proj-thumb-arrow svg { width: 14px; height: 14px; stroke: #f8f4ee; }
 
-  .project-body { padding: 1.3rem 1.4rem 1.6rem; flex: 1; display: flex; flex-direction: column; }
-  .project-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.85rem; }
-  .tag { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.28rem 0.65rem; border: 1px solid var(--border); color: var(--muted); font-weight: 500; }
+  .nda-thumb { cursor: default; }
+  .nda-thumb:hover img { transform: none; }
+
+  /* EXPAND PANEL */
+  .project-expand {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: none;
+  }
+  .project-expand.open { max-height: 900px; }
+  .expand-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .expand-video {
+    border-right: 1px solid var(--border);
+    background: #0f0e0c;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .expand-video iframe { width: 100%; height: 100%; border: none; display: block; }
+  .expand-video-placeholder { color: rgba(248,244,238,0.3); display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+  .expand-video-placeholder p { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .expand-content { padding: 3rem 3.5rem; display: flex; flex-direction: column; justify-content: center; }
+  .expand-tag { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; font-weight: 500; }
+  .expand-title { font-family: var(--serif); font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+  .expand-desc { font-size: 0.88rem; line-height: 1.8; color: var(--muted); font-weight: 300; margin-bottom: 1.5rem; }
+  .expand-table { width: 100%; border-collapse: collapse; border-top: 1px solid var(--border); }
+  .expand-table tr { border-bottom: 1px solid var(--border); }
+  .expand-table tr:last-child { border-bottom: none; }
+  .expand-table td { font-size: 0.8rem; padding: 0.6rem 0; }
+  .expand-table td:first-child { color: var(--muted); width: 38%; }
+  .expand-table td:last-child { font-weight: 500; }
+  .nda-notice { font-size: 0.75rem; color: var(--muted); font-style: italic; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+  .proj-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .tag { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.6rem; border: 1px solid var(--border); color: var(--muted); font-weight: 500; }
   .tag.accent { border-color: var(--accent); color: var(--accent); }
   .tag.pro { border-color: #2a6e3a; color: #2a6e3a; }
-  .project-name { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
-  .project-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; font-weight: 300; margin-bottom: 0; }
-  .project-table { width: 100%; border-collapse: collapse; margin-top: 1rem; border-top: 1px solid var(--border); }
-  .project-table tr { border-bottom: 1px solid var(--border); }
-  .project-table tr:last-child { border-bottom: none; }
-  .project-table td { font-size: 0.78rem; padding: 0.55rem 0; }
-  .project-table td:first-child { color: var(--muted); width: 40%; }
-  .project-table td:last-child { font-weight: 500; }
-  .nda-notice { font-size: 0.75rem; color: var(--muted); font-style: italic; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
 
   /* ABOUT */
-  .about-section { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
+  .about-section { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-top: 5rem; }
   .about-left { padding: 5rem 4rem 5rem 3rem; border-right: 1px solid var(--border); }
   .about-right { padding: 5rem 3rem 5rem 4rem; }
   .section-tag { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; font-weight: 500; display: block; }
@@ -140,7 +193,6 @@
   .contact-item-value { font-size: 0.9rem; font-weight: 500; text-decoration: none; color: var(--ink); transition: color 0.2s; display: block; }
   .contact-item-value:hover { color: var(--accent); }
 
-  /* FOOTER */
   footer { padding: 1.6rem 3rem; display: flex; justify-content: space-between; align-items: center; }
   .footer-name { font-family: var(--serif); font-size: 0.9rem; font-weight: 700; }
   .footer-note { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.05em; }
@@ -152,30 +204,24 @@
     .hero-left { padding: 4rem 1.5rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
     .hero-right { padding: 2rem 1.5rem 3rem; }
     .featured-inner { grid-template-columns: 1fr; }
-    .featured-media { min-height: 280px; border-right: none; border-bottom: 1px solid var(--border); }
+    .featured-media { min-height: 260px; border-right: none; border-bottom: 1px solid var(--border); }
     .featured-content { padding: 2.5rem 1.5rem; }
     .video-section { padding: 2rem 1.5rem 3rem; }
-    .projects-section { padding: 3rem 1.5rem; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .about-section { grid-template-columns: 1fr; }
+    .projects-section { padding: 3rem 1.5rem 0; }
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    .expand-inner { grid-template-columns: 1fr; }
+    .expand-video { border-right: none; border-bottom: 1px solid var(--border); aspect-ratio: 16/9; }
+    .expand-content { padding: 2rem 1.5rem; }
+    .about-section { grid-template-columns: 1fr; margin-top: 3rem; }
     .about-left { padding: 3rem 1.5rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
     .about-right { padding: 2rem 1.5rem 3rem; }
     .contact-section { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
     .contact-right { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 2rem; }
     footer { padding: 1.2rem 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
-    .modal-box { width: 95vw; }
   }
 </style>
 </head>
 <body>
-
-<!-- VIDEO MODAL -->
-<div class="modal-backdrop" id="videoModal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()">✕ Close</button>
-    <iframe id="modalIframe" src="" title="Project Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  </div>
-</div>
 
 <nav>
   <span class="nav-logo">Ahsen Nur İlter</span>
@@ -250,22 +296,10 @@
         A single-player time management game where players prepare meals, serve customers, and juggle limited resources under constant pressure. The goal was to make every decision feel consequential without the game feeling unfair — balancing speed, clarity, and difficulty curve across the full session.
       </p>
       <div class="featured-details">
-        <div class="detail-row">
-          <span class="detail-label">Genre</span>
-          <span class="detail-value">Time Management / Simulation</span>
-        </div>
-        <div class="detail-row">
-          <span class="detail-label">Platform</span>
-          <span class="detail-value">PC (Steam)</span>
-        </div>
-        <div class="detail-row">
-          <span class="detail-label">Role</span>
-          <span class="detail-value">Solo Developer — Design, Code, Art, Audio</span>
-        </div>
-        <div class="detail-row">
-          <span class="detail-label">Engine</span>
-          <span class="detail-value">Unity</span>
-        </div>
+        <div class="detail-row"><span class="detail-label">Genre</span><span class="detail-value">Time Management / Simulation</span></div>
+        <div class="detail-row"><span class="detail-label">Platform</span><span class="detail-value">PC (Steam)</span></div>
+        <div class="detail-row"><span class="detail-label">Role</span><span class="detail-value">Solo Developer — Design, Code, Art, Audio</span></div>
+        <div class="detail-row"><span class="detail-label">Engine</span><span class="detail-value">Unity</span></div>
       </div>
       <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="btn-primary">
         Steam Page
@@ -273,17 +307,9 @@
       </a>
     </div>
   </div>
-
-  <!-- DISHDASH VIDEO
-       1. Upload your video to YouTube (can be Unlisted)
-       2. Copy the video ID from the URL: youtube.com/watch?v=XXXXXXXX
-       3. Replace DISHDASH_YOUTUBE_ID below with that ID
-       4. Delete the video-placeholder div
-       5. Uncomment the iframe -->
   <div class="video-section">
     <p class="video-label">Gameplay — DishDash</p>
     <div class="video-wrapper">
-    
       <iframe
         src="https://www.youtube.com/embed/p_QRGqdJT4g?rel=0&modestbranding=1"
         title="DishDash Gameplay"
@@ -303,182 +329,155 @@
 
   <div class="projects-grid">
 
-    <!-- RESTAURANT RUMBLE VR
-         Replace RUMBLE_YOUTUBE_ID with your YouTube video ID.
-         Then remove the project-thumb-fallback div and uncomment the play overlay below. -->
-    <div class="project-card">
-      <div class="project-thumb" style="background: #0c1218;" onclick="openModal('RUMBLE_YOUTUBE_ID')">
-        <!--
-        <img src="YOUR_THUMBNAIL_URL" alt="Restaurant Rumble VR" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-        <div class="play-overlay">
-          <div class="play-circle">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-        </div>
+    <!-- RESTAURANT RUMBLE -->
+    <div class="proj-thumb" onclick="toggleProject('rumble', this)">
+      <div class="proj-thumb-bg" style="background: #0c1218; width:100%; height:100%; position:absolute; inset:0;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#7ecfff" stroke-width="1">
+          <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>
+        </svg>
+      </div>
+      <div class="proj-thumb-label">
+        <div class="proj-thumb-name">Restaurant Rumble</div>
+        <div class="proj-thumb-sub">VR — Developer</div>
+      </div>
+      <div class="proj-thumb-arrow">
+        <svg viewBox="0 0 14 14" fill="none" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+      </div>
+    </div>
+
+    <!-- COMMERCIAL I — NDA -->
+    <div class="proj-thumb nda-thumb">
+      <div class="proj-thumb-bg" style="background: #0e180c; width:100%; height:100%; position:absolute; inset:0;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#6fcf7a" stroke-width="1">
+          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+      </div>
+      <div class="proj-thumb-label">
+        <div class="proj-thumb-name">Commercial Title I</div>
+        <div class="proj-thumb-sub">Mobile — NDA</div>
+      </div>
+    </div>
+
+    <!-- COMMERCIAL II — NDA -->
+    <div class="proj-thumb nda-thumb">
+      <div class="proj-thumb-bg" style="background: #180e18; width:100%; height:100%; position:absolute; inset:0;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#cf7aef" stroke-width="1">
+          <circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/>
+        </svg>
+      </div>
+      <div class="proj-thumb-label">
+        <div class="proj-thumb-name">Commercial Title II</div>
+        <div class="proj-thumb-sub">Mobile — NDA</div>
+      </div>
+    </div>
+
+    <!-- PICKER 3D -->
+    <div class="proj-thumb" onclick="toggleProject('picker', this)">
+      <div class="proj-thumb-bg" style="background: #181208; width:100%; height:100%; position:absolute; inset:0;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#efb94a" stroke-width="1">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <div class="proj-thumb-label">
+        <div class="proj-thumb-name">Picker 3D</div>
+        <div class="proj-thumb-sub">Casual — Developer</div>
+      </div>
+      <div class="proj-thumb-arrow">
+        <svg viewBox="0 0 14 14" fill="none" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RESTAURANT RUMBLE EXPAND -->
+  <div class="project-expand" id="expand-rumble">
+    <div class="expand-inner">
+      <div class="expand-video">
+        <!-- Replace RUMBLE_YOUTUBE_ID and uncomment:
+        <iframe src="https://www.youtube.com/embed/RUMBLE_YOUTUBE_ID?rel=0&modestbranding=1&autoplay=1&mute=1" title="Restaurant Rumble" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         -->
-        <div class="project-thumb-fallback" style="color: #7ecfff;">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7ecfff" stroke-width="1.2">
-            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>
+        <div class="expand-video-placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
           </svg>
-          VR — Add RUMBLE_YOUTUBE_ID
+          <p>Add RUMBLE_YOUTUBE_ID</p>
         </div>
       </div>
-      <div class="project-body">
-        <div class="project-tags">
+      <div class="expand-content">
+        <p class="expand-tag">VR — Unity — Developer</p>
+        <h3 class="expand-title">Restaurant Rumble</h3>
+        <div class="proj-tags">
           <span class="tag accent">Video Coming</span>
           <span class="tag">VR</span>
           <span class="tag">PC</span>
+          <span class="tag">Prototype</span>
         </div>
-        <h3 class="project-name">Restaurant Rumble</h3>
-        <p class="project-desc">VR mechanic prototype built around dishwashing and cooking interactions. Developed physics-based hand interactions and object handling systems from scratch.</p>
-        <table class="project-table">
+        <p class="expand-desc">VR mechanic prototype built around dishwashing and cooking interactions. Developed physics-based hand interactions and object handling systems from scratch.</p>
+        <table class="expand-table">
           <tr><td>Role</td><td>Developer</td></tr>
           <tr><td>Focus</td><td>Mechanics, Physics Interactions</td></tr>
           <tr><td>Engine</td><td>Unity</td></tr>
+          <tr><td>Platform</td><td>PC (VR)</td></tr>
         </table>
       </div>
     </div>
+  </div>
 
-    <!-- COMMERCIAL TITLE I — NDA, no video -->
-    <div class="project-card">
-      <div class="project-thumb" style="background: #0e180c; cursor: default;">
-        <div class="project-thumb-fallback" style="color: #6fcf7a;">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6fcf7a" stroke-width="1.2">
-            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
-            <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
-          </svg>
-          Mobile
-        </div>
-      </div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="tag pro">Professional</span>
-          <span class="tag">Mobile</span>
-          <span class="tag">Children</span>
-        </div>
-        <h3 class="project-name">Commercial Title I</h3>
-        <p class="project-desc">Children's mobile game developed during internship at a game studio. Worked on core mechanics and gameplay systems as part of a professional development team.</p>
-        <table class="project-table">
-          <tr><td>Role</td><td>Developer</td></tr>
-          <tr><td>Focus</td><td>Game Mechanics, Systems</td></tr>
-          <tr><td>Platform</td><td>Mobile</td></tr>
-        </table>
-        <p class="nda-notice">Visuals pending studio approval — NDA applies</p>
-      </div>
-    </div>
-
-    <!-- COMMERCIAL TITLE II — NDA, no video -->
-    <div class="project-card">
-      <div class="project-thumb" style="background: #180e18; cursor: default;">
-        <div class="project-thumb-fallback" style="color: #cf7aef;">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#cf7aef" stroke-width="1.2">
-            <circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/>
-          </svg>
-          Mobile
-        </div>
-      </div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="tag pro">Professional</span>
-          <span class="tag">Mobile</span>
-          <span class="tag">Children</span>
-        </div>
-        <h3 class="project-name">Commercial Title II</h3>
-        <p class="project-desc">Second children's mobile title shipped with the same studio. Contributed to gameplay mechanics and worked within an established codebase alongside the full production team.</p>
-        <table class="project-table">
-          <tr><td>Role</td><td>Developer</td></tr>
-          <tr><td>Focus</td><td>Game Mechanics, Systems</td></tr>
-          <tr><td>Platform</td><td>Mobile</td></tr>
-        </table>
-        <p class="nda-notice">Visuals pending studio approval — NDA applies</p>
-      </div>
-    </div>
-
-    <!-- PICKER 3D
-         Replace PICKER_YOUTUBE_ID with your YouTube video ID.
-         Then remove the project-thumb-fallback div and uncomment the play overlay below. -->
-    <div class="project-card">
-      <div class="project-thumb" style="background: #181208;" onclick="openModal('PICKER_YOUTUBE_ID')">
-        <!--
-        <img src="YOUR_THUMBNAIL_URL" alt="Picker 3D" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-        <div class="play-overlay">
-          <div class="play-circle">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-        </div>
+  <!-- PICKER 3D EXPAND -->
+  <div class="project-expand" id="expand-picker">
+    <div class="expand-inner">
+      <div class="expand-video">
+        <!-- Replace PICKER_YOUTUBE_ID and uncomment:
+        <iframe src="https://www.youtube.com/embed/PICKER_YOUTUBE_ID?rel=0&modestbranding=1&autoplay=1&mute=1" title="Picker 3D" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         -->
-        <div class="project-thumb-fallback" style="color: #efb94a;">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#efb94a" stroke-width="1.2">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        <div class="expand-video-placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
           </svg>
-          3D — Add PICKER_YOUTUBE_ID
+          <p>Add PICKER_YOUTUBE_ID</p>
         </div>
       </div>
-      <div class="project-body">
-        <div class="project-tags">
+      <div class="expand-content">
+        <p class="expand-tag">Team Project — Unity — Developer</p>
+        <h3 class="expand-title">Picker 3D</h3>
+        <div class="proj-tags">
           <span class="tag">Team Project</span>
           <span class="tag">3D</span>
           <span class="tag">Casual</span>
         </div>
-        <h3 class="project-name">Picker 3D</h3>
-        <p class="project-desc">Casual 3D game built as a university team project. Responsible for developing game mechanics within a shared codebase, coordinating with teammates across the full build cycle.</p>
-        <table class="project-table">
+        <p class="expand-desc">Casual 3D game built as a university team project. Responsible for developing game mechanics within a shared codebase, coordinating with teammates across the full build cycle.</p>
+        <table class="expand-table">
           <tr><td>Role</td><td>Developer</td></tr>
           <tr><td>Focus</td><td>Game Mechanics</td></tr>
           <tr><td>Engine</td><td>Unity</td></tr>
+          <tr><td>Platform</td><td>PC / Mobile</td></tr>
         </table>
       </div>
     </div>
-
   </div>
+
 </section>
 
-<!-- ABOUT + SKILLS -->
+<!-- ABOUT -->
 <section id="about" class="about-section">
   <div class="about-left">
     <span class="section-tag">About</span>
     <h2 class="about-title">I make things work — and feel right.</h2>
-    <p class="about-text">
-      I'm a game developer with experience across solo projects, team productions, and professional studio work. My focus is always on the mechanics layer — how things move, respond, and feel in the player's hands.
-    </p>
-    <p class="about-text">
-      Building DishDash as a solo developer meant owning every decision from the first prototype to the Steam release. That process pushed me to think clearly about scope, prioritise ruthlessly, and ship something real.
-    </p>
-    <p class="about-text">
-      I've worked across PC, VR, and mobile — and I'm always looking for the next problem worth solving.
-    </p>
+    <p class="about-text">I'm a game developer with experience across solo projects, team productions, and professional studio work. My focus is always on the mechanics layer — how things move, respond, and feel in the player's hands.</p>
+    <p class="about-text">Building DishDash as a solo developer meant owning every decision from the first prototype to the Steam release. That process pushed me to think clearly about scope, prioritise ruthlessly, and ship something real.</p>
+    <p class="about-text">I've worked across PC, VR, and mobile — and I'm always looking for the next problem worth solving.</p>
   </div>
   <div class="about-right">
     <h3 class="skills-title">Skills</h3>
-    <ul style="list-style: none;">
-      <li class="skill-item">
-        <span class="skill-name">Unity &amp; C#</span>
-        <div class="skill-bar-wrap"><div class="skill-bar hi" style="width:92%"></div></div>
-      </li>
-      <li class="skill-item">
-        <span class="skill-name">Game Mechanics</span>
-        <div class="skill-bar-wrap"><div class="skill-bar hi" style="width:90%"></div></div>
-      </li>
-      <li class="skill-item">
-        <span class="skill-name">Systems &amp; Balancing</span>
-        <div class="skill-bar-wrap"><div class="skill-bar hi" style="width:88%"></div></div>
-      </li>
-      <li class="skill-item">
-        <span class="skill-name">VR Development</span>
-        <div class="skill-bar-wrap"><div class="skill-bar" style="width:72%"></div></div>
-      </li>
-      <li class="skill-item">
-        <span class="skill-name">Mobile Development</span>
-        <div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div>
-      </li>
-      <li class="skill-item">
-        <span class="skill-name">Performance Optimisation</span>
-        <div class="skill-bar-wrap"><div class="skill-bar" style="width:68%"></div></div>
-      </li>
-      <li class="skill-item">
-        <span class="skill-name">UI Implementation</span>
-        <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div>
-      </li>
+    <ul style="list-style:none;">
+      <li class="skill-item"><span class="skill-name">Unity &amp; C#</span><div class="skill-bar-wrap"><div class="skill-bar hi" style="width:92%"></div></div></li>
+      <li class="skill-item"><span class="skill-name">Game Mechanics</span><div class="skill-bar-wrap"><div class="skill-bar hi" style="width:90%"></div></div></li>
+      <li class="skill-item"><span class="skill-name">Systems &amp; Balancing</span><div class="skill-bar-wrap"><div class="skill-bar hi" style="width:88%"></div></div></li>
+      <li class="skill-item"><span class="skill-name">VR Development</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:72%"></div></div></li>
+      <li class="skill-item"><span class="skill-name">Mobile Development</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div></li>
+      <li class="skill-item"><span class="skill-name">Performance Optimisation</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:68%"></div></div></li>
+      <li class="skill-item"><span class="skill-name">UI Implementation</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div></li>
     </ul>
   </div>
 </section>
@@ -488,9 +487,7 @@
   <div class="contact-left">
     <span class="section-tag">Contact</span>
     <h2 class="contact-title">Let's work together.</h2>
-    <p class="contact-sub">
-      Open to job opportunities, internships, and collaborative projects. Feel free to reach out — I'm always happy to talk.
-    </p>
+    <p class="contact-sub">Open to job opportunities, internships, and collaborative projects. Feel free to reach out — I'm always happy to talk.</p>
     <div class="contact-btns">
       <a href="mailto:ahsennurilter@gmail.com" class="btn-primary">
         Send an Email
@@ -503,22 +500,10 @@
     </div>
   </div>
   <div class="contact-right">
-    <div class="contact-item">
-      <p class="contact-item-label">Email</p>
-      <a href="mailto:ahsennurilter@gmail.com" class="contact-item-value">ahsennurilter@gmail.com</a>
-    </div>
-    <div class="contact-item">
-      <p class="contact-item-label">Alternative Email</p>
-      <a href="mailto:ahsennurilter@hotmail.com" class="contact-item-value">ahsennurilter@hotmail.com</a>
-    </div>
-    <div class="contact-item">
-      <p class="contact-item-label">LinkedIn</p>
-      <a href="https://www.linkedin.com/in/ahsen-nur-ilter-a6a135207/" target="_blank" class="contact-item-value">Ahsen Nur İlter</a>
-    </div>
-    <div class="contact-item">
-      <p class="contact-item-label">Steam</p>
-      <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="contact-item-value">DishDash — Steam Page</a>
-    </div>
+    <div class="contact-item"><p class="contact-item-label">Email</p><a href="mailto:ahsennurilter@gmail.com" class="contact-item-value">ahsennurilter@gmail.com</a></div>
+    <div class="contact-item"><p class="contact-item-label">Alternative Email</p><a href="mailto:ahsennurilter@hotmail.com" class="contact-item-value">ahsennurilter@hotmail.com</a></div>
+    <div class="contact-item"><p class="contact-item-label">LinkedIn</p><a href="https://www.linkedin.com/in/ahsen-nur-ilter-a6a135207/" target="_blank" class="contact-item-value">Ahsen Nur İlter</a></div>
+    <div class="contact-item"><p class="contact-item-label">Steam</p><a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="contact-item-value">DishDash — Steam Page</a></div>
   </div>
 </section>
 
@@ -528,24 +513,32 @@
 </footer>
 
 <script>
-  function openModal(youtubeId) {
-    if (!youtubeId || youtubeId.includes('_YOUTUBE_ID')) return;
-    document.getElementById('modalIframe').src =
-      'https://www.youtube.com/embed/' + youtubeId + '?autoplay=1&rel=0&modestbranding=1';
-    document.getElementById('videoModal').classList.add('open');
-    document.body.style.overflow = 'hidden';
+  let activeProject = null;
+  let activeThumb = null;
+
+  function toggleProject(id, thumb) {
+    const panel = document.getElementById('expand-' + id);
+
+    if (activeProject && activeProject !== panel) {
+      activeProject.classList.remove('open');
+      if (activeThumb) activeThumb.classList.remove('active');
+    }
+
+    if (panel.classList.contains('open')) {
+      panel.classList.remove('open');
+      thumb.classList.remove('active');
+      activeProject = null;
+      activeThumb = null;
+    } else {
+      panel.classList.add('open');
+      thumb.classList.add('active');
+      activeProject = panel;
+      activeThumb = thumb;
+      setTimeout(() => {
+        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
   }
-  function closeModal() {
-    document.getElementById('modalIframe').src = '';
-    document.getElementById('videoModal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  document.getElementById('videoModal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeModal();
-  });
 </script>
 </body>
 </html>
