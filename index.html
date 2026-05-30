@@ -345,8 +345,8 @@
       </div>
     </div>
 
-    <!-- COMMERCIAL I — NDA -->
-    <div class="proj-thumb nda-thumb">
+    <!-- OYUN EVİ -->
+    <div class="proj-thumb" onclick="toggleProject('oyunevi', this)">
       <div class="proj-thumb-bg" style="background: #0e180c; width:100%; height:100%; position:absolute; inset:0;">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#6fcf7a" stroke-width="1">
           <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
@@ -354,21 +354,27 @@
         </svg>
       </div>
       <div class="proj-thumb-label">
-        <div class="proj-thumb-name">Commercial Title I</div>
-        <div class="proj-thumb-sub">Mobile — NDA</div>
+        <div class="proj-thumb-name">Oyun Evi</div>
+        <div class="proj-thumb-sub">Mobile — Developer</div>
+      </div>
+      <div class="proj-thumb-arrow">
+        <svg viewBox="0 0 14 14" fill="none" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
       </div>
     </div>
 
-    <!-- COMMERCIAL II — NDA -->
-    <div class="proj-thumb nda-thumb">
+    <!-- ANA DİLİ -->
+    <div class="proj-thumb" onclick="toggleProject('anadili', this)">
       <div class="proj-thumb-bg" style="background: #180e18; width:100%; height:100%; position:absolute; inset:0;">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#cf7aef" stroke-width="1">
           <circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/>
         </svg>
       </div>
       <div class="proj-thumb-label">
-        <div class="proj-thumb-name">Commercial Title II</div>
-        <div class="proj-thumb-sub">Mobile — NDA</div>
+        <div class="proj-thumb-name">Ana Dili</div>
+        <div class="proj-thumb-sub">Mobile — Developer</div>
+      </div>
+      <div class="proj-thumb-arrow">
+        <svg viewBox="0 0 14 14" fill="none" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
       </div>
     </div>
 
@@ -420,6 +426,73 @@
           <tr><td>Engine</td><td>Unity</td></tr>
           <tr><td>Platform</td><td>PC (VR)</td></tr>
         </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- OYUN EVİ EXPAND -->
+  <div class="project-expand" id="expand-oyunevi">
+    <div class="expand-inner">
+      <div class="expand-video" style="align-items:center; justify-content:center; display:flex;">
+        <!-- Görsel hazır olduğunda buraya <img> ekle:
+        <img src="GORSEL_YOLU" alt="Oyun Evi" style="width:100%;height:100%;object-fit:cover;">
+        -->
+        <div class="expand-video-placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+          <p>Visual coming soon</p>
+        </div>
+      </div>
+      <div class="expand-content">
+        <p class="expand-tag">Professional — Mobile — Developer</p>
+        <h3 class="expand-title">Oyun Evi</h3>
+        <div class="proj-tags">
+          <span class="tag pro">Professional</span>
+          <span class="tag">Mobile</span>
+          <span class="tag">Children</span>
+        </div>
+        <p class="expand-desc">Children's mobile game developed during internship at a game studio. Worked on core mechanics and gameplay systems as part of a professional development team.</p>
+        <table class="expand-table">
+          <tr><td>Role</td><td>Developer</td></tr>
+          <tr><td>Focus</td><td>Game Mechanics, Systems</td></tr>
+          <tr><td>Platform</td><td>Mobile</td></tr>
+        </table>
+        <p class="nda-notice">Visuals pending studio approval — NDA applies</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANA DİLİ EXPAND -->
+  <div class="project-expand" id="expand-anadili">
+    <div class="expand-inner">
+      <div class="expand-video" style="align-items:center; justify-content:center; display:flex;">
+        <!-- Görsel hazır olduğunda buraya <img> ekle:
+        <img src="GORSEL_YOLU" alt="Ana Dili" style="width:100%;height:100%;object-fit:cover;">
+        -->
+        <div class="expand-video-placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/>
+          </svg>
+          <p>Visual coming soon</p>
+        </div>
+      </div>
+      <div class="expand-content">
+        <p class="expand-tag">Professional — Mobile — Developer</p>
+        <h3 class="expand-title">Ana Dili</h3>
+        <div class="proj-tags">
+          <span class="tag pro">Professional</span>
+          <span class="tag">Mobile</span>
+          <span class="tag">Children</span>
+        </div>
+        <p class="expand-desc">Second children's mobile title shipped with the same studio. Contributed to gameplay mechanics and worked within an established codebase alongside the full production team.</p>
+        <table class="expand-table">
+          <tr><td>Role</td><td>Developer</td></tr>
+          <tr><td>Focus</td><td>Game Mechanics, Systems</td></tr>
+          <tr><td>Platform</td><td>Mobile</td></tr>
+        </table>
+        <p class="nda-notice">Visuals pending studio approval — NDA applies</p>
       </div>
     </div>
   </div>
