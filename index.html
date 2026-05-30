@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahsen Nur İlter — Game Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f0e0c;
+    --paper: #f8f4ee;
+    --accent: #c8501a;
+    --muted: #7a7267;
+    --border: rgba(15,14,12,0.12);
+    --card: #ffffff;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.3rem 3rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo { font-family: var(--serif); font-size: 1rem; font-weight: 700; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    min-height: 90vh;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-left {
+    padding: 6rem 4rem 5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid var(--border);
+  }
+  .hero-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.8rem;
+    font-weight: 500;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+    line-height: 1.07;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+  .hero-title em { font-style: italic; font-weight: 400; color: var(--accent); }
+  .hero-desc {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 400px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.9rem 2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    font-family: var(--sans);
+  }
+  .btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    color: var(--ink);
+    padding: 0.9rem 2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color 0.2s;
+    font-family: var(--sans);
+  }
+  .btn-secondary:hover { border-color: var(--ink); }
+
+  .hero-right {
+    padding: 4rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 2rem;
+  }
+  .hero-intro {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--muted);
+    font-weight: 300;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-intro strong { color: var(--ink); font-weight: 500; }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .stat-cell { background: var(--paper); padding: 1.8rem 1.5rem; }
+  .stat-number {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.45rem;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* FEATURED */
+  .featured-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .featured-media {
+    border-right: 1px solid var(--border);
+    background: #1a0e08;
+    position: relative;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .featured-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    opacity: 0.85;
+  }
+  .featured-media-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(26,14,8,0.55) 0%, rgba(26,14,8,0.15) 100%);
+  }
+  .featured-badge {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    font-weight: 500;
+    font-family: var(--sans);
+  }
+  .featured-steam-btn {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(248,244,238,0.12);
+    border: 1px solid rgba(248,244,238,0.5);
+    color: #f8f4ee;
+    padding: 0.8rem 1.6rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    font-family: var(--sans);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .featured-steam-btn:hover { background: rgba(200,80,26,0.7); border-color: var(--accent); }
+
+  .featured-content {
+    padding: 4rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .featured-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  .featured-title {
+    font-family: var(--serif);
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 1.2rem;
+  }
+  .featured-desc {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .featured-details {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.82rem;
+  }
+  .detail-row:last-child { border-bottom: none; }
+  .detail-label { color: var(--muted); }
+  .detail-value { font-weight: 500; }
+
+  /* VIDEO */
+  .video-section {
+    padding: 3rem 3rem 5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .video-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .video-wrapper {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #1a0e08;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+  }
+  .video-wrapper iframe { width: 100%; height: 100%; border: none; }
+  .video-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: rgba(248,244,238,0.4);
+    font-family: var(--sans);
+    min-height: 360px;
+  }
+  .video-placeholder p { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* PROJECTS */
+  .projects-section { padding: 5rem 3rem; border-bottom: 1px solid var(--border); }
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 3rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-title { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; }
+  .section-meta { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .project-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(15,14,12,0.1); }
+
+  .project-thumb {
+    width: 100%;
+    aspect-ratio: 16/10;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* video thumbnail inside card */
+  .project-thumb iframe { width: 100%; height: 100%; border: none; position: absolute; inset: 0; pointer-events: none; }
+  .project-thumb-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .project-body { padding: 1.3rem 1.4rem 1.6rem; }
+  .project-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.85rem; }
+  .tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.28rem 0.65rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .tag.accent { border-color: var(--accent); color: var(--accent); }
+  .tag.pro { border-color: #2a6e3a; color: #2a6e3a; }
+
+  .project-name { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .project-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; font-weight: 300; margin-bottom: 1rem; }
+  .project-link {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.2s;
+  }
+  .project-link:hover { color: var(--accent); }
+  .nda-notice {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ABOUT */
+  .about-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .about-left { padding: 5rem 4rem 5rem 3rem; border-right: 1px solid var(--border); }
+  .about-right { padding: 5rem 3rem 5rem 4rem; }
+  .section-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+    display: block;
+  }
+  .about-title { font-family: var(--serif); font-size: 2rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.8rem; }
+  .about-text { font-size: 0.9rem; line-height: 1.85; color: var(--muted); font-weight: 300; }
+  .about-text + .about-text { margin-top: 1.2rem; }
+
+  .skills-title { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; margin-bottom: 2rem; }
+  .skill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .skill-name { font-size: 0.88rem; font-weight: 500; }
+  .skill-bar-wrap { width: 110px; height: 2px; background: var(--border); }
+  .skill-bar { height: 2px; background: var(--ink); }
+  .skill-bar.hi { background: var(--accent); }
+
+  /* CONTACT */
+  .contact-section {
+    padding: 6rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .contact-title { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; line-height: 1.15; margin-bottom: 1.2rem; }
+  .contact-sub { font-size: 0.9rem; color: var(--muted); line-height: 1.75; font-weight: 300; margin-bottom: 2.5rem; }
+  .contact-btns { display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-start; }
+  .contact-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid var(--border);
+    padding-left: 4rem;
+  }
+  .contact-item { padding: 1.4rem 0; border-bottom: 1px solid var(--border); }
+  .contact-item:first-child { border-top: 1px solid var(--border); }
+  .contact-item-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; font-weight: 500; }
+  .contact-item-value { font-size: 0.9rem; font-weight: 500; text-decoration: none; color: var(--ink); transition: color 0.2s; display: block; }
+  .contact-item-value:hover { color: var(--accent); }
+
+  /* FOOTER */
+  footer { padding: 1.6rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-name { font-family: var(--serif); font-size: 0.9rem; font-weight: 700; }
+  .footer-note { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.05em; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 4rem 1.5rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
+    .hero-right { padding: 2rem 1.5rem 3rem; }
+    .featured-inner { grid-template-columns: 1fr; }
+    .featured-media { min-height: 280px; border-right: none; border-bottom: 1px solid var(--border); }
+    .featured-content { padding: 2.5rem 1.5rem; }
+    .video-section { padding: 2rem 1.5rem 3rem; }
+    .projects-section { padding: 3rem 1.5rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .about-section { grid-template-columns: 1fr; }
+    .about-left { padding: 3rem 1.5rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
+    .about-right { padding: 2rem 1.5rem 3rem; }
+    .contact-section { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
+    .contact-right { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 2rem; }
+    footer { padding: 1.2rem 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Ahsen Nur İlter</span>
+  <ul class="nav-links">
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Game Developer &amp; Designer</p>
+    <h1 class="hero-title">
+      I build games<br>
+      as <em>experiences.</em>
+    </h1>
+    <p class="hero-desc">
+      From time-management simulations to VR mechanics — systematic design, careful balancing, and player-first development. Solo developer with a published title on Steam.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">
+        View My Work
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+      </a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <p class="hero-intro">
+      As a <strong>solo developer</strong>, I own every layer of a project — design, code, art, and audio. I focus on making kitchen chaos feel satisfying, resource constraints feel rewarding, and every second of play feel intentional.<br><br>
+      My work lives at the intersection of culinary themes and tight game mechanics.
+    </p>
+    <div class="stats-grid">
+      <div class="stat-cell">
+        <div class="stat-number">1</div>
+        <div class="stat-label">Steam Title</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-number">5+</div>
+        <div class="stat-label">Projects Shipped</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Commercial Titles</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-number">VR</div>
+        <div class="stat-label">Mechanic Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED: DISHDASH -->
+<section id="dishdash">
+  <div class="featured-inner">
+    <div class="featured-media">
+      <img
+        src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4260380/724f4064038750df9887a7b2fd3e2e972e43e2c6/capsule_616x353.jpg?t=1774125251"
+        alt="DishDash — Steam"
+      >
+      <div class="featured-media-overlay"></div>
+      <span class="featured-badge">★ Featured Project</span>
+      <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="featured-steam-btn">
+        View on Steam
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" width="11" height="11"><path d="M4 2h8v8M12 2L4 10"/></svg>
+      </a>
+    </div>
+    <div class="featured-content">
+      <p class="featured-tag">Solo Developer · Steam · PC</p>
+      <h2 class="featured-title">DishDash</h2>
+      <p class="featured-desc">
+        A single-player time management restaurant game. Prepare meals, serve customers, and manage limited resources under constant pressure — turning kitchen chaos into smooth, satisfying rhythm through speed, focus, and smart decision-making.
+      </p>
+      <div class="featured-details">
+        <div class="detail-row">
+          <span class="detail-label">Genre</span>
+          <span class="detail-value">Time Management / Simulation</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Platform</span>
+          <span class="detail-value">PC (Steam)</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Role</span>
+          <span class="detail-value">Solo Developer — Design, Code, Art, Audio</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Engine</span>
+          <span class="detail-value">Unity</span>
+        </div>
+      </div>
+      <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="btn-primary">
+        Steam Page
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" width="12" height="12"><path d="M4 2h8v8M12 2L4 10"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       DISHDASH GAMEPLAY VIDEO
+       Replace YOUR_YOUTUBE_ID below with your actual YouTube video ID.
+       Example: https://www.youtube.com/watch?v=ABC123XYZ → YOUR_YOUTUBE_ID = ABC123XYZ
+
+       When ready, delete the video-placeholder div and uncomment the iframe.
+       ═══════════════════════════════════════════════════ -->
+  <div class="video-section">
+    <p class="video-label">Gameplay Video — DishDash</p>
+    <div class="video-wrapper">
+
+      <!-- UNCOMMENT THIS when you have your YouTube ID:
+      <iframe
+        src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID?rel=0&modestbranding=1"
+        title="DishDash Gameplay"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+      -->
+
+      <div class="video-placeholder">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+          <circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
+        </svg>
+        <p>Add your YouTube video ID here</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OTHER PROJECTS -->
+<section id="projects" class="projects-section">
+  <div class="section-header">
+    <h2 class="section-title">Other Projects</h2>
+    <span class="section-meta">4 Projects</span>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- Restaurant Rumble VR -->
+    <div class="project-card">
+      <!-- ═══════════════════════════════════════════════════
+           RESTAURANT RUMBLE VIDEO
+           Replace YOUR_YOUTUBE_ID_VR with the YouTube ID for this video.
+           When ready, delete the project-thumb-fallback div and uncomment the iframe.
+           ═══════════════════════════════════════════════════ -->
+      <div class="project-thumb" style="background: #0c1218;">
+
+        <!-- UNCOMMENT THIS when you have your YouTube ID:
+        <iframe
+          src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID_VR?rel=0&modestbranding=1&mute=1&loop=1"
+          title="Restaurant Rumble VR"
+          allow="autoplay; encrypted-media"
+          allowfullscreen>
+        </iframe>
+        -->
+
+        <div class="project-thumb-fallback" style="color: #7ecfff;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7ecfff" stroke-width="1.2">
+            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          VR
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag accent">Video Available</span>
+          <span class="tag">VR</span>
+          <span class="tag">Mechanics</span>
+        </div>
+        <h3 class="project-name">Restaurant Rumble</h3>
+        <p class="project-desc">
+          A VR prototype exploring dishwashing and cooking mechanics. Focused on hand-tracking, physics-based interaction, and kitchen workflow simulation — a deep dive into first-person mechanic design.
+        </p>
+      </div>
+    </div>
+
+    <!-- Commercial Project 1 -->
+    <div class="project-card">
+      <div class="project-thumb" style="background: #0e180c;">
+        <div class="project-thumb-fallback" style="color: #6fcf7a;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6fcf7a" stroke-width="1.2">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+          Kids
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag pro">Professional</span>
+          <span class="tag">Children</span>
+          <span class="tag">Mobile</span>
+        </div>
+        <h3 class="project-name">Commercial Title — Children's Game</h3>
+        <p class="project-desc">
+          Developed during internship for a game studio. Contributed as a developer across game mechanics, level design, and performance optimisation for a shipped mobile product.
+        </p>
+        <p class="nda-notice">Visuals pending studio approval — NDA applies</p>
+      </div>
+    </div>
+
+    <!-- Commercial Project 2 -->
+    <div class="project-card">
+      <div class="project-thumb" style="background: #180e18;">
+        <div class="project-thumb-fallback" style="color: #cf7aef;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#cf7aef" stroke-width="1.2">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 8v4l3 3"/>
+          </svg>
+          Kids
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag pro">Professional</span>
+          <span class="tag">Children</span>
+          <span class="tag">Mobile</span>
+        </div>
+        <h3 class="project-name">Commercial Title — Children's Game II</h3>
+        <p class="project-desc">
+          Second mobile title developed for the same studio during internship. Gained hands-on experience in child-friendly UX, accessibility considerations, and production workflows within a professional team.
+        </p>
+        <p class="nda-notice">Visuals pending studio approval — NDA applies</p>
+      </div>
+    </div>
+
+    <!-- Picker 3D -->
+    <div class="project-card">
+      <!-- ═══════════════════════════════════════════════════
+           PICKER 3D VIDEO
+           Replace YOUR_YOUTUBE_ID_PICKER with the YouTube ID for this video.
+           When ready, delete the project-thumb-fallback div and uncomment the iframe.
+           ═══════════════════════════════════════════════════ -->
+      <div class="project-thumb" style="background: #181208;">
+
+        <!-- UNCOMMENT THIS when you have your YouTube ID:
+        <iframe
+          src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID_PICKER?rel=0&modestbranding=1&mute=1&loop=1"
+          title="Picker 3D"
+          allow="autoplay; encrypted-media"
+          allowfullscreen>
+        </iframe>
+        -->
+
+        <div class="project-thumb-fallback" style="color: #efb94a;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#efb94a" stroke-width="1.2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+          3D
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">Team Project</span>
+          <span class="tag">3D</span>
+          <span class="tag">Casual</span>
+        </div>
+        <h3 class="project-name">Picker 3D</h3>
+        <p class="project-desc">
+          A 3D casual game developed as a class project with a full team. Worked as a developer, navigating shared codebases, task division, and collaborative production from prototype to final build.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT + SKILLS -->
+<section id="about" class="about-section">
+  <div class="about-left">
+    <span class="section-tag">About</span>
+    <h2 class="about-title">I turn chaos into rhythm.</h2>
+    <p class="about-text">
+      Game development, for me, is never purely technical. Every system has a rhythm, every mechanic has a feel — and those things have to be designed as intentionally as the code behind them.
+    </p>
+    <p class="about-text">
+      Building DishDash solo meant owning every decision, from the first prototype to the Steam page. That process taught me how to prioritise ruthlessly, iterate fast, and ship something real.
+    </p>
+    <p class="about-text">
+      I'm drawn to culinary and kitchen themes because they're universally legible — everyone understands pressure, timing, and the satisfaction of a good meal. My goal is to make that feeling playable.
+    </p>
+  </div>
+  <div class="about-right">
+    <h3 class="skills-title">Skills</h3>
+    <ul style="list-style: none;">
+      <li class="skill-item">
+        <span class="skill-name">Unity &amp; C#</span>
+        <div class="skill-bar-wrap"><div class="skill-bar hi" style="width:92%"></div></div>
+      </li>
+      <li class="skill-item">
+        <span class="skill-name">Game &amp; Level Design</span>
+        <div class="skill-bar-wrap"><div class="skill-bar hi" style="width:90%"></div></div>
+      </li>
+      <li class="skill-item">
+        <span class="skill-name">Economy &amp; Balancing</span>
+        <div class="skill-bar-wrap"><div class="skill-bar hi" style="width:88%"></div></div>
+      </li>
+      <li class="skill-item">
+        <span class="skill-name">VR Development</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:72%"></div></div>
+      </li>
+      <li class="skill-item">
+        <span class="skill-name">Mobile Development</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div>
+      </li>
+      <li class="skill-item">
+        <span class="skill-name">UI/UX Design</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div>
+      </li>
+      <li class="skill-item">
+        <span class="skill-name">Audio &amp; Sound Design</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="contact-left">
+    <span class="section-tag">Contact</span>
+    <h2 class="contact-title">Let's make something together.</h2>
+    <p class="contact-sub">
+      Open to job opportunities, internships, and collaborative projects. Always happy to talk about game design, mechanics, or anything in between.
+    </p>
+    <div class="contact-btns">
+      <a href="mailto:ahsennurilter@gmail.com" class="btn-primary">
+        Send an Email
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" width="12" height="12"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/ahsen-nur-ilter-a6a135207/" target="_blank" class="btn-secondary">
+        LinkedIn Profile
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" width="11" height="11"><path d="M4 2h8v8M12 2L4 10"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="contact-right">
+    <div class="contact-item">
+      <p class="contact-item-label">Email</p>
+      <a href="mailto:ahsennurilter@gmail.com" class="contact-item-value">ahsennurilter@gmail.com</a>
+    </div>
+    <div class="contact-item">
+      <p class="contact-item-label">Alternative Email</p>
+      <a href="mailto:ahsennurilter@hotmail.com" class="contact-item-value">ahsennurilter@hotmail.com</a>
+    </div>
+    <div class="contact-item">
+      <p class="contact-item-label">LinkedIn</p>
+      <a href="https://www.linkedin.com/in/ahsen-nur-ilter-a6a135207/" target="_blank" class="contact-item-value">Ahsen Nur İlter</a>
+    </div>
+    <div class="contact-item">
+      <p class="contact-item-label">Steam</p>
+      <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="contact-item-value">DishDash — Steam Page</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Ahsen Nur İlter</span>
+  <span class="footer-note">Game Developer · 2025</span>
+</footer>
+
+</body>
+</html>
