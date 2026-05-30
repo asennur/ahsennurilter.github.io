@@ -35,12 +35,10 @@
   .hero-title em { font-style: italic; font-weight: 400; color: var(--accent); }
   .hero-desc { font-size: 0.95rem; line-height: 1.8; color: var(--muted); max-width: 400px; margin-bottom: 3rem; font-weight: 300; }
   .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-
   .btn-primary { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--ink); color: var(--paper); padding: 0.9rem 2rem; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; text-decoration: none; border: 1px solid var(--ink); cursor: pointer; transition: background 0.2s, border-color 0.2s; font-family: var(--sans); }
   .btn-primary:hover { background: var(--accent); border-color: var(--accent); }
   .btn-secondary { display: inline-flex; align-items: center; gap: 0.6rem; background: transparent; color: var(--ink); padding: 0.9rem 2rem; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; text-decoration: none; border: 1px solid var(--border); cursor: pointer; transition: border-color 0.2s; font-family: var(--sans); }
   .btn-secondary:hover { border-color: var(--ink); }
-
   .hero-right { padding: 4rem 3rem; display: flex; flex-direction: column; justify-content: flex-end; gap: 2rem; }
   .hero-intro { font-size: 0.88rem; line-height: 1.75; color: var(--muted); font-weight: 300; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
   .hero-intro strong { color: var(--ink); font-weight: 500; }
@@ -67,7 +65,7 @@
   .detail-label { color: var(--muted); }
   .detail-value { font-weight: 500; }
 
-  /* VIDEO */
+  /* VIDEO SECTION (featured) */
   .video-section { padding: 3rem 3rem 5rem; border-bottom: 1px solid var(--border); }
   .video-label { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin-bottom: 1rem; }
   .video-wrapper { width: 100%; aspect-ratio: 16/9; background: #1a0e08; border: 1px solid var(--border); overflow: hidden; position: relative; }
@@ -81,12 +79,26 @@
   .section-title { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; }
   .section-meta { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
   .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .project-card { background: var(--card); border: 1px solid var(--border); overflow: hidden; transition: transform 0.25s, box-shadow 0.25s; }
+  .project-card { background: var(--card); border: 1px solid var(--border); overflow: hidden; transition: transform 0.25s, box-shadow 0.25s; display: flex; flex-direction: column; }
   .project-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(15,14,12,0.1); }
-  .project-thumb { width: 100%; aspect-ratio: 16/10; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-  .project-thumb iframe { width: 100%; height: 100%; border: none; position: absolute; inset: 0; pointer-events: none; }
+
+  /* card thumbnail — clickable overlay */
+  .project-thumb { width: 100%; aspect-ratio: 16/10; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; cursor: pointer; }
   .project-thumb-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; font-family: var(--serif); font-size: 1.4rem; font-weight: 700; }
-  .project-body { padding: 1.3rem 1.4rem 1.6rem; }
+  .play-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.35); opacity: 0; transition: opacity 0.2s; z-index: 2; }
+  .project-thumb:hover .play-overlay { opacity: 1; }
+  .play-circle { width: 56px; height: 56px; border-radius: 50%; border: 2px solid #fff; display: flex; align-items: center; justify-content: center; }
+  .play-circle svg { width: 22px; height: 22px; fill: #fff; margin-left: 3px; }
+
+  /* modal */
+  .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; }
+  .modal-backdrop.open { display: flex; }
+  .modal-box { position: relative; width: 90vw; max-width: 960px; aspect-ratio: 16/9; background: #000; }
+  .modal-box iframe { width: 100%; height: 100%; border: none; }
+  .modal-close { position: absolute; top: -2.5rem; right: 0; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; font-family: var(--sans); opacity: 0.7; transition: opacity 0.2s; }
+  .modal-close:hover { opacity: 1; }
+
+  .project-body { padding: 1.3rem 1.4rem 1.6rem; flex: 1; display: flex; flex-direction: column; }
   .project-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.85rem; }
   .tag { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.28rem 0.65rem; border: 1px solid var(--border); color: var(--muted); font-weight: 500; }
   .tag.accent { border-color: var(--accent); color: var(--accent); }
@@ -133,7 +145,6 @@
   .footer-name { font-family: var(--serif); font-size: 0.9rem; font-weight: 700; }
   .footer-note { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.05em; }
 
-  /* RESPONSIVE */
   @media (max-width: 900px) {
     nav { padding: 1.2rem 1.5rem; }
     .nav-links { gap: 1.5rem; }
@@ -152,12 +163,20 @@
     .contact-section { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
     .contact-right { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 2rem; }
     footer { padding: 1.2rem 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    .modal-box { width: 95vw; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- VIDEO MODAL -->
+<div class="modal-backdrop" id="videoModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕ Close</button>
+    <iframe id="modalIframe" src="" title="Project Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
 <nav>
   <span class="nav-logo">Ahsen Nur İlter</span>
   <ul class="nav-links">
@@ -177,7 +196,7 @@
       start here.
     </h1>
     <p class="hero-desc">
-      I develop games from the ground up mechanics, systems, and everything in between. Published on Steam as a solo developer, with experience across VR, mobile, and PC.
+      I develop games from the ground up — mechanics, systems, and everything in between. Published on Steam as a solo developer, with experience across VR, mobile, and PC.
     </p>
     <div class="hero-btns">
       <a href="#projects" class="btn-primary">
@@ -189,7 +208,7 @@
   </div>
   <div class="hero-right">
     <p class="hero-intro">
-      I've shipped games solo and as part of a team handling everything from core mechanics to performance optimisation. Whether it's a VR prototype or a commercial mobile title, I focus on building things that actually work and feel good to play.
+      I've shipped games solo and as part of a team — handling everything from core mechanics to performance optimisation. Whether it's a VR prototype or a commercial mobile title, I focus on building things that actually work and feel good to play.
     </p>
     <div class="stats-grid">
       <div class="stat-cell">
@@ -225,10 +244,10 @@
       </a>
     </div>
     <div class="featured-content">
-      <p class="featured-tag">Solo Developer · Steam · PC</p>
+      <p class="featured-tag">Solo Developer — Steam — PC</p>
       <h2 class="featured-title">DishDash</h2>
       <p class="featured-desc">
-        A single-player time management game where players prepare meals, serve customers, and juggle limited resources under constant pressure. The goal was to make every decision feel consequential without the game feeling unfair balancing speed, clarity, and difficulty curve across the full session.
+        A single-player time management game where players prepare meals, serve customers, and juggle limited resources under constant pressure. The goal was to make every decision feel consequential without the game feeling unfair — balancing speed, clarity, and difficulty curve across the full session.
       </p>
       <div class="featured-details">
         <div class="detail-row">
@@ -256,28 +275,21 @@
   </div>
 
   <!-- DISHDASH VIDEO
-       Replace YOUR_YOUTUBE_ID with your actual YouTube video ID.
-       Example: https://www.youtube.com/watch?v=ABC123XYZ → ID = ABC123XYZ
-       Then delete the video-placeholder div and uncomment the iframe below. -->
+       1. Upload your video to YouTube (can be Unlisted)
+       2. Copy the video ID from the URL: youtube.com/watch?v=XXXXXXXX
+       3. Replace DISHDASH_YOUTUBE_ID below with that ID
+       4. Delete the video-placeholder div
+       5. Uncomment the iframe -->
   <div class="video-section">
     <p class="video-label">Gameplay — DishDash</p>
     <div class="video-wrapper">
-
-      <!-- UNCOMMENT when ready:
+    
       <iframe
-        src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID?rel=0&modestbranding=1"
+        src="https://www.youtube.com/embed/p_QRGqdJT4g?rel=0&modestbranding=1"
         title="DishDash Gameplay"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
       </iframe>
-      -->
-
-      <div class="video-placeholder">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
-        </svg>
-        <p>Add your YouTube video ID here</p>
-      </div>
     </div>
   </div>
 </section>
@@ -291,26 +303,29 @@
 
   <div class="projects-grid">
 
-    <!-- Restaurant Rumble VR -->
+    <!-- RESTAURANT RUMBLE VR
+         Replace RUMBLE_YOUTUBE_ID with your YouTube video ID.
+         Then remove the project-thumb-fallback div and uncomment the play overlay below. -->
     <div class="project-card">
-      <div class="project-thumb" style="background: #0c1218;">
-        <!-- UNCOMMENT when ready:
-        <iframe
-          src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID_VR?rel=0&modestbranding=1&mute=1"
-          title="Restaurant Rumble VR"
-          allow="autoplay; encrypted-media" allowfullscreen>
-        </iframe>
+      <div class="project-thumb" style="background: #0c1218;" onclick="openModal('RUMBLE_YOUTUBE_ID')">
+        <!--
+        <img src="YOUR_THUMBNAIL_URL" alt="Restaurant Rumble VR" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+        <div class="play-overlay">
+          <div class="play-circle">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
         -->
         <div class="project-thumb-fallback" style="color: #7ecfff;">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7ecfff" stroke-width="1.2">
             <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>
           </svg>
-          VR
+          VR — Add RUMBLE_YOUTUBE_ID
         </div>
       </div>
       <div class="project-body">
         <div class="project-tags">
-          <span class="tag accent">Video Available</span>
+          <span class="tag accent">Video Coming</span>
           <span class="tag">VR</span>
           <span class="tag">PC</span>
         </div>
@@ -324,9 +339,9 @@
       </div>
     </div>
 
-    <!-- Commercial Project 1 -->
+    <!-- COMMERCIAL TITLE I — NDA, no video -->
     <div class="project-card">
-      <div class="project-thumb" style="background: #0e180c;">
+      <div class="project-thumb" style="background: #0e180c; cursor: default;">
         <div class="project-thumb-fallback" style="color: #6fcf7a;">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6fcf7a" stroke-width="1.2">
             <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
@@ -352,9 +367,9 @@
       </div>
     </div>
 
-    <!-- Commercial Project 2 -->
+    <!-- COMMERCIAL TITLE II — NDA, no video -->
     <div class="project-card">
-      <div class="project-thumb" style="background: #180e18;">
+      <div class="project-thumb" style="background: #180e18; cursor: default;">
         <div class="project-thumb-fallback" style="color: #cf7aef;">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#cf7aef" stroke-width="1.2">
             <circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/>
@@ -379,21 +394,24 @@
       </div>
     </div>
 
-    <!-- Picker 3D -->
+    <!-- PICKER 3D
+         Replace PICKER_YOUTUBE_ID with your YouTube video ID.
+         Then remove the project-thumb-fallback div and uncomment the play overlay below. -->
     <div class="project-card">
-      <div class="project-thumb" style="background: #181208;">
-        <!-- UNCOMMENT when ready:
-        <iframe
-          src="https://www.youtube.com/embed/YOUR_YOUTUBE_ID_PICKER?rel=0&modestbranding=1&mute=1"
-          title="Picker 3D"
-          allow="autoplay; encrypted-media" allowfullscreen>
-        </iframe>
+      <div class="project-thumb" style="background: #181208;" onclick="openModal('PICKER_YOUTUBE_ID')">
+        <!--
+        <img src="YOUR_THUMBNAIL_URL" alt="Picker 3D" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+        <div class="play-overlay">
+          <div class="play-circle">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
         -->
         <div class="project-thumb-fallback" style="color: #efb94a;">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#efb94a" stroke-width="1.2">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
-          3D
+          3D — Add PICKER_YOUTUBE_ID
         </div>
       </div>
       <div class="project-body">
@@ -419,15 +437,15 @@
 <section id="about" class="about-section">
   <div class="about-left">
     <span class="section-tag">About</span>
-    <h2 class="about-title">I make things work and feel right.</h2>
+    <h2 class="about-title">I make things work — and feel right.</h2>
     <p class="about-text">
-      I'm a game developer with experience across solo projects, team productions, and professional studio work. My focus is always on the mechanics layer how things move, respond, and feel in the player's hands.
+      I'm a game developer with experience across solo projects, team productions, and professional studio work. My focus is always on the mechanics layer — how things move, respond, and feel in the player's hands.
     </p>
     <p class="about-text">
       Building DishDash as a solo developer meant owning every decision from the first prototype to the Steam release. That process pushed me to think clearly about scope, prioritise ruthlessly, and ship something real.
     </p>
     <p class="about-text">
-      I've worked across PC, VR, and mobile and I'm always looking for the next problem worth solving.
+      I've worked across PC, VR, and mobile — and I'm always looking for the next problem worth solving.
     </p>
   </div>
   <div class="about-right">
@@ -471,7 +489,7 @@
     <span class="section-tag">Contact</span>
     <h2 class="contact-title">Let's work together.</h2>
     <p class="contact-sub">
-      Open to job opportunities, internships, and collaborative projects. Feel free to reach out I'm always happy to talk.
+      Open to job opportunities, internships, and collaborative projects. Feel free to reach out — I'm always happy to talk.
     </p>
     <div class="contact-btns">
       <a href="mailto:ahsennurilter@gmail.com" class="btn-primary">
@@ -504,11 +522,30 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <span class="footer-name">Ahsen Nur İlter</span>
   <span class="footer-note">Game Developer · <script>document.write(new Date().getFullYear())</script></span>
 </footer>
 
+<script>
+  function openModal(youtubeId) {
+    if (!youtubeId || youtubeId.includes('_YOUTUBE_ID')) return;
+    document.getElementById('modalIframe').src =
+      'https://www.youtube.com/embed/' + youtubeId + '?autoplay=1&rel=0&modestbranding=1';
+    document.getElementById('videoModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modalIframe').src = '';
+    document.getElementById('videoModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('videoModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
 </body>
 </html>
