@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ahsen Nur İlter — Game Developer</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -19,6 +20,32 @@
   }
   html { scroll-behavior: smooth; }
   body { font-family: var(--sans); background: var(--paper); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
+
+
+  /* LANG TOGGLE */
+  .lang-toggle {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+  .lang-btn {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    font-family: var(--sans);
+    background: transparent;
+    color: var(--muted);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    text-transform: uppercase;
+  }
+  .lang-btn.active {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .lang-btn:hover:not(.active) { color: var(--ink); }
 
   /* NAV */
   nav { display: flex; justify-content: space-between; align-items: center; padding: 1.3rem 3rem; border-bottom: 1px solid var(--border); background: var(--paper); position: sticky; top: 0; z-index: 100; }
@@ -230,6 +257,10 @@
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('tr')">TR</button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -355,9 +386,9 @@
 
     <!-- ANA DİLİ -->
     <div class="proj-thumb" onclick="toggleProject('anadili', this)">
-      <img src="AnaDili.png" alt="Ana Dili" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform 0.4s ease,opacity 0.3s;opacity:0.85;">
+      <img src="AnaDili.png" alt="Ana Dili 2" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform 0.4s ease,opacity 0.3s;opacity:0.85;">
       <div class="proj-thumb-label">
-        <div class="proj-thumb-name">Ana Dili</div>
+        <div class="proj-thumb-name">Ana Dili 2</div>
         <div class="proj-thumb-sub">Mobile · Developer</div>
       </div>
       <div class="proj-thumb-arrow">
@@ -370,7 +401,7 @@
       <img src="Picker.png" alt="Picker 3D" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform 0.4s ease,opacity 0.3s;opacity:0.85;">
       <div class="proj-thumb-label">
         <div class="proj-thumb-name">Picker 3D</div>
-        <div class="proj-thumb-sub">Casual · Developer</div>
+        <div class="proj-thumb-sub">Casual · Solo Developer</div>
       </div>
       <div class="proj-thumb-arrow">
         <svg viewBox="0 0 14 14" fill="none" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
@@ -395,7 +426,6 @@
         <p class="expand-tag">VR · Unity · Developer</p>
         <h3 class="expand-title">Restaurant Rumble</h3>
         <div class="proj-tags">
-          <span class="tag accent">Video Coming</span>
           <span class="tag">VR</span>
           <span class="tag">PC</span>
           <span class="tag">Prototype</span>
@@ -448,7 +478,7 @@
   <div class="project-expand" id="expand-anadili">
     <div class="expand-inner">
       <div class="expand-video">
-        <iframe src="https://www.youtube.com/embed/zCeYFex3bv8?rel=0&modestbranding=1" title="Ana Dili" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/zCeYFex3bv8?rel=0&modestbranding=1" title="Ana Dili 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <div class="expand-video-placeholder" style="display:none;">
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
             <circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/>
@@ -458,11 +488,10 @@
       </div>
       <div class="expand-content">
         <p class="expand-tag">Professional · Mobile · Developer</p>
-        <h3 class="expand-title">Ana Dili</h3>
+        <h3 class="expand-title">Ana Dili 2</h3>
         <div class="proj-tags">
           <span class="tag pro">Professional</span>
           <span class="tag">Mobile</span>
-          <span class="tag">3D</span>
           <span class="tag">Casual</span>
         </div>
         <p class="expand-desc">A casual 3D mobile game developed during my internship, where I was the sole developer. My first project building systems from scratch, covering core casual mechanics like object pooling. All visuals were provided by the studio.</p>
@@ -493,13 +522,13 @@
         <p class="expand-tag">Team Project · Unity · Developer</p>
         <h3 class="expand-title">Picker 3D</h3>
         <div class="proj-tags">
-          <span class="tag">Team Project</span>
+          <span class="tag">University Project</span>
           <span class="tag">3D</span>
           <span class="tag">Casual</span>
         </div>
-        <p class="expand-desc">Casual 3D game built as a university team project. Responsible for developing game mechanics within a shared codebase, coordinating with teammates across the full build cycle.</p>
+        <p class="expand-desc">Casual 3D game developed as a university project. I was the sole developer, responsible for building all game mechanics from scratch.</p>
         <table class="expand-table">
-          <tr><td>Role</td><td>Developer</td></tr>
+          <tr><td>Role</td><td>Solo Developer</td></tr>
           <tr><td>Focus</td><td>Game Mechanics</td></tr>
           <tr><td>Engine</td><td>Unity</td></tr>
           <tr><td>Platform</td><td>PC / Mobile</td></tr>
@@ -591,5 +620,186 @@
     }
   }
 </script>
+
+<script>
+const translations = {
+  en: {
+    'hero-tag': 'Game Developer',
+    'hero-title': 'Games worth<br><em>playing</em><br>start here.',
+    'hero-desc': 'I develop games from the ground up: mechanics, systems, and everything in between. Published on Steam as a solo developer, with experience across VR, mobile, and PC.',
+    'hero-intro': "I've shipped games solo and as part of a team, handling everything from core mechanics to performance optimisation. Whether it's a VR prototype or a commercial mobile title, I focus on building things that actually work and feel good to play.",
+    'nav-work': 'Work',
+    'nav-about': 'About',
+    'nav-contact': 'Contact',
+    'featured-tag': 'Solo Developer · Steam · PC',
+    'featured-desc': 'A single-player time management game where players prepare meals, serve customers, and juggle limited resources under constant pressure. The goal was to make every decision feel consequential without the game feeling unfair, balancing speed, clarity, and difficulty curve across the full session.',
+    'featured-btn': 'Steam Page',
+    'video-label': 'Gameplay · DishDash',
+    'projects-title': 'Other Projects',
+    'projects-meta': '4 Projects',
+    'stat-1-label': 'Steam Title',
+    'stat-2-label': 'Projects Shipped',
+    'stat-3-label': 'Commercial Titles',
+    'stat-4-label': 'Mechanic Experience',
+    'about-tag': 'About',
+    'about-title': 'I make things work. And feel right.',
+    'about-p1': "I'm a game developer with experience across solo projects, team productions, and professional studio work. My focus is always on the mechanics layer: how things move, respond, and feel in the player's hands.",
+    'about-p2': 'Building DishDash as a solo developer meant owning every decision from the first prototype to the Steam release. That process pushed me to think clearly about scope, prioritise ruthlessly, and ship something real.',
+    'about-p3': "I've worked across PC, VR, and mobile, and I'm always looking for the next problem worth solving.",
+    'skills-title': 'Skills',
+    'contact-tag': 'Contact',
+    'contact-title': "Let's work together.",
+    'contact-sub': "Open to job opportunities, internships, and collaborative projects. Feel free to reach out. I'm always happy to talk.",
+    'contact-btn-email': 'Send an Email',
+    'contact-btn-li': 'LinkedIn',
+    'contact-label-email': 'Email',
+    'contact-label-alt': 'Alternative Email',
+    'contact-label-li': 'LinkedIn',
+    'contact-label-steam': 'Steam',
+    'footer-role': 'Game Developer',
+    // project expand tags
+    'rumble-tag': 'VR · Unity · Developer',
+    'rumble-desc': 'VR mechanic prototype built around dishwashing and cooking interactions. Developed physics-based hand interactions and object handling systems from scratch.',
+    'oyunevi-tag': 'Professional · Mobile · Developer',
+    'oyunevi-desc': 'A children's mobile game developed as freelance work. Built entirely using provided assets; all visuals were supplied by the client, with mechanics developed solely by me.',
+    'anadili-tag': 'Professional · Mobile · Developer',
+    'anadili-desc': 'A casual mobile game developed during my internship, where I was the sole developer. My first project building systems from scratch, covering core casual mechanics like object pooling. All visuals were provided by the studio.',
+    'picker-tag': 'University Project · Unity · Developer',
+    'picker-desc': 'Casual 3D game developed as a university project. I was the sole developer, responsible for building all game mechanics from scratch.',
+    'nda-1': 'Visuals pending studio approval (NDA)',
+    'nda-2': 'Visuals pending client approval (NDA)',
+  },
+  tr: {
+    'hero-tag': 'Oyun Geliştirici',
+    'hero-title': 'Oynanmaya değer<br><em>oyunlar</em><br>buradan çıkar.',
+    'hero-desc': 'Oyunları sıfırdan geliştiriyorum: mekanikler, sistemler ve her şey. Steam'de solo geliştirici olarak yayınlanmış oyunum var; VR, mobil ve PC deneyimim mevcut.',
+    'hero-intro': 'Solo ve ekip içinde oyunlar geliştirdim — temel mekaniklerden performans optimizasyonuna kadar her şeyle ilgilendim. VR prototipi ya da ticari mobil oyun olsun, gerçekten çalışan ve oynaması iyi hissettiren şeyler üretmeye odaklanıyorum.',
+    'nav-work': 'Projeler',
+    'nav-about': 'Hakkımda',
+    'nav-contact': 'İletişim',
+    'featured-tag': 'Solo Geliştirici · Steam · PC',
+    'featured-desc': 'Yemek hazırlama, müşteri servisi ve sınırlı kaynak yönetimini sürekli baskı altında dengeleyen tek oyunculu bir zaman yönetimi oyunu. Hedef, her kararın önemli hissettirmesi ama oyunun haksız gelmemesiydi — tüm oturum boyunca hız, netlik ve zorluk eğrisi dengelendi.',
+    'featured-btn': 'Steam Sayfası',
+    'video-label': 'Gameplay · DishDash',
+    'projects-title': 'Diğer Projeler',
+    'projects-meta': '4 Proje',
+    'stat-1-label': 'Steam Oyunu',
+    'stat-2-label': 'Tamamlanan Proje',
+    'stat-3-label': 'Ticari Proje',
+    'stat-4-label': 'Mekanik Deneyimi',
+    'about-tag': 'Hakkımda',
+    'about-title': 'Çalışmasını sağlarım. Ve doğru hissettiririm.',
+    'about-p1': 'Solo projelerden ekip çalışmalarına ve profesyonel stüdyo deneyimine sahip bir oyun geliştiriciyim. Odağım her zaman mekanik katmanında: şeylerin nasıl hareket ettiği, nasıl tepki verdiği ve oyuncunun elinde nasıl hissettirdiği.',
+    'about-p2': 'DishDash'i solo geliştirmek, ilk prototipten Steam yayınına kadar her kararın sorumluluğunu üstlenmek demekti. Bu süreç kapsamı netleştirmeyi, acımasızca önceliklendirmeyi ve gerçek bir şey çıkarmayı öğretti.',
+    'about-p3': 'PC, VR ve mobil platformlarda çalıştım — ve her zaman çözmeye değer bir sonraki problemi arıyorum.',
+    'skills-title': 'Beceriler',
+    'contact-tag': 'İletişim',
+    'contact-title': 'Birlikte çalışalım.',
+    'contact-sub': 'İş fırsatları, staj teklifleri ve ortak projeler için açığım. Ulaşmaktan çekinme, her zaman konuşmaktan memnuniyet duyarım.',
+    'contact-btn-email': 'E-posta Gönder',
+    'contact-btn-li': 'LinkedIn',
+    'contact-label-email': 'E-posta',
+    'contact-label-alt': 'Alternatif E-posta',
+    'contact-label-li': 'LinkedIn',
+    'contact-label-steam': 'Steam',
+    'footer-role': 'Oyun Geliştirici',
+    'rumble-tag': 'VR · Unity · Geliştirici',
+    'rumble-desc': 'Bulaşık yıkama ve yemek pişirme etkileşimleri üzerine kurulu VR mekanik prototipi. Fizik tabanlı el etkileşimleri ve nesne yönetim sistemleri sıfırdan geliştirildi.',
+    'oyunevi-tag': 'Profesyonel · Mobil · Geliştirici',
+    'oyunevi-desc': 'Freelance olarak geliştirilen bir çocuk mobil oyunu. Tüm görseller müşteri tarafından sağlandı; mekanik kısmında yalnızca ben çalıştım.',
+    'anadili-tag': 'Profesyonel · Mobil · Geliştirici',
+    'anadili-desc': 'Staj dönemimde tek başıma geliştirdiğim casual bir mobil oyun. Sistemleri sıfırdan kurduğum ilk projem — object pooling gibi temel casual mekaniklerini içeriyor. Tüm görseller stüdyo tarafından sağlandı.',
+    'picker-tag': 'Üniversite Projesi · Unity · Geliştirici',
+    'picker-desc': 'Üniversite projesi olarak geliştirilen casual 3D oyun. Tek geliştirici olarak tüm oyun mekaniklerini sıfırdan kurdum.',
+    'nda-1': 'Görseller stüdyo onayı bekleniyor (NDA)',
+    'nda-2': 'Görseller müşteri onayı bekleniyor (NDA)',
+  }
+};
+
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  const t = translations[lang];
+
+  // nav
+  document.querySelector('.hero-tag').textContent = t['hero-tag'];
+  document.querySelector('.hero-title').innerHTML = t['hero-title'];
+  document.querySelector('.hero-desc').textContent = t['hero-desc'];
+  document.querySelector('.hero-intro').innerHTML = t['hero-intro'];
+  const navLinks = document.querySelectorAll('.nav-links a');
+  navLinks[0].textContent = t['nav-work'];
+  navLinks[1].textContent = t['nav-about'];
+  navLinks[2].textContent = t['nav-contact'];
+
+  // stats
+  const statLabels = document.querySelectorAll('.stat-label');
+  statLabels[0].textContent = t['stat-1-label'];
+  statLabels[1].textContent = t['stat-2-label'];
+  statLabels[2].textContent = t['stat-3-label'];
+  statLabels[3].textContent = t['stat-4-label'];
+
+  // featured
+  document.querySelector('.featured-tag').textContent = t['featured-tag'];
+  document.querySelector('.featured-desc').textContent = t['featured-desc'];
+  document.querySelector('.featured-steam-btn').childNodes[0].textContent = t['featured-btn'] + ' ';
+  document.querySelector('.video-label').textContent = t['video-label'];
+
+  // projects section
+  document.querySelector('.section-title').textContent = t['projects-title'];
+  document.querySelector('.section-meta').textContent = t['projects-meta'];
+
+  // about
+  document.querySelectorAll('.section-tag').forEach((el, i) => {
+    if (i === 0) el.textContent = t['about-tag'];
+    if (i === 1) el.textContent = t['contact-tag'];
+  });
+  document.querySelector('.about-title').textContent = t['about-title'];
+  const aboutTexts = document.querySelectorAll('.about-text');
+  aboutTexts[0].textContent = t['about-p1'];
+  aboutTexts[1].textContent = t['about-p2'];
+  aboutTexts[2].textContent = t['about-p3'];
+  document.querySelector('.skills-title').textContent = t['skills-title'];
+
+  // contact
+  document.querySelector('.contact-title').textContent = t['contact-title'];
+  document.querySelector('.contact-sub').textContent = t['contact-sub'];
+  const contactBtns = document.querySelectorAll('.contact-btns .btn-primary, .contact-btns .btn-secondary');
+  if (contactBtns[0]) contactBtns[0].childNodes[0].textContent = t['contact-btn-email'] + ' ';
+  if (contactBtns[1]) contactBtns[1].childNodes[0].textContent = t['contact-btn-li'] + ' ';
+  const contactLabels = document.querySelectorAll('.contact-item-label');
+  if (contactLabels[0]) contactLabels[0].textContent = t['contact-label-email'];
+  if (contactLabels[1]) contactLabels[1].textContent = t['contact-label-alt'];
+  if (contactLabels[2]) contactLabels[2].textContent = t['contact-label-li'];
+  if (contactLabels[3]) contactLabels[3].textContent = t['contact-label-steam'];
+
+  // footer
+  document.querySelector('.footer-note').innerHTML = t['footer-role'] + ' · ' + new Date().getFullYear();
+
+  // expand tags and descs
+  const expandTags = document.querySelectorAll('.expand-tag');
+  const expandDescs = document.querySelectorAll('.expand-desc');
+  if (expandTags[0]) expandTags[0].textContent = t['rumble-tag'];
+  if (expandTags[1]) expandTags[1].textContent = t['oyunevi-tag'];
+  if (expandTags[2]) expandTags[2].textContent = t['anadili-tag'];
+  if (expandTags[3]) expandTags[3].textContent = t['picker-tag'];
+  if (expandDescs[0]) expandDescs[0].textContent = t['rumble-desc'];
+  if (expandDescs[1]) expandDescs[1].textContent = t['oyunevi-desc'];
+  if (expandDescs[2]) expandDescs[2].textContent = t['anadili-desc'];
+  if (expandDescs[3]) expandDescs[3].textContent = t['picker-desc'];
+
+  // NDA notices
+  const ndas = document.querySelectorAll('.nda-notice');
+  if (ndas[0]) ndas[0].textContent = t['nda-2']; // oyun evi client
+  if (ndas[1]) ndas[1].textContent = t['nda-1']; // ana dili studio
+
+  localStorage.setItem('lang', lang);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('lang') || 'en';
+  setLang(saved);
+});
+</script>
+
 </body>
 </html>
