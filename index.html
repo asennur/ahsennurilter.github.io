@@ -9,40 +9,16 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg: #0d0d0f;
-  --bg2: #13131a;
-  --bg3: #1a1a24;
-  --surface: #1e1e2a;
-  --border: rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.12);
-  --text: #f0eff5;
-  --muted: #7b7a8e;
-  --accent: #ff6b35;
-  --accent2: #ffb347;
-  --glow: rgba(255,107,53,0.15);
-  --serif: 'Syne', sans-serif;
-  --sans: 'Inter', system-ui, sans-serif;
+  --bg:#0d0d0f;--bg2:#13131a;--bg3:#1a1a24;--surface:#1e1e2a;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
+  --text:#f0eff5;--muted:#7b7a8e;--accent:#ff6b35;--accent2:#ffb347;
+  --serif:'Syne',sans-serif;--sans:'Inter',system-ui,sans-serif;
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;min-height:100vh}
 
-/* NOISE TEXTURE OVERLAY */
-body::before{
-  content:'';position:fixed;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events:none;z-index:0;opacity:0.4
-}
-
-/* NAV */
-nav{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:1.2rem 3rem;
-  background:rgba(13,13,15,0.85);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-  position:sticky;top:0;z-index:100;
-}
-.nav-logo{font-family:var(--serif);font-size:1rem;font-weight:800;letter-spacing:0.02em;color:var(--text)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;background:rgba(13,13,15,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.nav-logo{font-family:var(--serif);font-size:1rem;font-weight:800;letter-spacing:0.02em}
 .nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center}
 .nav-links a{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;font-weight:500}
 .nav-links a:hover{color:var(--text)}
@@ -52,259 +28,97 @@ nav{
 .lang-btn:hover:not(.active){color:var(--text)}
 
 /* HERO */
-.hero{
-  min-height:100vh;
-  display:grid;grid-template-columns:1fr 1fr;
-  position:relative;overflow:hidden;
-}
-.hero-bg{
-  position:absolute;inset:0;
-  background:radial-gradient(ellipse 80% 60% at 70% 40%, rgba(255,107,53,0.08) 0%, transparent 70%),
-             radial-gradient(ellipse 50% 40% at 20% 80%, rgba(255,179,71,0.05) 0%, transparent 60%);
-  pointer-events:none;
-}
-.hero-left{
-  padding:7rem 4rem 5rem 3rem;
-  display:flex;flex-direction:column;justify-content:center;
-  position:relative;z-index:1;
-  border-right:1px solid var(--border);
-}
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:0.6rem;
-  font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--accent);font-weight:600;margin-bottom:2rem;
-}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(255,107,53,0.08) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 20% 80%,rgba(255,179,71,0.05) 0%,transparent 60%);pointer-events:none}
+.hero-left{padding:7rem 4rem 5rem 3rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;border-right:1px solid var(--border)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:0.6rem;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:2rem}
 .hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
-.hero-title{
-  font-family:var(--serif);
-  font-size:clamp(3rem,5.5vw,5rem);
-  font-weight:800;line-height:1.0;
-  margin-bottom:2rem;
-  letter-spacing:-0.02em;
-}
-.hero-title em{
-  font-style:normal;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.hero-desc{
-  font-size:0.95rem;line-height:1.8;color:var(--muted);
-  max-width:420px;margin-bottom:3rem;font-weight:300;
-}
+.hero-title{font-family:var(--serif);font-size:clamp(3rem,5.5vw,5rem);font-weight:800;line-height:1.0;margin-bottom:2rem;letter-spacing:-0.02em}
+.hero-title em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:0.95rem;line-height:1.8;color:var(--muted);max-width:420px;margin-bottom:3rem;font-weight:300}
 .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
-.btn-primary{
-  display:inline-flex;align-items:center;gap:0.6rem;
-  background:var(--accent);color:#fff;
-  padding:0.9rem 2rem;font-size:0.75rem;letter-spacing:0.08em;
-  text-transform:uppercase;font-weight:600;text-decoration:none;
-  border:none;cursor:pointer;font-family:var(--sans);
-  transition:all 0.2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
-}
+.btn-primary{display:inline-flex;align-items:center;gap:0.6rem;background:var(--accent);color:#fff;padding:0.9rem 2rem;font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:var(--sans);transition:all 0.2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
 .btn-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,107,53,0.3)}
-.btn-secondary{
-  display:inline-flex;align-items:center;gap:0.6rem;
-  background:transparent;color:var(--text);
-  padding:0.9rem 2rem;font-size:0.75rem;letter-spacing:0.08em;
-  text-transform:uppercase;font-weight:600;text-decoration:none;
-  border:1px solid var(--border2);cursor:pointer;font-family:var(--sans);
-  transition:all 0.2s;
-}
+.btn-secondary{display:inline-flex;align-items:center;gap:0.6rem;background:transparent;color:var(--text);padding:0.9rem 2rem;font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;text-decoration:none;border:1px solid var(--border2);cursor:pointer;font-family:var(--sans);transition:all 0.2s}
 .btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
-
-.hero-right{
-  padding:5rem 3rem 5rem 4rem;
-  display:flex;flex-direction:column;justify-content:center;gap:2.5rem;
-  position:relative;z-index:1;
-}
-.hero-intro{
-  font-size:0.92rem;line-height:1.85;color:var(--muted);font-weight:300;
-  border-left:2px solid var(--accent);padding-left:1.5rem;
-}
+.hero-right{padding:5rem 3rem 5rem 4rem;display:flex;flex-direction:column;justify-content:center;gap:2.5rem;position:relative;z-index:1}
+.hero-intro{font-size:0.92rem;line-height:1.85;color:var(--muted);font-weight:300;border-left:2px solid var(--accent);padding-left:1.5rem}
 .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
-.stat-cell{
-  background:var(--bg2);padding:2rem 1.8rem;
-  position:relative;overflow:hidden;
-}
-.stat-cell::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--accent),transparent);
-  opacity:0;transition:opacity 0.3s;
-}
+.stat-cell{background:var(--bg2);padding:2rem 1.8rem;position:relative;overflow:hidden}
+.stat-cell::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent);opacity:0;transition:opacity 0.3s}
 .stat-cell:hover::before{opacity:1}
-.stat-number{
-  font-family:var(--serif);font-size:2.8rem;font-weight:800;
-  line-height:1;margin-bottom:0.5rem;
-  background:linear-gradient(135deg,var(--text),var(--muted));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
+.stat-number{font-family:var(--serif);font-size:2.8rem;font-weight:800;line-height:1;margin-bottom:0.5rem;background:linear-gradient(135deg,var(--text),var(--muted));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .stat-label{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
 
-/* FEATURED DISHDASH */
+/* FEATURED */
 .featured-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .featured-inner{display:grid;grid-template-columns:1.1fr 0.9fr}
-.featured-media{
-  position:relative;min-height:600px;overflow:hidden;
-  display:flex;align-items:flex-end;
-}
-.featured-media img{
-  width:100%;height:100%;object-fit:cover;position:absolute;inset:0;
-  transition:transform 0.6s ease;
-}
+.featured-media{position:relative;min-height:600px;overflow:hidden;display:flex;align-items:flex-end}
+.featured-media img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform 0.6s ease}
 .featured-section:hover .featured-media img{transform:scale(1.03)}
-.featured-media-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to right, rgba(13,13,15,0) 0%, rgba(13,13,15,0.3) 100%),
-             linear-gradient(to top, rgba(13,13,15,0.9) 0%, transparent 50%);
-}
+.featured-media-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,13,15,0) 0%,rgba(13,13,15,0.3) 100%),linear-gradient(to top,rgba(13,13,15,0.9) 0%,transparent 50%)}
 .featured-media-bottom{position:relative;z-index:2;padding:2.5rem;width:100%}
-.featured-badge{
-  display:inline-flex;align-items:center;gap:0.5rem;
-  background:var(--accent);color:#fff;
-  font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;
-  padding:0.35rem 0.9rem;font-weight:700;margin-bottom:1rem;
-  clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));
-}
-.featured-media-title{
-  font-family:var(--serif);font-size:3.5rem;font-weight:800;
-  color:#fff;line-height:1;letter-spacing:-0.02em;
-}
-.featured-content{
-  padding:4rem 3.5rem;display:flex;flex-direction:column;justify-content:center;
-  border-left:1px solid var(--border);
-}
-.featured-tag{
-  font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:1.2rem;font-weight:600;
-}
-.featured-desc{
-  font-size:0.92rem;line-height:1.85;color:var(--muted);
-  margin-bottom:2.5rem;font-weight:300;
-}
+.featured-badge{display:inline-flex;align-items:center;gap:0.5rem;background:var(--accent);color:#fff;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.35rem 0.9rem;font-weight:700;margin-bottom:1rem;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px))}
+.featured-media-title{font-family:var(--serif);font-size:3.5rem;font-weight:800;color:#fff;line-height:1;letter-spacing:-0.02em}
+.featured-content{padding:4rem 3.5rem;display:flex;flex-direction:column;justify-content:center;border-left:1px solid var(--border)}
+.featured-tag{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;font-weight:600}
+.featured-desc{font-size:0.92rem;line-height:1.85;color:var(--muted);margin-bottom:2.5rem;font-weight:300}
 .featured-details{margin-bottom:2.5rem}
-.detail-row{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:0.8rem 0;border-bottom:1px solid var(--border);font-size:0.82rem;
-}
+.detail-row{display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;border-bottom:1px solid var(--border);font-size:0.82rem}
 .detail-row:first-child{border-top:1px solid var(--border)}
 .detail-label{color:var(--muted)}
 .detail-value{font-weight:500;color:var(--text)}
-
-/* VIDEO */
 .video-section{padding:0 3rem 4rem;background:var(--bg2)}
-.video-label{
-  font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;
-  color:var(--muted);font-weight:600;margin-bottom:1rem;padding-top:0.5rem;
-  display:flex;align-items:center;gap:0.75rem;
-}
+.video-label{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:1rem;padding-top:0.5rem;display:flex;align-items:center;gap:0.75rem}
 .video-label::before{content:'';display:block;width:24px;height:1px;background:var(--accent)}
-.video-wrapper{
-  width:100%;aspect-ratio:16/9;background:var(--bg3);
-  border:1px solid var(--border);overflow:hidden;position:relative;
-}
+.video-wrapper{width:100%;aspect-ratio:16/9;background:var(--bg3);border:1px solid var(--border);overflow:hidden}
 .video-wrapper iframe{width:100%;height:100%;border:none;display:block}
 
 /* PROJECTS */
 .projects-section{padding:5rem 3rem 0;background:var(--bg)}
-.section-header{
-  display:flex;justify-content:space-between;align-items:flex-end;
-  margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);
-}
-.section-title{
-  font-family:var(--serif);font-size:2.2rem;font-weight:800;letter-spacing:-0.02em;
-}
-.section-title span{
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.section-title{font-family:var(--serif);font-size:2.2rem;font-weight:800;letter-spacing:-0.02em}
+.section-title span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .section-meta{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
-
 .projects-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
-.proj-thumb{
-  position:relative;aspect-ratio:3/4;overflow:hidden;
-  cursor:pointer;background:var(--bg3);
-  transition:flex 0.4s ease;
-}
-.proj-thumb img{
-  width:100%;height:100%;object-fit:cover;position:absolute;inset:0;
-  opacity:0.6;transition:opacity 0.4s,transform 0.5s;
-  filter:saturate(0.7);
-}
+.proj-thumb{position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer;background:var(--bg3)}
+.proj-thumb img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:0.6;transition:opacity 0.4s,transform 0.5s;filter:saturate(0.7)}
 .proj-thumb:hover img{opacity:1;transform:scale(1.05);filter:saturate(1)}
-.proj-thumb-gradient{
-  position:absolute;inset:0;
-  background:linear-gradient(to top, rgba(13,13,15,0.95) 0%, rgba(13,13,15,0.3) 50%, transparent 100%);
-}
-.proj-thumb-content{
-  position:absolute;inset:0;padding:1.5rem 1.5rem 1.8rem;
-  display:flex;flex-direction:column;justify-content:flex-end;
-}
+.proj-thumb-gradient{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,13,15,0.95) 0%,rgba(13,13,15,0.3) 50%,transparent 100%)}
+.proj-thumb-content{position:absolute;inset:0;padding:1.5rem 1.5rem 1.8rem;display:flex;flex-direction:column;justify-content:flex-end}
 .proj-thumb-tags{display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.75rem}
-.proj-mini-tag{
-  font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;
-  padding:0.2rem 0.55rem;font-weight:600;
-  background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);
-  border:1px solid rgba(255,255,255,0.1);
-}
+.proj-mini-tag{font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.55rem;font-weight:600;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1)}
 .proj-mini-tag.hot{background:rgba(255,107,53,0.2);color:var(--accent);border-color:rgba(255,107,53,0.3)}
-.proj-thumb-name{
-  font-family:var(--serif);font-size:1.2rem;font-weight:800;
-  color:#fff;line-height:1.2;margin-bottom:0.3rem;
-}
+.proj-mini-tag.pro{background:rgba(100,200,120,0.15);color:#64c878;border-color:rgba(100,200,120,0.3)}
+.proj-thumb-name{font-family:var(--serif);font-size:1.2rem;font-weight:800;color:#fff;line-height:1.2;margin-bottom:0.3rem}
 .proj-thumb-sub{font-size:0.68rem;color:rgba(255,255,255,0.45);letter-spacing:0.06em}
-.proj-thumb-arrow{
-  position:absolute;top:1.2rem;right:1.2rem;
-  width:36px;height:36px;border-radius:50%;
-  border:1px solid rgba(255,255,255,0.2);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;transition:opacity 0.25s,background 0.25s,transform 0.3s;
-  background:rgba(13,13,15,0.5);
-}
+.proj-thumb-arrow{position:absolute;top:1.2rem;right:1.2rem;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.25s,background 0.25s,transform 0.3s;background:rgba(13,13,15,0.5)}
 .proj-thumb:hover .proj-thumb-arrow{opacity:1}
-.proj-thumb.active .proj-thumb-arrow{
-  opacity:1;background:var(--accent);border-color:var(--accent);
-  transform:rotate(45deg);
-}
+.proj-thumb.active .proj-thumb-arrow{opacity:1;background:var(--accent);border-color:var(--accent);transform:rotate(45deg)}
 .proj-thumb-arrow svg{width:14px;height:14px;stroke:#fff}
 
-/* EXPAND PANEL */
-.project-expand{
-  max-height:0;overflow:hidden;
-  transition:max-height 0.55s cubic-bezier(0.4,0,0.2,1);
-  background:var(--bg2);border-top:none;
-}
-.project-expand.open{max-height:700px}
-.expand-inner{display:grid;grid-template-columns:1.1fr 0.9fr;min-height:420px}
-.expand-video{
-  position:relative;overflow:hidden;background:var(--bg3);
-  border-right:1px solid var(--border);
-}
+/* EXPAND */
+.project-expand{max-height:0;overflow:hidden;transition:max-height 0.65s cubic-bezier(0.4,0,0.2,1);background:var(--bg2);border-top:none}
+.project-expand.open{max-height:1000px}
+.expand-inner{display:grid;grid-template-columns:1.2fr 0.8fr;min-height:420px}
+.expand-left{display:flex;flex-direction:column;border-right:1px solid var(--border)}
+.expand-video{position:relative;flex:1;overflow:hidden;background:var(--bg3);min-height:260px}
 .expand-video iframe{width:100%;height:100%;border:none;display:block;position:absolute;inset:0}
-.expand-video-placeholder{
-  width:100%;height:100%;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:1rem;
-  color:var(--muted);min-height:380px;
-}
-.expand-video-placeholder p{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase}
-.expand-content{padding:3.5rem 3rem;display:flex;flex-direction:column;justify-content:center}
-.expand-eyebrow{
-  font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--accent);font-weight:600;margin-bottom:0.8rem;
-}
-.expand-title{
-  font-family:var(--serif);font-size:2rem;font-weight:800;
-  margin-bottom:1rem;letter-spacing:-0.02em;
-}
-.expand-desc{
-  font-size:0.88rem;line-height:1.85;color:var(--muted);
-  font-weight:300;margin-bottom:1.5rem;
-}
+.gallery-strip{display:flex;gap:1px;background:var(--border);border-top:1px solid var(--border);flex-shrink:0}
+.gallery-tn{flex:1;aspect-ratio:16/10;position:relative;overflow:hidden;cursor:pointer;background:var(--bg3)}
+.gallery-tn img{width:100%;height:100%;object-fit:cover;display:block;opacity:0.5;transition:opacity 0.2s}
+.gallery-tn:hover img{opacity:0.8}
+.gallery-tn.active img{opacity:1}
+.gallery-tn-border{position:absolute;inset:0;border:2px solid transparent;transition:border-color 0.2s;pointer-events:none}
+.gallery-tn.active .gallery-tn-border{border-color:var(--accent)}
+.gallery-tn-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);opacity:0.4;position:absolute;inset:0}
+.expand-content{padding:3rem 2.5rem;display:flex;flex-direction:column;justify-content:center}
+.expand-eyebrow{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.8rem}
+.expand-title{font-family:var(--serif);font-size:2rem;font-weight:800;margin-bottom:1rem;letter-spacing:-0.02em}
+.expand-desc{font-size:0.88rem;line-height:1.85;color:var(--muted);font-weight:300;margin-bottom:1.5rem}
 .expand-tags{display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:1.5rem}
-.etag{
-  font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;
-  padding:0.28rem 0.7rem;border:1px solid var(--border2);
-  color:var(--muted);font-weight:500;
-}
+.etag{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.28rem 0.7rem;border:1px solid var(--border2);color:var(--muted);font-weight:500}
 .etag.pro{border-color:rgba(100,200,120,0.4);color:#64c878}
 .expand-table{width:100%;border-collapse:collapse;border-top:1px solid var(--border)}
 .expand-table tr{border-bottom:1px solid var(--border)}
@@ -312,81 +126,58 @@ nav{
 .expand-table td{font-size:0.8rem;padding:0.65rem 0}
 .expand-table td:first-child{color:var(--muted);width:38%}
 .expand-table td:last-child{font-weight:500;color:var(--text)}
-.nda-notice{
-  font-size:0.72rem;color:var(--muted);font-style:italic;
-  margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--border);
-}
+.nda-notice{font-size:0.72rem;color:var(--muted);font-style:italic;margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--border)}
 
 /* ABOUT */
-.about-section{
-  background:var(--bg2);border-top:1px solid var(--border);
-  display:grid;grid-template-columns:1fr 1fr;margin-top:5rem;
-}
+.about-section{background:var(--bg2);border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;margin-top:5rem}
 .about-left{padding:5rem 4rem 5rem 3rem;border-right:1px solid var(--border)}
 .about-right{padding:5rem 3rem 5rem 4rem}
-.section-tag{
-  font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:1.5rem;font-weight:600;display:block;
-}
-.about-title{
-  font-family:var(--serif);font-size:2.2rem;font-weight:800;
-  line-height:1.15;margin-bottom:2rem;letter-spacing:-0.02em;
-}
+.section-tag{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;font-weight:600;display:block}
+.about-title{font-family:var(--serif);font-size:2.2rem;font-weight:800;line-height:1.15;margin-bottom:2rem;letter-spacing:-0.02em}
 .about-text{font-size:0.92rem;line-height:1.85;color:var(--muted);font-weight:300}
 .about-text+.about-text{margin-top:1.2rem}
 
-.skills-title{
-  font-family:var(--serif);font-size:1.5rem;font-weight:800;
-  margin-bottom:2rem;letter-spacing:-0.01em;
-}
-.skill-item{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:1rem 0;border-bottom:1px solid var(--border);
-}
-.skill-name{font-size:0.88rem;font-weight:500;color:var(--text)}
+/* SKILLS — engines + tools */
+.skills-block{margin-bottom:2.5rem}
+.skills-block-title{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:1.2rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border)}
+.skill-item{display:flex;justify-content:space-between;align-items:center;padding:0.85rem 0;border-bottom:1px solid var(--border)}
+.skill-item:last-child{border-bottom:none}
+.skill-name{font-size:0.88rem;font-weight:500}
 .skill-bar-wrap{width:120px;height:2px;background:var(--border2);position:relative}
 .skill-bar{height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));position:relative}
-.skill-bar::after{
-  content:'';position:absolute;right:-3px;top:-3px;
-  width:8px;height:8px;border-radius:50%;
-  background:var(--accent2);box-shadow:0 0 8px var(--accent);
-}
+.skill-bar::after{content:'';position:absolute;right:-3px;top:-3px;width:8px;height:8px;border-radius:50%;background:var(--accent2);box-shadow:0 0 8px var(--accent)}
+.skill-level{font-size:0.68rem;color:var(--muted);letter-spacing:0.06em}
+.tools-grid{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.5rem}
+.tool-tag{font-size:0.68rem;letter-spacing:0.08em;padding:0.3rem 0.75rem;border:1px solid var(--border2);color:var(--muted);font-weight:500}
+.tool-tag.highlight{border-color:rgba(255,107,53,0.3);color:rgba(255,150,80,0.9)}
+
+/* EDUCATION */
+.edu-section{background:var(--bg);border-top:1px solid var(--border);padding:5rem 3rem}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:2rem}
+.edu-card{background:var(--bg2);padding:2rem 2rem;position:relative;overflow:hidden}
+.edu-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,var(--accent),var(--accent2))}
+.edu-degree{font-family:var(--serif);font-size:1.15rem;font-weight:800;margin-bottom:0.4rem;letter-spacing:-0.01em}
+.edu-school{font-size:0.82rem;color:var(--muted);margin-bottom:0.8rem}
+.edu-year{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
 
 /* CONTACT */
-.contact-section{
-  padding:6rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  background:var(--bg);
-}
-.contact-title{
-  font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);
-  font-weight:800;line-height:1.1;margin-bottom:1.2rem;letter-spacing:-0.02em;
-}
+.contact-section{padding:6rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg)}
+.contact-title{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:800;line-height:1.1;margin-bottom:1.2rem;letter-spacing:-0.02em}
 .contact-sub{font-size:0.92rem;color:var(--muted);line-height:1.75;font-weight:300;margin-bottom:2.5rem}
 .contact-btns{display:flex;flex-direction:column;gap:0.75rem;align-items:flex-start}
 .contact-right{display:flex;flex-direction:column;justify-content:center}
 .contact-item{padding:1.3rem 0;border-bottom:1px solid var(--border)}
 .contact-item:first-child{border-top:1px solid var(--border)}
-.contact-item-label{
-  font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;
-  color:var(--muted);margin-bottom:0.4rem;font-weight:600;
-}
-.contact-item-value{
-  font-size:0.92rem;font-weight:500;text-decoration:none;
-  color:var(--text);transition:color 0.2s;display:block;
-}
+.contact-item-label{font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem;font-weight:600}
+.contact-item-value{font-size:0.92rem;font-weight:500;text-decoration:none;color:var(--text);transition:color 0.2s;display:block}
 .contact-item-value:hover{color:var(--accent)}
 
-footer{
-  padding:1.8rem 3rem;display:flex;justify-content:space-between;align-items:center;
-  background:var(--bg);border-top:1px solid var(--border);
-}
+footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-items:center;background:var(--bg);border-top:1px solid var(--border)}
 .footer-name{font-family:var(--serif);font-size:0.9rem;font-weight:800}
 .footer-note{font-size:0.7rem;color:var(--muted);letter-spacing:0.05em}
 
 @media(max-width:900px){
-  nav{padding:1.2rem 1.5rem}
-  .nav-links{gap:1.5rem}
+  nav{padding:1.2rem 1.5rem}.nav-links{gap:1.5rem}
   .hero{grid-template-columns:1fr;min-height:auto}
   .hero-left{padding:5rem 1.5rem 2.5rem;border-right:none;border-bottom:1px solid var(--border)}
   .hero-right{padding:2.5rem 1.5rem 3rem}
@@ -397,11 +188,13 @@ footer{
   .projects-section{padding:3rem 1.5rem 0}
   .projects-grid{grid-template-columns:repeat(2,1fr)}
   .expand-inner{grid-template-columns:1fr}
-  .expand-video{min-height:240px;border-right:none;border-bottom:1px solid var(--border)}
+  .expand-left{border-right:none;border-bottom:1px solid var(--border)}
+  .expand-video{min-height:240px}
   .expand-content{padding:2.5rem 1.5rem}
   .about-section{grid-template-columns:1fr;margin-top:3rem}
   .about-left{padding:3rem 1.5rem 2rem;border-right:none;border-bottom:1px solid var(--border)}
   .about-right{padding:2rem 1.5rem 3rem}
+  .edu-grid{grid-template-columns:1fr}
   .contact-section{grid-template-columns:1fr;gap:2.5rem;padding:3rem 1.5rem}
   footer{padding:1.2rem 1.5rem;flex-direction:column;gap:0.5rem;text-align:center}
 }
@@ -426,26 +219,21 @@ footer{
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-left">
-    <p class="hero-eyebrow"><span class="hero-eyebrow-dot"></span><span class="hero-tag">Game Developer</span></p>
-    <h1 class="hero-title">
-      Games worth<br><em>playing</em><br>start here.
-    </h1>
-    <p class="hero-desc">I develop games from the ground up: mechanics, systems, and everything in between. Published on Steam as a solo developer, with experience across VR, mobile, and PC.</p>
+    <p class="hero-eyebrow"><span class="hero-eyebrow-dot"></span><span class="hero-tag-text">Game Developer</span></p>
+    <h1 class="hero-title">Games worth<br><em>playing</em><br>start here.</h1>
+    <p class="hero-desc">4+ years of Unity and C# experience across mobile, VR, and PC. Solo developer of DishDash — a restaurant simulation with 600+ Steam wishlists before launch.</p>
     <div class="hero-btns">
-      <a href="#projects" class="btn-primary">
-        View My Work
-        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
-      </a>
+      <a href="#projects" class="btn-primary">View My Work <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
       <a href="#contact" class="btn-secondary">Get in Touch</a>
     </div>
   </div>
   <div class="hero-right">
-    <p class="hero-intro">I've shipped games solo and as part of a team, handling everything from core mechanics to performance optimisation. Whether it's a VR prototype or a commercial mobile title, I focus on building things that actually work and feel good to play.</p>
+    <p class="hero-intro">Experienced in the full game development pipeline — from prototyping and gameplay mechanics to debugging and deployment. Adaptable across genres and production environments, with a strong focus on delivering polished, player-centered experiences.</p>
     <div class="stats-grid">
-      <div class="stat-cell"><div class="stat-number">1</div><div class="stat-label">Steam Title</div></div>
-      <div class="stat-cell"><div class="stat-number">5+</div><div class="stat-label">Projects Shipped</div></div>
-      <div class="stat-cell"><div class="stat-number">2</div><div class="stat-label">Commercial Titles</div></div>
-      <div class="stat-cell"><div class="stat-number">VR</div><div class="stat-label">Mechanic Experience</div></div>
+      <div class="stat-cell"><div class="stat-number">4+</div><div class="stat-label" data-key="stat-0">Years Experience</div></div>
+      <div class="stat-cell"><div class="stat-number">600+</div><div class="stat-label" data-key="stat-1">Steam Wishlists</div></div>
+      <div class="stat-cell"><div class="stat-number">2</div><div class="stat-label" data-key="stat-2">Commercial Titles</div></div>
+      <div class="stat-cell"><div class="stat-number">VR</div><div class="stat-label" data-key="stat-3">Mechanic Experience</div></div>
     </div>
   </div>
 </section>
@@ -462,496 +250,425 @@ footer{
       </div>
     </div>
     <div class="featured-content">
-      <p class="featured-tag">Solo Developer · Steam · PC</p>
-      <p class="featured-desc">A single-player time management game where players prepare meals, serve customers, and juggle limited resources under constant pressure. The goal was to make every decision feel consequential without the game feeling unfair, balancing speed, clarity, and difficulty curve across the full session.</p>
+      <p class="featured-tag" data-key="featured-tag">Solo Developer · Steam · PC</p>
+      <p class="featured-desc" data-key="featured-desc">Solo-developed restaurant simulation game handling all aspects — gameplay mechanics, customer interaction systems, UI/UX, art, and sound. Leveraged AI tools to accelerate development. Released on Steam with 600+ wishlists prior to full launch.</p>
       <div class="featured-details">
-        <div class="detail-row"><span class="detail-label">Genre</span><span class="detail-value">Time Management / Simulation</span></div>
-        <div class="detail-row"><span class="detail-label">Platform</span><span class="detail-value">PC (Steam)</span></div>
-        <div class="detail-row"><span class="detail-label">Role</span><span class="detail-value">Solo Developer: Design, Code, Art, Audio</span></div>
-        <div class="detail-row"><span class="detail-label">Engine</span><span class="detail-value">Unity</span></div>
+        <div class="detail-row"><span class="detail-label" data-key="fd0l">Genre</span><span class="detail-value" data-key="fd0v">Time Management / Simulation</span></div>
+        <div class="detail-row"><span class="detail-label" data-key="fd1l">Platform</span><span class="detail-value" data-key="fd1v">PC (Steam)</span></div>
+        <div class="detail-row"><span class="detail-label" data-key="fd2l">Role</span><span class="detail-value" data-key="fd2v">Solo Developer: Design, Code, Art, Audio</span></div>
+        <div class="detail-row"><span class="detail-label" data-key="fd3l">Engine</span><span class="detail-value" data-key="fd3v">Unity</span></div>
       </div>
-      <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="btn-primary">
-        Steam Page
-        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12"><path d="M4 2h8v8M12 2L4 10"/></svg>
-      </a>
+      <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="btn-primary" data-key="featured-btn">Steam Page <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12"><path d="M4 2h8v8M12 2L4 10"/></svg></a>
     </div>
   </div>
   <div class="video-section">
-    <p class="video-label">Gameplay · DishDash</p>
+    <p class="video-label" data-key="video-label">Gameplay · DishDash</p>
     <div class="video-wrapper">
       <iframe src="https://www.youtube.com/embed/qE7A8FPZLzA?rel=0&modestbranding=1" title="DishDash Gameplay" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <p class="video-label" style="padding-top:1.5rem;">Screenshots</p>
+    <div class="gallery-strip" style="border-top:1px solid var(--border);">
+          <div class="gallery-tn active"><img src="dishdash_1.png" alt="SS 1" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 1</div></div>
+          <div class="gallery-tn"><img src="dishdash_2.png" alt="SS 2" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 2</div></div>
+          <div class="gallery-tn"><img src="dishdash_3.png" alt="SS 3" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 3</div></div>
+          <div class="gallery-tn"><img src="dishdash_4.png" alt="SS 4" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 4</div></div>
+          <div class="gallery-tn"><img src="dishdash_5.png" alt="SS 5" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 5</div></div>
+          <div class="gallery-tn"><img src="dishdash_6.png" alt="SS 6" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 6</div></div>
+          <div class="gallery-tn"><img src="dishdash_7.png" alt="SS 7" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 7</div></div>
+          <div class="gallery-tn"><img src="dishdash_8.png" alt="SS 8" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 8</div></div>
+          <div class="gallery-tn"><img src="dishdash_9.png" alt="SS 9" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 9</div></div>
+          <div class="gallery-tn"><img src="dishdash_10.png" alt="SS 10" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 10</div></div>
+          <div class="gallery-tn"><img src="dishdash_11.png" alt="SS 11" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 11</div></div>
     </div>
   </div>
 </section>
 
-<!-- OTHER PROJECTS -->
+<!-- PROJECTS -->
 <section id="projects" class="projects-section">
   <div class="section-header">
-    <h2 class="section-title">Other <span>Projects</span></h2>
-    <span class="section-meta">4 Projects</span>
+    <h2 class="section-title">Other <span data-key="projects-span">Projects</span></h2>
+    <span class="section-meta" data-key="projects-meta">4 Projects</span>
   </div>
   <div class="projects-grid">
-
     <div class="proj-thumb" onclick="toggleProject('rumble',this)">
       <img src="Rumble.png" alt="Restaurant Rumble">
       <div class="proj-thumb-gradient"></div>
       <div class="proj-thumb-content">
-        <div class="proj-thumb-tags">
-          <span class="proj-mini-tag">VR</span>
-          <span class="proj-mini-tag">PC</span>
-        </div>
+        <div class="proj-thumb-tags"><span class="proj-mini-tag">VR</span><span class="proj-mini-tag">PC</span></div>
         <div class="proj-thumb-name">Restaurant Rumble</div>
         <div class="proj-thumb-sub">Developer · Unity</div>
       </div>
       <div class="proj-thumb-arrow"><svg viewBox="0 0 14 14" fill="none" stroke-width="1.8"><path d="M2 7h10M8 3l4 4-4 4"/></svg></div>
     </div>
-
     <div class="proj-thumb" onclick="toggleProject('oyunevi',this)">
       <img src="OyunEvi.png" alt="Oyun Evi">
       <div class="proj-thumb-gradient"></div>
       <div class="proj-thumb-content">
-        <div class="proj-thumb-tags">
-          <span class="proj-mini-tag hot">Professional</span>
-          <span class="proj-mini-tag">Mobile</span>
-        </div>
+        <div class="proj-thumb-tags"><span class="proj-mini-tag pro">Professional</span><span class="proj-mini-tag">Mobile</span></div>
         <div class="proj-thumb-name">Oyun Evi</div>
         <div class="proj-thumb-sub">Developer · Freelance</div>
       </div>
       <div class="proj-thumb-arrow"><svg viewBox="0 0 14 14" fill="none" stroke-width="1.8"><path d="M2 7h10M8 3l4 4-4 4"/></svg></div>
     </div>
-
     <div class="proj-thumb" onclick="toggleProject('anadili',this)">
       <img src="AnaDili.png" alt="Ana Dili 2">
       <div class="proj-thumb-gradient"></div>
       <div class="proj-thumb-content">
-        <div class="proj-thumb-tags">
-          <span class="proj-mini-tag hot">Professional</span>
-          <span class="proj-mini-tag">Mobile</span>
-        </div>
+        <div class="proj-thumb-tags"><span class="proj-mini-tag pro">Professional</span><span class="proj-mini-tag">Mobile</span></div>
         <div class="proj-thumb-name">Ana Dili 2</div>
         <div class="proj-thumb-sub">Developer · Internship</div>
       </div>
       <div class="proj-thumb-arrow"><svg viewBox="0 0 14 14" fill="none" stroke-width="1.8"><path d="M2 7h10M8 3l4 4-4 4"/></svg></div>
     </div>
-
     <div class="proj-thumb" onclick="toggleProject('picker',this)">
       <img src="Picker.png" alt="Picker 3D">
       <div class="proj-thumb-gradient"></div>
       <div class="proj-thumb-content">
-        <div class="proj-thumb-tags">
-          <span class="proj-mini-tag">3D</span>
-          <span class="proj-mini-tag">Casual</span>
-        </div>
+        <div class="proj-thumb-tags"><span class="proj-mini-tag">3D</span><span class="proj-mini-tag">Casual</span></div>
         <div class="proj-thumb-name">Picker 3D</div>
         <div class="proj-thumb-sub">Solo Developer · Unity</div>
       </div>
       <div class="proj-thumb-arrow"><svg viewBox="0 0 14 14" fill="none" stroke-width="1.8"><path d="M2 7h10M8 3l4 4-4 4"/></svg></div>
     </div>
-
   </div>
 
-  <!-- RESTAURANT RUMBLE EXPAND -->
+  <!-- RUMBLE -->
   <div class="project-expand" id="expand-rumble">
     <div class="expand-inner">
       <div class="expand-left">
-      <div class="expand-video">
-        <iframe src="https://www.youtube.com/embed/8wzO7yO2B2M?rel=0&modestbranding=1" title="Restaurant Rumble" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <div class="gallery-strip" id="gallery-rumble">
-        <div class="gallery-tn active" onclick="selectShot(this, 'rumble_1.png')" data-src="rumble_1.png">
-          <img src="rumble_1.png" alt="Screenshot 1" onerror="this.style.display='none'">
-          <div class="gallery-tn-border"></div>
-          <div class="gallery-tn-placeholder">Screenshot 1</div>
+        <div class="expand-video">
+          <iframe src="https://www.youtube.com/embed/8wzO7yO2B2M?rel=0&modestbranding=1" title="Restaurant Rumble" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <div class="gallery-tn" onclick="selectShot(this, 'rumble_2.png')" data-src="rumble_2.png">
-          <img src="rumble_2.png" alt="Screenshot 2" onerror="this.style.display='none'">
-          <div class="gallery-tn-border"></div>
-          <div class="gallery-tn-placeholder">Screenshot 2</div>
+        <div class="gallery-strip">
+          <div class="gallery-tn active"><img src="rumble_1.png" alt="Screenshot 1" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 1</div></div>
+          <div class="gallery-tn"><img src="rumble_2.png" alt="Screenshot 2" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 2</div></div>
+          <div class="gallery-tn"><img src="rumble_3.png" alt="Screenshot 3" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 3</div></div>
+          <div class="gallery-tn"><img src="rumble_4.png" alt="Screenshot 4" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 4</div></div>
+          <div class="gallery-tn"><img src="rumble_5.png" alt="Screenshot 5" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 5</div></div>
+          <div class="gallery-tn"><img src="rumble_6.png" alt="Screenshot 6" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 6</div></div>
+          <div class="gallery-tn"><img src="rumble_7.png" alt="Screenshot 7" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 7</div></div>
+          <div class="gallery-tn"><img src="rumble_8.png" alt="Screenshot 8" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 8</div></div>
         </div>
-        <div class="gallery-tn" onclick="selectShot(this, 'rumble_3.png')" data-src="rumble_3.png">
-          <img src="rumble_3.png" alt="Screenshot 3" onerror="this.style.display='none'">
-          <div class="gallery-tn-border"></div>
-          <div class="gallery-tn-placeholder">Screenshot 3</div>
-        </div>
-      </div>
-      </div>
-      <div class="gallery-strip" id="gallery-oyunevi">
-        <div class="gallery-tn active" onclick="selectShot(this, 'oyunevi_1.png')" data-src="oyunevi_1.png">
-          <img src="oyunevi_1.png" alt="Screenshot 1" onerror="this.style.display='none'">
-          <div class="gallery-tn-border"></div>
-          <div class="gallery-tn-placeholder">Screenshot 1</div>
-        </div>
-        <div class="gallery-tn" onclick="selectShot(this, 'oyunevi_2.png')" data-src="oyunevi_2.png">
-          <img src="oyunevi_2.png" alt="Screenshot 2" onerror="this.style.display='none'">
-          <div class="gallery-tn-border"></div>
-          <div class="gallery-tn-placeholder">Screenshot 2</div>
-        </div>
-        <div class="gallery-tn" onclick="selectShot(this, 'oyunevi_3.png')" data-src="oyunevi_3.png">
-          <img src="oyunevi_3.png" alt="Screenshot 3" onerror="this.style.display='none'">
-          <div class="gallery-tn-border"></div>
-          <div class="gallery-tn-placeholder">Screenshot 3</div>
-        </div>
-      </div>
-      </div>
-      <div class="gallery-strip" id="gallery-anadili">
-        <div class="gallery-tn active" onclick="selectShot(this, 'anadili_1.png')" data-src="anadili_1.png">
-          <img src="anadili_1.png" alt="Screenshot 1" onerror="this.style.display='none'">
-          <div class="gallery-tn-border"></div>
-          <div class="gallery-tn-placeholder">Screenshot 1</div>
-        </div>
-        <div class="gallery-tn" onclick="selectShot(this, 'anadili_2.png')" data-src="anadili_2.png">
-          <img src="anadili_2.png" alt="Screenshot 2" onerror="this.style.display='none'">
-          <div class="gallery-tn-border"></div>
-          <div class="gallery-tn-placeholder">Screenshot 2</div>
-        </div>
-        <div class="gallery-tn" onclick="selectShot(this, 'anadili_3.png')" data-src="anadili_3.png">
-          <img src="anadili_3.png" alt="Screenshot 3" onerror="this.style.display='none'">
-          <div class="gallery-tn-border"></div>
-          <div class="gallery-tn-placeholder">Screenshot 3</div>
-        </div>
-      </div>
-      </div>
-      <div class="gallery-strip" id="gallery-picker">
-        <div class="gallery-tn active" onclick="selectShot(this, 'picker_1.png')" data-src="picker_1.png">
-          <img src="picker_1.png" alt="Screenshot 1" onerror="this.style.display='none'">
-          <div class="gallery-tn-border"></div>
-          <div class="gallery-tn-placeholder">Screenshot 1</div>
-        </div>
-        <div class="gallery-tn" onclick="selectShot(this, 'picker_2.png')" data-src="picker_2.png">
-          <img src="picker_2.png" alt="Screenshot 2" onerror="this.style.display='none'">
-          <div class="gallery-tn-border"></div>
-          <div class="gallery-tn-placeholder">Screenshot 2</div>
-        </div>
-        <div class="gallery-tn" onclick="selectShot(this, 'picker_3.png')" data-src="picker_3.png">
-          <img src="picker_3.png" alt="Screenshot 3" onerror="this.style.display='none'">
-          <div class="gallery-tn-border"></div>
-          <div class="gallery-tn-placeholder">Screenshot 3</div>
-        </div>
-      </div>
       </div>
       <div class="expand-content">
-        <p class="expand-eyebrow rumble-expand-tag">VR · Unity · Developer</p>
-        <h3 class="expand-title rumble-expand-title">Restaurant Rumble</h3>
-        <p class="expand-desc rumble-expand-desc">VR mechanic prototype built around dishwashing and cooking interactions. Developed physics-based hand interactions and object handling systems from scratch.</p>
-        <div class="expand-tags">
-          <span class="etag">VR</span><span class="etag">PC</span><span class="etag">Prototype</span>
-        </div>
+        <p class="expand-eyebrow" data-key="rumble-tag">VR · Unity · Developer</p>
+        <h3 class="expand-title">Restaurant Rumble</h3>
+        <p class="expand-desc" data-key="rumble-desc">VR mechanic prototype built around dishwashing and cooking interactions. Developed physics-based hand interactions and object handling systems from scratch using Meta Quest.</p>
+        <div class="expand-tags"><span class="etag">VR</span><span class="etag">Meta Quest</span><span class="etag">Unity</span><span class="etag">Prototype</span></div>
         <table class="expand-table">
-          <tr><td>Role</td><td>Developer</td></tr>
-          <tr><td>Focus</td><td>Mechanics, Physics Interactions</td></tr>
-          <tr><td>Engine</td><td>Unity</td></tr>
-          <tr><td>Platform</td><td>PC (VR)</td></tr>
+          <tr><td data-key="r-role-l">Role</td><td data-key="r-role-v">Developer</td></tr>
+          <tr><td data-key="r-focus-l">Focus</td><td data-key="r-focus-v">Mechanics, Physics Interactions</td></tr>
+          <tr><td data-key="r-engine-l">Engine</td><td>Unity</td></tr>
+          <tr><td data-key="r-platform-l">Platform</td><td>PC / Meta Quest (VR)</td></tr>
         </table>
       </div>
     </div>
   </div>
 
-  <!-- OYUN EVİ EXPAND -->
+  <!-- OYUN EVİ -->
   <div class="project-expand" id="expand-oyunevi">
     <div class="expand-inner">
       <div class="expand-left">
-      <div class="expand-video">
-        <iframe src="https://www.youtube.com/embed/12qCKQDFuFw?rel=0&modestbranding=1" title="Oyun Evi" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="expand-video">
+          <iframe src="https://www.youtube.com/embed/12qCKQDFuFw?rel=0&modestbranding=1" title="Oyun Evi" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="gallery-strip">
+          <div class="gallery-tn active"><img src="oyunevi_1.png" alt="Screenshot 1" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 1</div></div>
+          <div class="gallery-tn"><img src="oyunevi_2.png" alt="Screenshot 2" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 2</div></div>
+          <div class="gallery-tn"><img src="oyunevi_3.png" alt="Screenshot 3" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 3</div></div>
+          <div class="gallery-tn"><img src="oyunevi_4.png" alt="Screenshot 4" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 4</div></div>
+          <div class="gallery-tn"><img src="oyunevi_5.png" alt="Screenshot 5" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 5</div></div>
+          <div class="gallery-tn"><img src="oyunevi_6.png" alt="Screenshot 6" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 6</div></div>
+          <div class="gallery-tn"><img src="oyunevi_7.png" alt="Screenshot 7" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 7</div></div>
+          <div class="gallery-tn"><img src="oyunevi_8.png" alt="Screenshot 8" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 8</div></div>
+        </div>
       </div>
       <div class="expand-content">
-        <p class="expand-eyebrow oyunevi-expand-tag">Professional · Mobile · Developer</p>
-        <h3 class="expand-title oyunevi-expand-title">Oyun Evi</h3>
-        <p class="expand-desc oyunevi-expand-desc">A children's mobile game developed as freelance work. Built entirely using provided assets; all visuals were supplied by the client, with mechanics developed solely by me.</p>
-        <div class="expand-tags">
-          <span class="etag pro">Professional</span><span class="etag">Mobile</span><span class="etag">Children</span>
-        </div>
+        <p class="expand-eyebrow" data-key="oyunevi-tag">Professional · Mobile · Freelance</p>
+        <h3 class="expand-title">Oyun Evi</h3>
+        <p class="expand-desc" data-key="oyunevi-desc">Children's mobile game featuring painting and puzzle mechanics. Handled the full development pipeline solo — gameplay, UI, asset integration, and deployment to Android and iOS. Visuals provided by client.</p>
+        <div class="expand-tags"><span class="etag pro">Professional</span><span class="etag">Android</span><span class="etag">iOS</span><span class="etag">Children</span></div>
         <table class="expand-table">
-          <tr><td>Role</td><td>Solo Developer</td></tr>
-          <tr><td>Focus</td><td>Game Mechanics</td></tr>
-          <tr><td>Platform</td><td>Mobile</td></tr>
-          <tr><td>Visuals</td><td>Provided by client</td></tr>
+          <tr><td data-key="oe-role-l">Role</td><td data-key="oe-role-v">Solo Developer</td></tr>
+          <tr><td data-key="oe-focus-l">Focus</td><td data-key="oe-focus-v">Painting, Puzzle Mechanics</td></tr>
+          <tr><td data-key="oe-platform-l">Platform</td><td>Android, iOS</td></tr>
+          <tr><td data-key="oe-visual-l">Visuals</td><td data-key="oe-visual-v">Provided by client</td></tr>
         </table>
-        <p class="nda-notice oyunevi-nda">Visuals pending client approval (NDA)</p>
+        <p class="nda-notice" data-key="oyunevi-nda">Visuals pending client approval (NDA)</p>
       </div>
     </div>
   </div>
 
-  <!-- ANA DİLİ 2 EXPAND -->
+  <!-- ANA DİLİ 2 -->
   <div class="project-expand" id="expand-anadili">
     <div class="expand-inner">
       <div class="expand-left">
-      <div class="expand-video">
-        <iframe src="https://www.youtube.com/embed/zCeYFex3bv8?rel=0&modestbranding=1" title="Ana Dili 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="expand-video">
+          <iframe src="https://www.youtube.com/embed/zCeYFex3bv8?rel=0&modestbranding=1" title="Ana Dili 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="gallery-strip">
+          <div class="gallery-tn active"><img src="anadili_1.png" alt="SS 1" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 1</div></div>
+          <div class="gallery-tn"><img src="anadili_2.png" alt="SS 2" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 2</div></div>
+          <div class="gallery-tn"><img src="anadili_3.png" alt="SS 3" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 3</div></div>
+          <div class="gallery-tn"><img src="anadili_4.png" alt="SS 4" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 4</div></div>
+          <div class="gallery-tn"><img src="anadili_5.png" alt="SS 5" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 5</div></div>
+          <div class="gallery-tn"><img src="anadili_6.png" alt="SS 6" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 6</div></div>
+          <div class="gallery-tn"><img src="anadili_7.png" alt="SS 7" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 7</div></div>
+          <div class="gallery-tn"><img src="anadili_8.png" alt="SS 8" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 8</div></div>
+          <div class="gallery-tn"><img src="anadili_9.png" alt="SS 9" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 9</div></div>
+        </div>
       </div>
       <div class="expand-content">
-        <p class="expand-eyebrow anadili-expand-tag">Professional · Mobile · Developer</p>
-        <h3 class="expand-title anadili-expand-title">Ana Dili 2</h3>
-        <p class="expand-desc anadili-expand-desc">A casual mobile game developed during my internship, where I was the sole developer. My first project building systems from scratch, covering core casual mechanics like object pooling. All visuals were provided by the studio.</p>
-        <div class="expand-tags">
-          <span class="etag pro">Professional</span><span class="etag">Mobile</span><span class="etag">Casual</span>
-        </div>
+        <p class="expand-eyebrow" data-key="anadili-tag">Professional · Mobile · Internship</p>
+        <h3 class="expand-title">Ana Dili 2</h3>
+        <p class="expand-desc" data-key="anadili-desc">Educational mobile game for children teaching the Azerbaijani language. Featured mini-games including number recognition, family vocabulary, and animal education — delivered through simulated phone calls and social media-style interactive videos. Full development cycle managed independently.</p>
+        <div class="expand-tags"><span class="etag pro">Professional</span><span class="etag">Android</span><span class="etag">iOS</span><span class="etag">Educational</span></div>
         <table class="expand-table">
-          <tr><td>Role</td><td>Solo Developer</td></tr>
-          <tr><td>Focus</td><td>Game Mechanics, Object Pooling</td></tr>
-          <tr><td>Platform</td><td>Mobile</td></tr>
-          <tr><td>Visuals</td><td>Provided by studio</td></tr>
+          <tr><td data-key="ad-role-l">Role</td><td data-key="ad-role-v">Solo Developer</td></tr>
+          <tr><td data-key="ad-focus-l">Focus</td><td data-key="ad-focus-v">Mechanics, Mini-games, Object Pooling</td></tr>
+          <tr><td data-key="ad-platform-l">Platform</td><td>Android, iOS</td></tr>
+          <tr><td data-key="ad-visual-l">Visuals</td><td data-key="ad-visual-v">Provided by studio</td></tr>
         </table>
-        <p class="nda-notice anadili-nda">Visuals pending studio approval (NDA)</p>
+        <p class="nda-notice" data-key="anadili-nda">Visuals pending studio approval (NDA)</p>
       </div>
     </div>
   </div>
 
-  <!-- PICKER 3D EXPAND -->
+  <!-- PICKER 3D -->
   <div class="project-expand" id="expand-picker">
     <div class="expand-inner">
       <div class="expand-left">
-      <div class="expand-video">
-        <iframe src="https://www.youtube.com/embed/O5bIFwww28c?rel=0&modestbranding=1" title="Picker 3D" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="expand-video">
+          <iframe src="https://www.youtube.com/embed/O5bIFwww28c?rel=0&modestbranding=1" title="Picker 3D" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="gallery-strip">
+          <div class="gallery-tn active"><img src="picker_1.png" alt="SS 1" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 1</div></div>
+          <div class="gallery-tn"><img src="picker_2.png" alt="SS 2" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 2</div></div>
+          <div class="gallery-tn"><img src="picker_3.png" alt="SS 3" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 3</div></div>
+          <div class="gallery-tn"><img src="picker_4.png" alt="SS 4" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 4</div></div>
+          <div class="gallery-tn"><img src="picker_5.png" alt="SS 5" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 5</div></div>
+          <div class="gallery-tn"><img src="picker_6.png" alt="SS 6" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 6</div></div>
+          <div class="gallery-tn"><img src="picker_7.png" alt="SS 7" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 7</div></div>
+        </div>
       </div>
       <div class="expand-content">
-        <p class="expand-eyebrow picker-expand-tag">University Project · Unity · Developer</p>
-        <h3 class="expand-title picker-expand-title">Picker 3D</h3>
-        <p class="expand-desc picker-expand-desc">Casual 3D game developed as a university project. I was the sole developer, responsible for building all game mechanics from scratch.</p>
-        <div class="expand-tags">
-          <span class="etag">3D</span><span class="etag">Casual</span><span class="etag">University</span>
-        </div>
+        <p class="expand-eyebrow" data-key="picker-tag">University Project · Unity · Developer</p>
+        <h3 class="expand-title">Picker 3D</h3>
+        <p class="expand-desc" data-key="picker-desc">Casual 3D mobile game developed as a university project. Built all game mechanics solo — including object pooling and core casual gameplay systems.</p>
+        <div class="expand-tags"><span class="etag">3D</span><span class="etag">Casual</span><span class="etag">Android</span><span class="etag">University</span></div>
         <table class="expand-table">
-          <tr><td>Role</td><td>Solo Developer</td></tr>
-          <tr><td>Focus</td><td>Game Mechanics</td></tr>
-          <tr><td>Engine</td><td>Unity</td></tr>
-          <tr><td>Platform</td><td>PC / Mobile</td></tr>
+          <tr><td data-key="pk-role-l">Role</td><td data-key="pk-role-v">Solo Developer</td></tr>
+          <tr><td data-key="pk-focus-l">Focus</td><td data-key="pk-focus-v">Game Mechanics, Object Pooling</td></tr>
+          <tr><td data-key="pk-engine-l">Engine</td><td>Unity</td></tr>
+          <tr><td data-key="pk-platform-l">Platform</td><td>PC / Mobile</td></tr>
         </table>
       </div>
     </div>
   </div>
-
 </section>
 
-<!-- ABOUT -->
+<!-- ABOUT + SKILLS -->
 <section id="about" class="about-section">
   <div class="about-left">
-    <span class="section-tag about-tag">About</span>
-    <h2 class="about-title">I make things work. And feel right.</h2>
-    <p class="about-text about-p0">I'm a game developer with experience across solo projects, team productions, and professional studio work. My focus is always on the mechanics layer: how things move, respond, and feel in the player's hands.</p>
-    <p class="about-text about-p1">Building DishDash as a solo developer meant owning every decision from the first prototype to the Steam release. That process pushed me to think clearly about scope, prioritise ruthlessly, and ship something real.</p>
-    <p class="about-text about-p2">I've worked across PC, VR, and mobile, and I'm always looking for the next problem worth solving.</p>
+    <span class="section-tag" data-key="about-tag">About</span>
+    <h2 class="about-title" data-key="about-title">I make things work. And feel right.</h2>
+    <p class="about-text about-p0">Game developer with 4+ years of Unity and C# experience across mobile, VR, and PC. I focus on the full pipeline — from early prototyping to final deployment — with a strong emphasis on mechanics that feel good in the player's hands.</p>
+    <p class="about-text about-p1">Building DishDash solo taught me how to own every decision from the first prototype to Steam release. I had to think clearly about scope, prioritise ruthlessly, and ship something real.</p>
+    <p class="about-text about-p2">I've worked across commercial, freelance, and academic projects — always adaptable, always looking for the next problem worth solving.</p>
   </div>
   <div class="about-right">
-    <h3 class="skills-title">Skills</h3>
-    <ul style="list-style:none;" id="skills-list">
-      <li class="skill-item"><span class="skill-name" data-en="Unity &amp; C#" data-tr="Unity &amp; C#">Unity &amp; C#</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div></li>
-      <li class="skill-item"><span class="skill-name" data-en="Game Mechanics" data-tr="Oyun Mekaniği">Game Mechanics</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></li>
-      <li class="skill-item"><span class="skill-name" data-en="Game Design" data-tr="Oyun Tasarımı">Game Design</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></li>
-      <li class="skill-item"><span class="skill-name" data-en="VR Development" data-tr="VR Geliştirme">VR Development</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:72%"></div></div></li>
-      <li class="skill-item"><span class="skill-name" data-en="Mobile Development" data-tr="Mobil Geliştirme">Mobile Development</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div></li>
-      <li class="skill-item"><span class="skill-name" data-en="Git / Version Control" data-tr="Git / Versiyon Kontrolü">Git / Version Control</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div></li>
-    </ul>
+    <div class="skills-block">
+      <div class="skills-block-title" data-key="skills-engines">Game Engines</div>
+      <ul style="list-style:none;">
+        <li class="skill-item">
+          <span class="skill-name">Unity</span>
+          <div style="display:flex;align-items:center;gap:0.75rem;">
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div>
+            <span class="skill-level" data-key="sk-expert">Expert</span>
+          </div>
+        </li>
+        <li class="skill-item">
+          <span class="skill-name">Unreal Engine</span>
+          <div style="display:flex;align-items:center;gap:0.75rem;">
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:40%"></div></div>
+            <span class="skill-level" data-key="sk-familiar">Familiar</span>
+          </div>
+        </li>
+        <li class="skill-item">
+          <span class="skill-name">Godot</span>
+          <div style="display:flex;align-items:center;gap:0.75rem;">
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:30%"></div></div>
+            <span class="skill-level" data-key="sk-familiar2">Familiar</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="skills-block">
+      <div class="skills-block-title" data-key="skills-languages">Languages</div>
+      <div class="tools-grid">
+        <span class="tool-tag highlight">C#</span>
+        <span class="tool-tag highlight">Python</span>
+        <span class="tool-tag">Java</span>
+        <span class="tool-tag">C++</span>
+      </div>
+    </div>
+    <div class="skills-block" style="margin-bottom:0;">
+      <div class="skills-block-title" data-key="skills-tools">Tools &amp; Platforms</div>
+      <div class="tools-grid">
+        <span class="tool-tag highlight">Git / GitHub</span>
+        <span class="tool-tag">Blender</span>
+        <span class="tool-tag">Figma</span>
+        <span class="tool-tag">Photoshop</span>
+        <span class="tool-tag">Rider</span>
+        <span class="tool-tag">Visual Studio</span>
+        <span class="tool-tag highlight">Android</span>
+        <span class="tool-tag highlight">iOS</span>
+        <span class="tool-tag highlight">Meta Quest</span>
+        <span class="tool-tag highlight">Steam / PC</span>
+        <span class="tool-tag">WebGL</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="contact-section">
   <div class="contact-left">
-    <span class="section-tag contact-tag">Contact</span>
-    <h2 class="contact-title">Let's work together.</h2>
-    <p class="contact-sub">Open to job opportunities, internships, and collaborative projects. Feel free to reach out. I'm always happy to talk.</p>
+    <span class="section-tag" data-key="contact-tag">Contact</span>
+    <h2 class="contact-title" data-key="contact-title">Let's work together.</h2>
+    <p class="contact-sub" data-key="contact-sub">Open to full-time positions, internships, and collaborative projects. Feel free to reach out.</p>
     <div class="contact-btns">
-      <a href="mailto:ahsennurilter@gmail.com" class="btn-primary">
-        Send an Email
-        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
-      </a>
-      <a href="https://www.linkedin.com/in/ahsen-nur-ilter-a6a135207/" target="_blank" class="btn-secondary">LinkedIn</a>
+      <a href="mailto:ahsennurilter@gmail.com" class="btn-primary" data-key="contact-email-btn">Send an Email <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
+      <a href="https://www.linkedin.com/in/ahsen-nur-ilter-a6a135207/" target="_blank" class="btn-secondary" data-key="contact-li-btn">LinkedIn</a>
     </div>
   </div>
   <div class="contact-right">
-    <div class="contact-item"><p class="contact-item-label">Email</p><a href="mailto:ahsennurilter@gmail.com" class="contact-item-value">ahsennurilter@gmail.com</a></div>
-    <div class="contact-item"><p class="contact-item-label">Alternative Email</p><a href="mailto:ahsennurilter@hotmail.com" class="contact-item-value">ahsennurilter@hotmail.com</a></div>
-    <div class="contact-item"><p class="contact-item-label">LinkedIn</p><a href="https://www.linkedin.com/in/ahsen-nur-ilter-a6a135207/" target="_blank" class="contact-item-value">Ahsen Nur İlter</a></div>
-    <div class="contact-item"><p class="contact-item-label">Steam</p><a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="contact-item-value">DishDash · Steam Page</a></div>
+    <div class="contact-item"><p class="contact-item-label" data-key="cl0">Email</p><a href="mailto:ahsennurilter@gmail.com" class="contact-item-value">ahsennurilter@gmail.com</a></div>
+    <div class="contact-item"><p class="contact-item-label" data-key="cl1">Alternative Email</p><a href="mailto:ahsennurilter@hotmail.com" class="contact-item-value">ahsennurilter@hotmail.com</a></div>
+    <div class="contact-item"><p class="contact-item-label" data-key="cl2">LinkedIn</p><a href="https://www.linkedin.com/in/ahsen-nur-ilter-a6a135207/" target="_blank" class="contact-item-value">Ahsen Nur İlter</a></div>
+    <div class="contact-item"><p class="contact-item-label" data-key="cl3">Steam</p><a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="contact-item-value">DishDash · Steam Page</a></div>
   </div>
 </section>
 
 <footer>
   <span class="footer-name">Ahsen Nur İlter</span>
-  <span class="footer-note">Game Developer · <script>document.write(new Date().getFullYear())</script></span>
+  <span class="footer-note" data-key="footer-role">Game Developer · <script>document.write(new Date().getFullYear())</script></span>
 </footer>
 
 <script>
-let activeProject = null, activeThumb = null;
-
-function selectShot(el, src) {
-  const strip = el.closest('.gallery-strip');
-  strip.querySelectorAll('.gallery-tn').forEach(t => t.classList.remove('active'));
+let activeProject=null,activeThumb=null;
+function toggleProject(id,thumb){
+  const panel=document.getElementById('expand-'+id);
+  if(activeProject&&activeProject!==panel){activeProject.classList.remove('open');if(activeThumb)activeThumb.classList.remove('active');}
+  if(panel.classList.contains('open')){panel.classList.remove('open');thumb.classList.remove('active');activeProject=null;activeThumb=null;}
+  else{panel.classList.add('open');thumb.classList.add('active');activeProject=panel;activeThumb=thumb;setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),100);}
+}
+function selectShot(el){
+  el.closest('.gallery-strip').querySelectorAll('.gallery-tn').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
 }
-function toggleProject(id, thumb) {
-  const panel = document.getElementById('expand-' + id);
-  if (activeProject && activeProject !== panel) {
-    activeProject.classList.remove('open');
-    if (activeThumb) activeThumb.classList.remove('active');
-  }
-  if (panel.classList.contains('open')) {
-    panel.classList.remove('open');
-    thumb.classList.remove('active');
-    activeProject = null; activeThumb = null;
-  } else {
-    panel.classList.add('open');
-    thumb.classList.add('active');
-    activeProject = panel; activeThumb = thumb;
-    setTimeout(() => panel.scrollIntoView({behavior:'smooth',block:'nearest'}), 100);
-  }
-}
+document.querySelectorAll('.gallery-tn').forEach(tn=>{
+  tn.addEventListener('click',()=>selectShot(tn));
+});
 
-const translations = {
-  en: {
-    'hero-tag':'Game Developer',
+const T={
+  en:{
+    'hero-tag-text':'Game Developer',
     'hero-title':'Games worth<br><em>playing</em><br>start here.',
-    'hero-desc':"I develop games from the ground up: mechanics, systems, and everything in between. Published on Steam as a solo developer, with experience across VR, mobile, and PC.",
-    'hero-intro':"I've shipped games solo and as part of a team, handling everything from core mechanics to performance optimisation. Whether it's a VR prototype or a commercial mobile title, I focus on building things that actually work and feel good to play.",
-    'nav-0':'Work','nav-1':'About','nav-2':'Contact',
+    'hero-desc':'4+ years of Unity and C# experience across mobile, VR, and PC. Solo developer of DishDash — a restaurant simulation with 600+ Steam wishlists before launch.',
+    'hero-intro':'Experienced in the full game development pipeline — from prototyping and gameplay mechanics to debugging and deployment. Adaptable across genres and production environments, with a strong focus on delivering polished, player-centered experiences.',
+    'stat-0':'Years Experience','stat-1':'Steam Wishlists','stat-2':'Commercial Titles','stat-3':'Mechanic Experience',
     'featured-tag':'Solo Developer · Steam · PC',
-    'featured-desc':"A single-player time management game where players prepare meals, serve customers, and juggle limited resources under constant pressure. The goal was to make every decision feel consequential without the game feeling unfair, balancing speed, clarity, and difficulty curve across the full session.",
-    'featured-d0-l':'Genre','featured-d0-v':'Time Management / Simulation',
-    'featured-d1-l':'Platform','featured-d1-v':'PC (Steam)',
-    'featured-d2-l':'Role','featured-d2-v':'Solo Developer: Design, Code, Art, Audio',
-    'featured-d3-l':'Engine','featured-d3-v':'Unity',
-    'featured-btn':'Steam Page',
-    'video-label':'Gameplay · DishDash',
-    'projects-title':'Other Projects','projects-meta':'4 Projects',
-    'stat-0':'Steam Title','stat-1':'Projects Shipped','stat-2':'Commercial Titles','stat-3':'Mechanic Experience',
-    'about-tag':'About','about-title':'I make things work. And feel right.',
-    'about-p0':"I'm a game developer with experience across solo projects, team productions, and professional studio work. My focus is always on the mechanics layer: how things move, respond, and feel in the player's hands.",
-    'about-p1':"Building DishDash as a solo developer meant owning every decision from the first prototype to the Steam release. That process pushed me to think clearly about scope, prioritise ruthlessly, and ship something real.",
-    'about-p2':"I've worked across PC, VR, and mobile, and I'm always looking for the next problem worth solving.",
-    'skills-title':'Skills',
-    'contact-tag':'Contact','contact-title':"Let's work together.",
-    'contact-sub':"Open to job opportunities, internships, and collaborative projects. Feel free to reach out. I'm always happy to talk.",
-    'contact-email-btn':'Send an Email','contact-li-btn':'LinkedIn',
-    'contact-l0':'Email','contact-l1':'Alternative Email','contact-l2':'LinkedIn','contact-l3':'Steam',
-    'footer-role':'Game Developer',
-    'rumble-expand-tag':'VR · Unity · Developer','rumble-expand-title':'Restaurant Rumble',
-    'rumble-expand-desc':'VR mechanic prototype built around dishwashing and cooking interactions. Developed physics-based hand interactions and object handling systems from scratch.',
-    'rumble-r0-l':'Role','rumble-r0-v':'Developer','rumble-r1-l':'Focus','rumble-r1-v':'Mechanics, Physics Interactions','rumble-r2-l':'Engine','rumble-r2-v':'Unity','rumble-r3-l':'Platform','rumble-r3-v':'PC (VR)',
-    'oyunevi-expand-tag':'Professional · Mobile · Developer','oyunevi-expand-title':'Oyun Evi',
-    'oyunevi-expand-desc':"A children's mobile game developed as freelance work. Built entirely using provided assets; all visuals were supplied by the client, with mechanics developed solely by me.",
-    'oyunevi-r0-l':'Role','oyunevi-r0-v':'Solo Developer','oyunevi-r1-l':'Focus','oyunevi-r1-v':'Game Mechanics','oyunevi-r2-l':'Platform','oyunevi-r2-v':'Mobile','oyunevi-r3-l':'Visuals','oyunevi-r3-v':'Provided by client',
+    'featured-desc':'Solo-developed restaurant simulation game handling all aspects — gameplay mechanics, customer interaction systems, UI/UX, art, and sound. Leveraged AI tools to accelerate development. Released on Steam with 600+ wishlists prior to full launch.',
+    'fd0l':'Genre','fd0v':'Time Management / Simulation','fd1l':'Platform','fd1v':'PC (Steam)','fd2l':'Role','fd2v':'Solo Developer: Design, Code, Art, Audio','fd3l':'Engine','fd3v':'Unity',
+    'featured-btn':'Steam Page','video-label':'Gameplay · DishDash',
+    'projects-span':'Projects','projects-meta':'4 Projects',
+    'rumble-tag':'VR · Unity · Developer','rumble-desc':'VR mechanic prototype built around dishwashing and cooking interactions. Developed physics-based hand interactions and object handling systems from scratch using Meta Quest.',
+    'r-role-l':'Role','r-role-v':'Developer','r-focus-l':'Focus','r-focus-v':'Mechanics, Physics Interactions','r-engine-l':'Engine','r-platform-l':'Platform',
+    'oyunevi-tag':'Professional · Mobile · Freelance','oyunevi-desc':"Children's mobile game featuring painting and puzzle mechanics. Handled the full development pipeline solo — gameplay, UI, asset integration, and deployment to Android and iOS. Visuals provided by client.",
+    'oe-role-l':'Role','oe-role-v':'Solo Developer','oe-focus-l':'Focus','oe-focus-v':'Painting, Puzzle Mechanics','oe-platform-l':'Platform','oe-visual-l':'Visuals','oe-visual-v':'Provided by client',
     'oyunevi-nda':'Visuals pending client approval (NDA)',
-    'anadili-expand-tag':'Professional · Mobile · Developer','anadili-expand-title':'Ana Dili 2',
-    'anadili-expand-desc':'A casual mobile game developed during my internship, where I was the sole developer. My first project building systems from scratch, covering core casual mechanics like object pooling. All visuals were provided by the studio.',
-    'anadili-r0-l':'Role','anadili-r0-v':'Solo Developer','anadili-r1-l':'Focus','anadili-r1-v':'Game Mechanics, Object Pooling','anadili-r2-l':'Platform','anadili-r2-v':'Mobile','anadili-r3-l':'Visuals','anadili-r3-v':'Provided by studio',
+    'anadili-tag':'Professional · Mobile · Internship','anadili-desc':'Educational mobile game for children teaching the Azerbaijani language. Featured mini-games including number recognition, family vocabulary, and animal education — delivered through simulated phone calls and social media-style interactive videos.',
+    'ad-role-l':'Role','ad-role-v':'Solo Developer','ad-focus-l':'Focus','ad-focus-v':'Mechanics, Mini-games, Object Pooling','ad-platform-l':'Platform','ad-visual-l':'Visuals','ad-visual-v':'Provided by studio',
     'anadili-nda':'Visuals pending studio approval (NDA)',
-    'picker-expand-tag':'University Project · Unity · Developer','picker-expand-title':'Picker 3D',
-    'picker-expand-desc':'Casual 3D game developed as a university project. I was the sole developer, responsible for building all game mechanics from scratch.',
-    'picker-r0-l':'Role','picker-r0-v':'Solo Developer','picker-r1-l':'Focus','picker-r1-v':'Game Mechanics','picker-r2-l':'Engine','picker-r2-v':'Unity','picker-r3-l':'Platform','picker-r3-v':'PC / Mobile',
+    'picker-tag':'University Project · Unity · Developer','picker-desc':'Casual 3D mobile game developed as a university project. Built all game mechanics solo — including object pooling and core casual gameplay systems.',
+    'pk-role-l':'Role','pk-role-v':'Solo Developer','pk-focus-l':'Focus','pk-focus-v':'Game Mechanics, Object Pooling','pk-engine-l':'Engine','pk-platform-l':'Platform',
+    'about-tag':'About','about-title':'I make things work. And feel right.',
+    'about-p0':"Game developer with 4+ years of Unity and C# experience across mobile, VR, and PC. I focus on the full pipeline — from early prototyping to final deployment — with a strong emphasis on mechanics that feel good in the player's hands.",
+    'about-p1':'Building DishDash solo taught me how to own every decision from the first prototype to Steam release. I had to think clearly about scope, prioritise ruthlessly, and ship something real.',
+    'about-p2':"I've worked across commercial, freelance, and academic projects — always adaptable, always looking for the next problem worth solving.",
+    'skills-engines':'Game Engines','skills-languages':'Languages','skills-tools':'Tools & Platforms',
+    'sk-expert':'Expert','sk-familiar':'Familiar','sk-familiar2':'Familiar',
+    'edu-tag':'Education','edu-1-degree':'Digital Game Design','edu-2-degree':'Computer Engineering',
+    'contact-tag':'Contact','contact-title':"Let's work together.",'contact-sub':'Open to full-time positions, internships, and collaborative projects. Feel free to reach out.',
+    'contact-email-btn':'Send an Email','contact-li-btn':'LinkedIn',
+    'cl0':'Email','cl1':'Alternative Email','cl2':'LinkedIn','cl3':'Steam',
+    'footer-role':'Game Developer',
   },
-  tr: {
-    'hero-tag':'Oyun Geliştirici',
+  tr:{
+    'hero-tag-text':'Oyun Geliştirici',
     'hero-title':'Oynanmaya değer<br><em>oyunlar</em><br>buradan çıkar.',
-    'hero-desc':"Oyunları sıfırdan geliştiriyorum: mekanikler, sistemler ve her şey. Steam'de solo geliştirici olarak yayınlanmış oyunum var; VR, mobil ve PC deneyimim mevcut.",
-    'hero-intro':"Solo ve ekip içinde oyunlar geliştirdim, temel mekaniklerden performans optimizasyonuna kadar her şeyle ilgilendim. VR prototipi ya da ticari mobil oyun olsun, gerçekten çalışan ve oynaması iyi hissettiren şeyler üretmeye odaklanıyorum.",
-    'nav-0':'Projeler','nav-1':'Hakkımda','nav-2':'İletişim',
+    'hero-desc':"Unity ve C# ile 4+ yıl mobil, VR ve PC deneyimi. DishDash'in solo geliştiricisi — piyasaya çıkmadan önce 600+ Steam istek listesi.",
+    'hero-intro':'Prototipten deployment'a kadar tam oyun geliştirme sürecinde deneyimliyim. Farklı türlere ve prodüksiyon ortamlarına uyum sağlayabiliyorum; odağım her zaman oyuncu merkezli, cilalı deneyimler sunmak.',
+    'stat-0':'Yıl Deneyim','stat-1':'Steam İstek Listesi','stat-2':'Ticari Proje','stat-3':'Mekanik Deneyimi',
     'featured-tag':'Solo Geliştirici · Steam · PC',
-    'featured-desc':"Yemek hazırlama, müşteri servisi ve sınırlı kaynak yönetimini sürekli baskı altında dengeleyen tek oyunculu bir zaman yönetimi oyunu. Hedef, her kararın önemli hissettirmesi ama oyunun haksız gelmemesiydi.",
-    'featured-d0-l':'Tür','featured-d0-v':'Zaman Yönetimi / Simülasyon',
-    'featured-d1-l':'Platform','featured-d1-v':'PC (Steam)',
-    'featured-d2-l':'Rol','featured-d2-v':'Solo Geliştirici: Tasarım, Kod, Sanat, Ses',
-    'featured-d3-l':'Motor','featured-d3-v':'Unity',
-    'featured-btn':'Steam Sayfası',
-    'video-label':'Gameplay · DishDash',
-    'projects-title':'Diğer Projeler','projects-meta':'4 Proje',
-    'stat-0':'Steam Oyunu','stat-1':'Tamamlanan Proje','stat-2':'Ticari Proje','stat-3':'Mekanik Deneyimi',
-    'about-tag':'Hakkımda','about-title':'Çalışmasını sağlarım. Ve doğru hissettiririm.',
-    'about-p0':'Solo projelerden ekip çalışmalarına ve profesyonel stüdyo deneyimine sahip bir oyun geliştiriciyim. Odağım her zaman mekanik katmanında: şeylerin nasıl hareket ettiği, nasıl tepki verdiği ve oyuncunun elinde nasıl hissettirdiği.',
-    'about-p1':"DishDash’i solo geliştirmek, ilk prototipten Steam yayınına kadar her kararın sorumluluğunu üstlenmek demekti. Bu süreç kapsamı netleştirmeyi, acımasızca önceliklendirmeyi ve gerçek bir şey çıkarmayı öğretti.",
-    'about-p2':"PC, VR ve mobil platformlarda çalıştım, ve her zaman çözmeye değer bir sonraki problemi arıyorum.",
-    'skills-title':'Beceriler',
-    'contact-tag':'İletişim','contact-title':'Birlikte çalışalım.',
-    'contact-sub':'İş fırsatları, staj teklifleri ve ortak projeler için açığım. Ulaşmaktan çekinme, her zaman konuşmaktan memnuniyet duyarım.',
-    'contact-email-btn':'E-posta Gönder','contact-li-btn':'LinkedIn',
-    'contact-l0':'E-posta','contact-l1':'Alternatif E-posta','contact-l2':'LinkedIn','contact-l3':'Steam',
-    'footer-role':'Oyun Geliştirici',
-    'rumble-expand-tag':'VR · Unity · Geliştirici','rumble-expand-title':'Restaurant Rumble',
-    'rumble-expand-desc':'Bulaşık yıkama ve yemek pişirme etkileşimleri üzerine kurulu VR mekanik prototipi. Fizik tabanlı el etkileşimleri ve nesne yönetim sistemleri sıfırdan geliştirildi.',
-    'rumble-r0-l':'Rol','rumble-r0-v':'Geliştirici','rumble-r1-l':'Odak','rumble-r1-v':'Mekanikler, Fizik Etkileşimleri','rumble-r2-l':'Motor','rumble-r2-v':'Unity','rumble-r3-l':'Platform','rumble-r3-v':'PC (VR)',
-    'oyunevi-expand-tag':'Profesyonel · Mobil · Geliştirici','oyunevi-expand-title':'Oyun Evi',
-    'oyunevi-expand-desc':'Freelance olarak geliştirilen bir çocuk mobil oyunu. Tüm görseller müşteri tarafından sağlandı; mekanik kısmında yalnızca ben çalıştım.',
-    'oyunevi-r0-l':'Rol','oyunevi-r0-v':'Solo Geliştirici','oyunevi-r1-l':'Odak','oyunevi-r1-v':'Oyun Mekaniği','oyunevi-r2-l':'Platform','oyunevi-r2-v':'Mobil','oyunevi-r3-l':'Görseller','oyunevi-r3-v':'Müşteri tarafından sağlandı',
+    'featured-desc':'Tüm yönleri kapsayan solo geliştirme: oyun mekaniği, müşteri etkileşim sistemleri, UI/UX, sanat ve ses. Geliştirmeyi hızlandırmak için yapay zeka araçlarından yararlanıldı. Tam lansmandan önce 600+ istek listesiyle Steam'de yayınlandı.',
+    'fd0l':'Tür','fd0v':'Zaman Yönetimi / Simülasyon','fd1l':'Platform','fd1v':'PC (Steam)','fd2l':'Rol','fd2v':'Solo Geliştirici: Tasarım, Kod, Sanat, Ses','fd3l':'Motor','fd3v':'Unity',
+    'featured-btn':'Steam Sayfası','video-label':'Gameplay · DishDash',
+    'projects-span':'Projeler','projects-meta':'4 Proje',
+    'rumble-tag':'VR · Unity · Geliştirici','rumble-desc':'Bulaşık yıkama ve yemek pişirme etkileşimleri üzerine kurulu VR mekanik prototipi. Meta Quest kullanarak fizik tabanlı el etkileşimleri ve nesne yönetim sistemleri sıfırdan geliştirildi.',
+    'r-role-l':'Rol','r-role-v':'Geliştirici','r-focus-l':'Odak','r-focus-v':'Mekanikler, Fizik Etkileşimleri','r-engine-l':'Motor','r-platform-l':'Platform',
+    'oyunevi-tag':'Profesyonel · Mobil · Freelance','oyunevi-desc':'Boyama ve puzzle mekaniği içeren çocuk mobil oyunu. Gameplay, UI, asset entegrasyonu ve Android/iOS deployment dahil tüm geliştirme sürecini solo yürüttüm. Görseller müşteri tarafından sağlandı.',
+    'oe-role-l':'Rol','oe-role-v':'Solo Geliştirici','oe-focus-l':'Odak','oe-focus-v':'Boyama, Puzzle Mekaniği','oe-platform-l':'Platform','oe-visual-l':'Görseller','oe-visual-v':'Müşteri tarafından sağlandı',
     'oyunevi-nda':'Görseller müşteri onayı bekleniyor (NDA)',
-    'anadili-expand-tag':'Profesyonel · Mobil · Geliştirici','anadili-expand-title':'Ana Dili 2',
-    'anadili-expand-desc':'Staj dönemimde tek başıma geliştirdiğim casual bir mobil oyun. Sistemleri sıfırdan kurduğum ilk projem, object pooling gibi temel casual mekaniklerini içeriyor. Tüm görseller stüdyo tarafından sağlandı.',
-    'anadili-r0-l':'Rol','anadili-r0-v':'Solo Geliştirici','anadili-r1-l':'Odak','anadili-r1-v':'Oyun Mekaniği, Object Pooling','anadili-r2-l':'Platform','anadili-r2-v':'Mobil','anadili-r3-l':'Görseller','anadili-r3-v':'Stüdyo tarafından sağlandı',
+    'anadili-tag':'Profesyonel · Mobil · Staj','anadili-desc':'Azerbaycan dilini öğreten çocuk odaklı eğitim mobil oyunu. Sayı tanıma, aile kelime bilgisi ve hayvan eğitimi gibi mini oyunlar; simüle telefon görüşmeleri ve sosyal medya tarzı interaktif videolar aracılığıyla sunuldu.',
+    'ad-role-l':'Rol','ad-role-v':'Solo Geliştirici','ad-focus-l':'Odak','ad-focus-v':'Mekanikler, Mini Oyunlar, Object Pooling','ad-platform-l':'Platform','ad-visual-l':'Görseller','ad-visual-v':'Stüdyo tarafından sağlandı',
     'anadili-nda':'Görseller stüdyo onayı bekleniyor (NDA)',
-    'picker-expand-tag':'Üniversite Projesi · Unity · Geliştirici','picker-expand-title':'Picker 3D',
-    'picker-expand-desc':'Üniversite projesi olarak geliştirilen casual 3D oyun. Tek geliştirici olarak tüm oyun mekaniklerini sıfırdan kurdum.',
-    'picker-r0-l':'Rol','picker-r0-v':'Solo Geliştirici','picker-r1-l':'Odak','picker-r1-v':'Oyun Mekaniği','picker-r2-l':'Motor','picker-r2-v':'Unity','picker-r3-l':'Platform','picker-r3-v':'PC / Mobil',
+    'picker-tag':'Üniversite Projesi · Unity · Geliştirici','picker-desc':'Üniversite projesi olarak geliştirilen casual 3D mobil oyun. Object pooling ve temel casual oyun sistemleri dahil tüm mekanikleri solo kurdum.',
+    'pk-role-l':'Rol','pk-role-v':'Solo Geliştirici','pk-focus-l':'Odak','pk-focus-v':'Oyun Mekaniği, Object Pooling','pk-engine-l':'Motor','pk-platform-l':'Platform',
+    'about-tag':'Hakkımda','about-title':'Çalışmasını sağlarım. Ve doğru hissettiririm.',
+    'about-p0':"Mobil, VR ve PC platformlarında 4+ yıl Unity ve C# deneyimine sahip oyun geliştiriciyim. Erken prototipten son deploy'a kadar tam pipeline'a odaklanıyorum; oyuncunun elinde doğru hissettiren mekaniklere önem veriyorum.",
+    'about-p1':"DishDash'i solo geliştirmek, ilk prototipten Steam yayınına kadar her kararın sorumluluğunu üstlenmek demekti. Kapsamı netleştirmeyi, acımasızca önceliklendirmeyi ve gerçek bir şey çıkarmayı öğretti.",
+    'about-p2':'Ticari, freelance ve akademik projelerde çalıştım — her zaman adapte olabilen, her zaman çözmeye değer bir sonraki problemi arayan biri olarak.',
+    'skills-engines':'Oyun Motorları','skills-languages':'Programlama Dilleri','skills-tools':'Araçlar ve Platformlar',
+    'sk-expert':'İleri','sk-familiar':'Tanıdık','sk-familiar2':'Tanıdık',
+    'edu-tag':'Eğitim','edu-1-degree':'Dijital Oyun Tasarımı','edu-2-degree':'Bilgisayar Mühendisliği',
+    'contact-tag':'İletişim','contact-title':'Birlikte çalışalım.','contact-sub':'Tam zamanlı pozisyonlar, staj teklifleri ve ortak projeler için açığım. Ulaşmaktan çekinme.',
+    'contact-email-btn':'E-posta Gönder','contact-li-btn':'LinkedIn',
+    'cl0':'E-posta','cl1':'Alternatif E-posta','cl2':'LinkedIn','cl3':'Steam',
+    'footer-role':'Oyun Geliştirici',
   }
 };
 
-function q(sel){return document.querySelector(sel)}
-function qa(sel){return document.querySelectorAll(sel)}
-function setText(sel,txt){const e=q(sel);if(e)e.textContent=txt}
-function setHTML(sel,html){const e=q(sel);if(e)e.innerHTML=html}
-
-function setLang(lang){
-  qa('.lang-btn').forEach(b=>b.classList.remove('active'));
-  q(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
-  const t=translations[lang];
-
-  setHTML('.hero-tag',t['hero-tag']);
-  setHTML('.hero-title',t['hero-title']);
-  setText('.hero-desc',t['hero-desc']);
-  setText('.hero-intro',t['hero-intro']);
-
-  qa('.nav-links a').forEach((a,i)=>{a.textContent=t['nav-'+i]});
-  qa('.stat-label').forEach((el,i)=>{el.textContent=t['stat-'+i]});
-
-  setText('.featured-tag',t['featured-tag']);
-  setText('.featured-desc',t['featured-desc']);
-  qa('.detail-row').forEach((row,i)=>{
-    const cells=row.querySelectorAll('span');
-    if(cells[0])cells[0].textContent=t['featured-d'+i+'-l'];
-    if(cells[1])cells[1].textContent=t['featured-d'+i+'-v'];
+function applyLang(lang){
+  const t=T[lang];
+  document.querySelectorAll('[data-key]').forEach(el=>{
+    const k=el.getAttribute('data-key');
+    if(!t[k])return;
+    if(['hero-title'].includes(k))el.innerHTML=t[k];
+    else el.textContent=t[k];
   });
-  const fb=q('.featured-content .btn-primary');
-  if(fb)fb.childNodes[0].textContent=t['featured-btn']+' ';
-  setText('.video-label',t['video-label']);
-  setText('.section-title',t['projects-title']);
-  setText('.section-meta',t['projects-meta']);
-
-  setText('.about-tag',t['about-tag']);
-  setText('.about-title',t['about-title']);
-  qa('.about-text').forEach((el,i)=>{el.textContent=t['about-p'+i]});
-  setText('.skills-title',t['skills-title']);
-  qa('.skill-name[data-'+lang+']').forEach(el=>{el.innerHTML=el.getAttribute('data-'+lang)});
-
-  setText('.contact-tag',t['contact-tag']);
-  setText('.contact-title',t['contact-title']);
-  setText('.contact-sub',t['contact-sub']);
-  const eb=q('.contact-btns .btn-primary');if(eb)eb.childNodes[0].textContent=t['contact-email-btn']+' ';
-  const lb=q('.contact-btns .btn-secondary');if(lb)lb.textContent=t['contact-li-btn'];
-  qa('.contact-item-label').forEach((el,i)=>{el.textContent=t['contact-l'+i]});
-  setText('.footer-note',t['footer-role']+' · '+new Date().getFullYear());
-
-  ['rumble','oyunevi','anadili','picker'].forEach(p=>{
-    const panel=document.getElementById('expand-'+p);
-    if(!panel)return;
-    const et=panel.querySelector('.expand-eyebrow');
-    const etitle=panel.querySelector('.expand-title');
-    const ed=panel.querySelector('.expand-desc');
-    const rows=panel.querySelectorAll('.expand-table tr');
-    const nda=panel.querySelector('.nda-notice');
-    if(et)et.textContent=t[p+'-expand-tag'];
-    if(etitle)etitle.textContent=t[p+'-expand-title'];
-    if(ed)ed.textContent=t[p+'-expand-desc'];
-    [0,1,2,3].forEach(i=>{
-      if(!rows[i])return;
-      const cells=rows[i].querySelectorAll('td');
-      if(cells[0]&&t[p+'-r'+i+'-l'])cells[0].textContent=t[p+'-r'+i+'-l'];
-      if(cells[1]&&t[p+'-r'+i+'-v'])cells[1].textContent=t[p+'-r'+i+'-v'];
-    });
-    if(nda&&t[p+'-nda'])nda.textContent=t[p+'-nda'];
-  });
-
+  const ht=document.querySelector('.hero-tag-text');
+  if(ht)ht.textContent=t['hero-tag-text'];
+  const hd=document.querySelector('.hero-desc');
+  if(hd)hd.textContent=t['hero-desc'];
+  const hi=document.querySelector('.hero-intro');
+  if(hi)hi.textContent=t['hero-intro'];
+  document.querySelectorAll('.about-text').forEach((el,i)=>{el.textContent=t['about-p'+i]||el.textContent});
+  const fn=document.querySelector('.footer-note');
+  if(fn)fn.innerHTML=t['footer-role']+' · '+new Date().getFullYear();
   localStorage.setItem('lang',lang);
 }
 
+function setLang(lang){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  const btn=document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`);
+  if(btn)btn.classList.add('active');
+  applyLang(lang);
+}
+
 document.addEventListener('DOMContentLoaded',()=>{
-  setLang(localStorage.getItem('lang')||'en');
+  applyLang(localStorage.getItem('lang')||'en');
 });
 </script>
 </body>
