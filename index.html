@@ -12,11 +12,11 @@
 *{margin:0;padding:0;box-sizing:border-box}
 
 :root{
-  --bg:#0b0b0f;
-  --card:#12121a;
-  --text:#f5f5ff;
-  --muted:#9a9ab0;
-  --accent:#7c3aed;
+  --bg:#0a0a0a;
+  --card:#111;
+  --text:#f5f5f5;
+  --muted:#a1a1aa;
+  --accent:#ef4444;
   --border:rgba(255,255,255,0.08);
 }
 
@@ -24,25 +24,24 @@ body{
   font-family:'Inter',sans-serif;
   background:var(--bg);
   color:var(--text);
-  line-height:1.6;
 }
 
 /* NAV */
 nav{
   position:fixed;
-  top:0;
   width:100%;
+  top:0;
   display:flex;
   justify-content:space-between;
   padding:1.2rem 2rem;
-  background:rgba(10,10,15,0.7);
+  background:rgba(10,10,10,0.7);
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
   z-index:100;
 }
 
 nav a{
-  color:var(--text);
+  color:white;
   text-decoration:none;
   font-size:0.8rem;
 }
@@ -52,22 +51,32 @@ nav a{
   gap:2rem;
 }
 
-.nav-cta{
-  background:var(--accent);
-  padding:0.4rem 1rem;
-  font-size:0.7rem;
-}
-
 /* HERO */
 .hero{
-  padding:9rem 2rem 4rem;
-  max-width:1100px;
-  margin:auto;
+  height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  padding:2rem;
+}
+
+.hero video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0.35;
+}
+
+.hero-content{
+  position:relative;
+  max-width:700px;
 }
 
 .hero h1{
-  font-size:clamp(2.5rem,6vw,4.5rem);
-  font-weight:800;
+  font-size:clamp(2.5rem,6vw,5rem);
+  font-weight:900;
   line-height:1.1;
 }
 
@@ -76,97 +85,89 @@ nav a{
 }
 
 .hero p{
-  margin-top:1.5rem;
+  margin-top:1rem;
   color:var(--muted);
-  max-width:500px;
-}
-
-.hero-proof{
-  display:flex;
-  gap:1rem;
-  margin-top:1.5rem;
-  font-size:0.8rem;
-  color:var(--muted);
-}
-
-.hero-buttons{
-  margin-top:2rem;
-  display:flex;
-  gap:1rem;
 }
 
 .btn{
+  display:inline-block;
+  margin-top:1.5rem;
   padding:0.8rem 1.5rem;
-  font-size:0.8rem;
-  text-decoration:none;
-  border:1px solid var(--border);
-}
-
-.btn.primary{
   background:var(--accent);
-  border:none;
+  text-decoration:none;
+  color:white;
 }
 
-/* PROJECTS */
+/* PROJECT */
 .section{
-  max-width:1100px;
-  margin:auto;
   padding:4rem 2rem;
-}
-
-.section h2{
-  font-size:2rem;
-  margin-bottom:2rem;
+  max-width:1200px;
+  margin:auto;
 }
 
 .project{
-  background:var(--card);
-  border:1px solid var(--border);
-  padding:2rem;
+  margin-bottom:4rem;
+}
+
+.project-media{
+  width:100%;
+  height:500px;
+  overflow:hidden;
+  border-radius:8px;
   margin-bottom:1.5rem;
 }
 
-.project h3{
-  font-size:1.4rem;
+.project-media img,
+.project-media iframe{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border:none;
+}
+
+.project h2{
+  font-size:2rem;
 }
 
 .project p{
   color:var(--muted);
-  margin:1rem 0;
+  max-width:600px;
+  margin-top:0.5rem;
 }
 
 .project-meta{
+  margin-top:0.8rem;
   font-size:0.8rem;
   color:var(--muted);
 }
 
 .project a{
-  margin-top:1rem;
   display:inline-block;
-  font-size:0.8rem;
+  margin-top:1rem;
+  color:var(--accent);
+  text-decoration:none;
 }
 
-/* ABOUT */
-.about{
+/* GRID */
+.grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:2rem;
 }
 
 @media(max-width:768px){
-  .about{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr}
 }
 
 /* CONTACT */
 .contact{
   text-align:center;
+  padding:5rem 2rem;
 }
 
 .contact a{
-  display:inline-block;
-  margin-top:1rem;
-  padding:0.8rem 1.5rem;
   background:var(--accent);
+  padding:1rem 2rem;
   color:white;
   text-decoration:none;
 }
@@ -180,90 +181,80 @@ nav a{
   <a href="#">Ahsen Nur İlter</a>
   <div class="nav-right">
     <a href="#work">Work</a>
-    <a href="#about">About</a>
-    <a href="#contact" class="nav-cta">Hire Me</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
 <section class="hero">
-  <h1>
-    I build games that<br>
-    <span>people actually play.</span>
-  </h1>
+  <!-- HERO VIDEO -->
+  <video autoplay muted loop>
+    <source src="hero.mp4" type="video/mp4">
+  </video>
 
-  <p>
-    Solo developer with shipped titles on Steam and mobile. Focused on gameplay feel, systems, and shipping real products.
-  </p>
-
-  <div class="hero-proof">
-    <span>✔ Shipped on Steam</span>
-    <span>✔ 600+ wishlists</span>
-    <span>✔ Solo developer</span>
-  </div>
-
-  <div class="hero-buttons">
-    <a href="#work" class="btn primary">View Work</a>
-    <a href="#contact" class="btn">Contact</a>
+  <div class="hero-content">
+    <h1>
+      I build games that<br>
+      <span>feel good to play.</span>
+    </h1>
+    <p>
+      Solo developer shipping games on Steam, mobile and VR.
+    </p>
+    <a href="#work" class="btn">View Projects</a>
   </div>
 </section>
 
 <section id="work" class="section">
-  <h2>Projects</h2>
+
+  <!-- MAIN PROJECT -->
 
   <div class="project">
-    <h3>DishDash</h3>
+    <div class="project-media">
+      <iframe src="https://www.youtube.com/embed/qE7A8FPZLzA" allowfullscreen></iframe>
+    </div>
+    <h2>DishDash</h2>
     <p>
-      Restaurant simulation game where players manage chaos under pressure. Fully developed solo — gameplay, UI, art, and Steam release.
+      Restaurant chaos simulator. Fully developed solo — gameplay, UI, art, audio and Steam release.
     </p>
     <div class="project-meta">
-      Solo Dev · PC · Unity · Steam
+      Solo Dev · PC · Unity · Steam · 600+ wishlists
     </div>
-    <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank">View Project →</a>
+    <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank">
+      View on Steam →
+    </a>
   </div>
 
-  <div class="project">
-    <h3>Restaurant Rumble</h3>
-    <p>
-      VR prototype focusing on physics-based interaction systems and realistic object handling.
-    </p>
-    <div class="project-meta">
-      Developer · VR · Unity · Meta Quest
-    </div>
-  </div>
+  <!-- GRID PROJECTS -->
 
-  <div class="project">
-    <h3>Oyun Evi</h3>
-    <p>
-      Children's mobile game with painting and puzzle systems. Built entire pipeline as freelance work.
-    </p>
-    <div class="project-meta">
-      Solo Dev · Android / iOS · Freelance
-    </div>
+  <div class="grid">
+
+```
+<div class="project">
+  <div class="project-media">
+    <img src="Rumble.png">
+  </div>
+  <h2>Restaurant Rumble</h2>
+  <p>VR interaction prototype with physics-based systems.</p>
+  <div class="project-meta">VR · Unity · Meta Quest</div>
+</div>
+
+<div class="project">
+  <div class="project-media">
+    <img src="OyunEvi.png">
+  </div>
+  <h2>Oyun Evi</h2>
+  <p>Children’s mobile game with painting and puzzle systems.</p>
+  <div class="project-meta">Android · iOS · Freelance</div>
+</div>
+```
+
   </div>
 
 </section>
 
-<section id="about" class="section about">
-  <div>
-    <h2>About</h2>
-    <p>
-      Game developer with 4+ years of Unity and C# experience across mobile, VR, and PC.
-    </p>
-    <p>
-      I focus on building systems that feel good to play and actually ship.
-    </p>
-  </div>
-
-  <div>
-    <h2>Skills</h2>
-    <p>Unity, C#, VR, Mobile Development</p>
-    <p>Git, Steam, Android, iOS</p>
-  </div>
-</section>
-
-<section id="contact" class="section contact">
+<section id="contact" class="contact">
   <h2>Let’s Work Together</h2>
-  <p>Open to full-time roles and internships.</p>
+  <p>Open to full-time and internship roles.</p>
+  <br>
   <a href="mailto:ahsennurilter@gmail.com">Send Email</a>
 </section>
 
