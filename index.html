@@ -4,332 +4,842 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ahsen Nur İlter — Game Developer</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
 :root{
-  --bg:#050507;
-  --bg2:#0a0a0d;
-
+  --bg:#06060c;
+  --bg2:#0a0a14;
   --surface:rgba(255,255,255,0.03);
   --surface2:rgba(255,255,255,0.06);
-
-  --border:rgba(255,255,255,0.08);
-  --border2:rgba(255,255,255,0.14);
-
-  --text:#f5f5f5;
-  --muted:#6b6b75;
-  --muted2:#a1a1aa;
-
-  --a:#ef4444;
-  --a2:#f87171;
-  --a3:#fecaca;
-
+  --border:rgba(255,255,255,0.06);
+  --border2:rgba(255,255,255,0.12);
+  --text:#f0eeff;
+  --muted:#5c5a78;
+  --muted2:#9896b4;
+  --a:#8b5cf6;
+  --a2:#c4b5fd;
+  --a3:#ddd6fe;
   --serif:'Syne',sans-serif;
   --sans:'Inter',system-ui,sans-serif;
 }
-
 html{scroll-behavior:smooth}
-body{
-  font-family:var(--sans);
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
-}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;min-height:100vh}
 
-/* ─── ORBS ─── */
-.ambient{position:fixed;inset:0;pointer-events:none;z-index:0}
-.orb{position:absolute;border-radius:50%;filter:blur(140px)}
-.orb1{width:700px;height:700px;background:rgba(239,68,68,0.12);top:-200px;right:-100px}
-.orb2{width:500px;height:500px;background:rgba(248,113,113,0.06);bottom:-100px;left:-150px}
-.orb3{width:400px;height:400px;background:rgba(185,28,28,0.08);top:40%;left:30%}
+/* ─── AMBIENT BACKGROUND ─── */
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(120px);animation:drift 18s ease-in-out infinite}
+.orb1{width:700px;height:700px;background:rgba(139,92,246,0.12);top:-200px;right:-100px;animation-delay:0s}
+.orb2{width:500px;height:500px;background:rgba(196,181,253,0.06);bottom:-100px;left:-150px;animation-delay:-7s}
+.orb3{width:400px;height:400px;background:rgba(109,40,217,0.08);top:40%;left:30%;animation-delay:-12s}
+@keyframes drift{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(40px,-60px) scale(1.08)}
+  66%{transform:translate(-30px,40px) scale(0.95)}
+}
 
 /* ─── NAV ─── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
   display:flex;justify-content:space-between;align-items:center;
-  padding:1.1rem 3rem;
-  background:rgba(5,5,7,0.7);
-  backdrop-filter:blur(30px);
+  padding:1.1rem 3.5rem;
+  background:rgba(6,6,12,0.6);
+  backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);
   border-bottom:1px solid var(--border);
 }
-
-.nav-logo{
-  font-family:var(--serif);
-  font-weight:800;
-  text-decoration:none;
-  color:var(--text);
-}
-
-.nav-links{
-  display:flex;gap:2rem;list-style:none;
-}
-
-.nav-links a{
-  font-size:0.75rem;
-  letter-spacing:0.15em;
-  text-transform:uppercase;
-  color:var(--muted2);
-  text-decoration:none;
-}
-
+.nav-logo{font-family:var(--serif);font-size:0.9rem;font-weight:800;text-decoration:none;color:var(--text);letter-spacing:0.01em}
+.nav-links{display:flex;gap:3rem;list-style:none}
+.nav-links a{font-size:0.67rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted2);text-decoration:none;font-weight:500;transition:color 0.2s}
 .nav-links a:hover{color:var(--text)}
+.lang-toggle{display:flex;border:1px solid var(--border2);border-radius:4px;overflow:hidden}
+.lang-btn{padding:0.28rem 0.72rem;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;font-family:var(--sans);background:transparent;color:var(--muted2);border:none;cursor:pointer;transition:all 0.2s}
+.lang-btn.active{background:var(--a);color:#fff}
 
 /* ─── HERO ─── */
 .hero{
+  position:relative;z-index:1;
   min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:10rem 3rem 6rem;
-  position:relative;
-  z-index:1;
-}
-
-.hero-grid-lines{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(239,68,68,0.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(239,68,68,0.04) 1px,transparent 1px);
-  background-size:80px 80px;
-  mask-image:radial-gradient(circle at center,black 30%,transparent 70%);
-}
-
-.hero-title{
-  font-family:var(--serif);
-  font-size:clamp(3.5rem,9vw,9rem);
-  font-weight:800;
-  line-height:0.95;
-  letter-spacing:-0.04em;
-  margin-bottom:2rem;
-  text-shadow:0 0 40px rgba(239,68,68,0.25);
-}
-
-.hero-title span{
-  color:var(--a);
-}
-
-.hero-desc{
-  max-width:520px;
-  color:var(--muted2);
-  line-height:1.8;
-  margin-bottom:2rem;
-}
-
-.hero-btns{
-  display:flex;
-  gap:1rem;
-}
-
-.btn{
-  padding:0.85rem 1.6rem;
-  font-size:0.75rem;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  text-decoration:none;
-  border:1px solid var(--border);
-  color:var(--text);
-}
-
-.btn-primary{
-  background:var(--a);
-  border:none;
-  color:#0a0a0a;
-}
-
-.btn-primary:hover{
-  background:var(--a2);
-  box-shadow:0 20px 50px rgba(239,68,68,0.45);
-  transform:translateY(-3px);
-}
-
-/* ─── SECTION ─── */
-.section{
-  padding:6rem 3rem;
-  max-width:1200px;
-  margin:auto;
-  position:relative;
-  z-index:1;
-}
-
-.section-title{
-  font-size:2.5rem;
-  margin-bottom:3rem;
-}
-
-/* ─── PROJECT ─── */
-.project{
-  display:grid;
-  grid-template-columns:1.2fr 1fr;
-  gap:2rem;
-  margin-bottom:5rem;
-  background:var(--bg2);
-  border:1px solid var(--border);
-}
-
-.project-media{
-  height:420px;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:9rem 3.5rem 6rem;
   overflow:hidden;
 }
-
-.project-media img,
-.project-media iframe{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border:none;
+.hero-grid-lines{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(139,92,246,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(139,92,246,0.04) 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);
 }
-
-.project-content{
-  padding:2rem;
+.hero-inner{
+  display:grid;grid-template-columns:1fr auto;
+  align-items:end;gap:4rem;
+  max-width:1400px;
 }
-
-.project h2{
-  font-size:2rem;
-  margin-bottom:1rem;
+.hero-left{}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:0.7rem;
+  font-size:0.62rem;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--a2);font-weight:500;margin-bottom:2.5rem;
 }
-
-.project p{
-  color:var(--muted2);
-  margin-bottom:1rem;
+.hero-dot{width:4px;height:4px;border-radius:50%;background:var(--a2);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 6px var(--a)}50%{opacity:0.3;box-shadow:none}}
+.hero-title{
+  font-family:var(--serif);
+  font-size:clamp(4rem,9.5vw,9rem);
+  font-weight:800;line-height:0.92;
+  letter-spacing:-0.04em;
+  margin-bottom:2.5rem;
 }
-
-.meta{
-  font-size:0.8rem;
-  color:var(--muted);
-  margin-bottom:1.5rem;
+.hero-title .line2{
+  background:linear-gradient(135deg,var(--a),var(--a2),var(--a3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:block;
 }
-
-.project a{
-  color:var(--a);
-  text-decoration:none;
+.hero-sub{
+  display:flex;align-items:center;gap:2.5rem;
+  margin-bottom:3.5rem;
 }
-
-/* ─── GRID ─── */
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:2rem;
+.hero-desc{font-size:0.95rem;line-height:1.8;color:var(--muted2);max-width:480px;font-weight:300}
+.hero-btns{display:flex;gap:0.8rem;flex-wrap:wrap}
+.hero-right{
+  display:flex;flex-direction:column;align-items:flex-end;gap:1px;
+  align-self:flex-end;
+  padding-bottom:0.5rem;
 }
-
-.small-project{
-  background:var(--bg2);
+.stat-block{
+  width:180px;padding:1.8rem 1.6rem;
+  background:var(--surface);
   border:1px solid var(--border);
+  border-left:2px solid var(--a);
+  transition:background 0.3s,border-color 0.3s;
+  position:relative;overflow:hidden;
+}
+.stat-block::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(139,92,246,0.06),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.stat-block:hover::before{opacity:1}
+.stat-block:hover{border-color:var(--a);background:rgba(139,92,246,0.06)}
+.stat-n{font-family:var(--serif);font-size:2.6rem;font-weight:800;line-height:1;color:var(--text);margin-bottom:0.35rem}
+.stat-l{font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.hero-photo-badge{
+  position:relative;
+  width:180px;
+  border:1px solid var(--border);
+  overflow:hidden;
+  align-self:stretch;
+}
+.hero-photo-badge img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center top;
+  display:block;
+  filter:grayscale(15%);
+  transition:filter 0.4s;
+}
+.hero-photo-badge:hover img{filter:grayscale(0%)}
+.hero-photo-badge::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(6,6,12,0.5) 0%,transparent 40%);
+  pointer-events:none;
 }
 
-.small-project .media{
-  height:220px;
+/* ─── BUTTONS ─── */
+.btn{
+  display:inline-flex;align-items:center;gap:0.55rem;
+  padding:0.82rem 1.75rem;
+  font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;
+  text-decoration:none;border:none;cursor:pointer;font-family:var(--sans);
+  transition:all 0.25s;
 }
+.btn-fill{
+  background:var(--a);color:#fff;
+  clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
+}
+.btn-fill:hover{background:var(--a2);color:#0a0a14;transform:translateY(-2px);box-shadow:0 16px 40px rgba(139,92,246,0.35)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border2)}
+.btn-outline:hover{border-color:var(--a);color:var(--a2)}
 
-.small-project .content{
-  padding:1.5rem;
+/* ─── SECTION WRAPPERS ─── */
+.section{position:relative;z-index:1}
+.s-pad{padding:7rem 3.5rem}
+.s-header{margin-bottom:5rem}
+.s-eyebrow{
+  font-size:0.6rem;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--a2);font-weight:500;
+  display:flex;align-items:center;gap:0.8rem;margin-bottom:1rem;
 }
+.s-eyebrow::before{content:'';width:16px;height:1px;background:var(--a)}
+.s-title{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.5rem);font-weight:800;letter-spacing:-0.03em;line-height:1}
+
+/* ─── PROJECT CARDS ─── */
+.work-section{border-top:1px solid var(--border);background:var(--bg2)}
+
+.project-card{
+  display:grid;grid-template-columns:55% 45%;
+  border:1px solid var(--border);
+  margin-bottom:4px;
+  background:var(--bg);
+  transition:border-color 0.4s;
+  position:relative;overflow:hidden;
+}
+.project-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(139,92,246,0.04) 0%,transparent 60%);
+  opacity:0;transition:opacity 0.4s;pointer-events:none;
+}
+.project-card:hover::before{opacity:1}
+.project-card:hover{border-color:rgba(139,92,246,0.3)}
+.project-card.flip .card-media{order:2}
+.project-card.flip .card-body{order:1}
+.project-card.flip .card-media{border-right:none;border-left:1px solid var(--border)}
+
+.card-media{
+  display:flex;flex-direction:column;
+  border-right:1px solid var(--border);
+}
+.card-main{
+  flex:1;min-height:440px;
+  background:var(--bg2);
+  position:relative;overflow:hidden;
+}
+.card-main img{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+  transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+.card-main:hover img{transform:scale(1.04)}
+.card-main img.zoom{cursor:zoom-in}
+.card-main iframe{position:absolute;inset:0;width:100%;height:100%;border:none;display:block}
+
+.card-strip{
+  display:flex;gap:1px;background:var(--border);
+  border-top:1px solid var(--border);
+  overflow-x:auto;flex-shrink:0;
+}
+.card-strip::-webkit-scrollbar{height:2px}
+.card-strip::-webkit-scrollbar-thumb{background:var(--a)}
+.tn{flex:0 0 66px;height:42px;object-fit:cover;background:var(--bg2);cursor:pointer;opacity:0.3;transition:opacity 0.2s;display:block}
+.tn:hover{opacity:0.65}
+.tn.on{opacity:1;outline:2px solid var(--a);outline-offset:-2px}
+.tn-vid{
+  flex:0 0 66px;height:42px;
+  background:var(--bg2);border:none;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  opacity:0.35;transition:opacity 0.2s;
+}
+.tn-vid:hover{opacity:0.75}
+.tn-vid.on{opacity:1;outline:2px solid var(--a);outline-offset:-2px}
+.tn-vid svg{width:14px;height:14px}
+.tn-vid span{font-size:0.4rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted2)}
+
+.card-body{
+  padding:3rem 2.8rem;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.card-genre{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--a2);font-weight:500;margin-bottom:0.7rem}
+.card-name{
+  font-family:var(--serif);
+  font-size:clamp(1.8rem,2.5vw,2.4rem);
+  font-weight:800;letter-spacing:-0.025em;line-height:1.05;margin-bottom:1rem;
+}
+.card-chips{display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:1.2rem}
+.chip{
+  font-size:0.54rem;letter-spacing:0.1em;text-transform:uppercase;
+  padding:0.2rem 0.55rem;
+  border:1px solid var(--border2);color:var(--muted2);font-weight:500;
+  transition:border-color 0.2s,color 0.2s;
+}
+.chip:hover{border-color:var(--a);color:var(--a2)}
+.chip-hi{border-color:rgba(139,92,246,0.4);color:var(--a2)}
+.chip-pro{border-color:rgba(100,200,120,0.35);color:#6ee7a0}
+.card-desc{font-size:0.84rem;line-height:1.82;color:var(--muted2);font-weight:300;margin-bottom:1.5rem}
+.card-table{width:100%;border-collapse:collapse;border-top:1px solid var(--border);margin-bottom:1.5rem}
+.card-table tr{border-bottom:1px solid var(--border)}
+.card-table tr:last-child{border-bottom:none}
+.card-table td{font-size:0.75rem;padding:0.6rem 0}
+.card-table td:first-child{color:var(--muted);width:32%}
+.card-table td:last-child{font-weight:500;color:var(--text)}
+.nda{font-size:0.66rem;color:var(--muted);font-style:italic;margin-top:0.5rem;padding-top:0.75rem;border-top:1px solid var(--border)}
+
+/* ─── ABOUT ─── */
+.about-section{
+  border-top:1px solid var(--border);
+  display:grid;grid-template-columns:1fr 1fr;
+}
+.about-left{padding:7rem 4.5rem 7rem 3.5rem;border-right:1px solid var(--border);position:relative}
+.about-right{padding:7rem 3.5rem 7rem 4.5rem;display:flex;flex-direction:column;justify-content:center}
+.about-heading{
+  font-family:var(--serif);
+  font-size:clamp(2rem,3.5vw,3rem);
+  font-weight:800;line-height:1.1;
+  letter-spacing:-0.03em;margin-bottom:2.5rem;
+}
+.about-heading span{
+  background:linear-gradient(135deg,var(--a),var(--a2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.about-p{font-size:0.88rem;line-height:1.95;color:var(--muted2);font-weight:300}
+.about-p+.about-p{margin-top:1.3rem}
+
+.skill-group{margin-bottom:2.4rem}
+.skill-group:last-child{margin-bottom:0}
+.skill-label{
+  font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--muted);font-weight:600;
+  margin-bottom:0.9rem;padding-bottom:0.55rem;
+  border-bottom:1px solid var(--border);
+}
+.chips-row{display:flex;flex-wrap:wrap;gap:0.4rem}
+.sk-chip{
+  font-size:0.67rem;letter-spacing:0.03em;
+  padding:0.3rem 0.8rem;
+  border:1px solid var(--border);color:var(--muted2);font-weight:400;
+  background:var(--surface);
+  transition:all 0.2s;cursor:default;
+}
+.sk-chip:hover{border-color:var(--a);color:var(--a2);background:rgba(139,92,246,0.07)}
+.sk-chip.hi{border-color:rgba(139,92,246,0.25);color:rgba(196,181,253,0.8);background:rgba(139,92,246,0.05)}
+.sk-chip.hi:hover{border-color:var(--a);color:var(--a2);background:rgba(139,92,246,0.12)}
 
 /* ─── CONTACT ─── */
-.contact{
-  text-align:center;
-  padding:7rem 3rem;
+.contact-section{
+  border-top:1px solid var(--border);
+  background:var(--bg2);
+  padding:8rem 3.5rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:7rem;
+  position:relative;overflow:hidden;
 }
-
-.contact a{
-  background:var(--a);
-  padding:1rem 2rem;
-  color:#0a0a0a;
-  text-decoration:none;
-  display:inline-block;
-  margin-top:1rem;
+.contact-section::before{
+  content:'';position:absolute;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(139,92,246,0.08) 0%,transparent 70%);
+  right:-100px;top:-150px;pointer-events:none;
 }
+.contact-heading{
+  font-family:var(--serif);
+  font-size:clamp(2.5rem,4.5vw,4rem);
+  font-weight:800;line-height:1;
+  letter-spacing:-0.035em;margin-bottom:1.4rem;
+}
+.contact-sub{font-size:0.9rem;color:var(--muted2);line-height:1.8;font-weight:300;margin-bottom:3rem}
+.contact-btns{display:flex;flex-direction:column;gap:0.7rem;align-items:flex-start}
+.cright{display:flex;flex-direction:column;justify-content:center}
+.crow{padding:1.25rem 0;border-bottom:1px solid var(--border)}
+.crow:first-child{border-top:1px solid var(--border)}
+.crow-label{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem;font-weight:600}
+.crow-val{font-size:0.88rem;font-weight:500;text-decoration:none;color:var(--text);transition:color 0.2s;display:block}
+.crow-val:hover{color:var(--a2)}
 
-@media(max-width:900px){
-  .project{grid-template-columns:1fr}
-  .grid{grid-template-columns:1fr}
+/* ─── FOOTER ─── */
+footer{
+  position:relative;z-index:1;
+  padding:1.6rem 3.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid var(--border);
+}
+.footer-name{font-family:var(--serif);font-size:0.82rem;font-weight:800}
+.footer-note{font-size:0.62rem;color:var(--muted);letter-spacing:0.07em}
+
+/* ─── LIGHTBOX ─── */
+.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:999;align-items:center;justify-content:center}
+.lb.open{display:flex}
+.lb img{max-width:90vw;max-height:90vh;object-fit:contain}
+.lb-x{position:absolute;top:1.5rem;right:1.5rem;background:none;border:1px solid rgba(255,255,255,0.15);color:var(--muted2);font-size:0.62rem;padding:0.45rem 1rem;cursor:pointer;letter-spacing:0.12em;text-transform:uppercase;font-family:var(--sans);transition:all 0.2s}
+.lb-x:hover{color:#fff;border-color:#fff}
+
+/* ─── ANIMATIONS ─── */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.75s cubic-bezier(0.4,0,0.2,1),transform 0.75s cubic-bezier(0.4,0,0.2,1)}
+.fade-up.in{opacity:1;transform:none}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px){
+  nav{padding:1rem 1.5rem}.nav-links{gap:1.8rem}
+  .hero{padding:7rem 1.5rem 4rem}
+  .hero-inner{grid-template-columns:1fr;gap:3rem}
+  .hero-right{flex-direction:row;flex-wrap:wrap;align-self:auto;width:100%}
+  .hero-photo-badge{height:200px;width:auto;flex:0 0 140px}
+  .stat-block{width:auto;flex:1;min-width:130px}
+  .s-pad{padding:5rem 1.5rem}
+  .project-card{grid-template-columns:1fr}
+  .project-card.flip .card-media{order:0;border-left:none;border-bottom:1px solid var(--border)}
+  .project-card.flip .card-body{order:0}
+  .card-media{border-right:none;border-bottom:1px solid var(--border)}
+  .card-main{min-height:260px}
+  .card-body{padding:2rem 1.5rem}
+  .about-section{grid-template-columns:1fr}
+  .about-left{padding:5rem 1.5rem 3rem;border-right:none;border-bottom:1px solid var(--border)}
+  .about-right{padding:3rem 1.5rem 5rem}
+  .contact-section{grid-template-columns:1fr;gap:3rem;padding:5rem 1.5rem}
+  footer{padding:1.4rem 1.5rem;flex-direction:column;gap:0.4rem;text-align:center}
 }
 </style>
 </head>
-
 <body>
 
+<!-- ambient glow orbs -->
 <div class="ambient">
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
   <div class="orb orb3"></div>
 </div>
 
+<div class="lb" id="lb" onclick="closeLb()">
+  <button class="lb-x" onclick="event.stopPropagation();closeLb()">Close ✕</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<!-- ─── NAV ─── -->
 <nav>
-  <a class="nav-logo" href="#">Ahsen Nur İlter</a>
+  <a href="#" class="nav-logo">Ahsen Nur İlter</a>
   <ul class="nav-links">
-    <li><a href="#work">Work</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#work" data-key="nav-0">Work</a></li>
+    <li><a href="#about" data-key="nav-1">About</a></li>
+    <li><a href="#contact" data-key="nav-2">Contact</a></li>
   </ul>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('tr')">TR</button>
+  </div>
 </nav>
 
-<section class="hero">
+<!-- ─── HERO ─── -->
+<section class="hero section">
   <div class="hero-grid-lines"></div>
-
-  <h1 class="hero-title">
-    I build games that<br>
-    <span>feel good to play.</span>
-  </h1>
-
-  <p class="hero-desc">
-    Solo developer shipping games across Steam, mobile and VR. Focused on gameplay feel, systems and polish.
-  </p>
-
-  <div class="hero-btns">
-    <a class="btn btn-primary" href="#work">View Work</a>
-    <a class="btn" href="#contact">Contact</a>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <p class="hero-eyebrow"><span class="hero-dot"></span><span data-key="hero-tag">Game Developer</span></p>
+      <h1 class="hero-title">
+        Games worth<br>
+        <span class="line2" data-key="hero-line2">playing.</span>
+      </h1>
+      <div class="hero-sub">
+        <p class="hero-desc" data-key="hero-desc">4+ years building games across mobile, VR, and PC. Solo developer of DishDash — shipped on Steam with 600+ wishlists before launch.</p>
+      </div>
+      <div class="hero-btns">
+        <a href="#work" class="btn btn-fill" data-key="hero-btn1">View My Work <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
+        <a href="#contact" class="btn btn-outline" data-key="hero-btn2">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-photo-badge">
+        <img src="photo.jpg" alt="Ahsen Nur İlter">
+      </div>
+      <div class="stat-block fade-up">
+        <div class="stat-n">4+</div>
+        <div class="stat-l" data-key="stat-0">Years</div>
+      </div>
+      <div class="stat-block fade-up">
+        <div class="stat-n">600+</div>
+        <div class="stat-l" data-key="stat-1">Wishlists</div>
+      </div>
+      <div class="stat-block fade-up">
+        <div class="stat-n">2</div>
+        <div class="stat-l" data-key="stat-2">Shipped Titles</div>
+      </div>
+      <div class="stat-block fade-up">
+        <div class="stat-n">VR</div>
+        <div class="stat-l" data-key="stat-3">Meta Quest</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="work" class="section">
+<!-- ─── WORK ─── -->
+<section id="work" class="work-section section s-pad">
+  <div class="s-header fade-up">
+    <p class="s-eyebrow" data-key="work-eyebrow">Selected Work</p>
+    <h2 class="s-title" data-key="work-title">Projects</h2>
+  </div>
 
-  <h2 class="section-title">Projects</h2>
-
-  <div class="project">
-    <div class="project-media">
-      <iframe src="https://www.youtube.com/embed/qE7A8FPZLzA"></iframe>
+  <!-- DISHDASH -->
+  <div class="project-card fade-up">
+    <div class="card-media">
+      <div class="card-main"><img id="dd" src="Dishdash_1.png" alt="DishDash" class="zoom" onclick="openLb(this.src)"></div>
+      <div class="card-strip">
+        <button class="tn-vid on" onclick="sv(this,'dd','https://www.youtube.com/embed/qE7A8FPZLzA?rel=0&modestbranding=1&autoplay=1')">
+          <svg viewBox="0 0 24 24" fill="var(--a)"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--a)" stroke-width="1.5"/><polygon points="10,8 16,12 10,16"/></svg>
+          <span data-key="vlbl">Video</span></button>
+        <img class="tn" src="Dishdash_1.png"  onclick="st(this,'dd')" alt="">
+        <img class="tn" src="Dishdash_2.png"  onclick="st(this,'dd')" alt="">
+        <img class="tn" src="Dishdash_3.png"  onclick="st(this,'dd')" alt="">
+        <img class="tn" src="Dishdash_4.png"  onclick="st(this,'dd')" alt="">
+        <img class="tn" src="Dishdash_5.png"  onclick="st(this,'dd')" alt="">
+        <img class="tn" src="Dishdash_6.png"  onclick="st(this,'dd')" alt="">
+        <img class="tn" src="Dishdash_7.png"  onclick="st(this,'dd')" alt="">
+        <img class="tn" src="Dishdash_8.png"  onclick="st(this,'dd')" alt="">
+        <img class="tn" src="Dishdash_9.png"  onclick="st(this,'dd')" alt="">
+        <img class="tn" src="Dishdash_10.png" onclick="st(this,'dd')" alt="">
+        <img class="tn" src="Dishdash_11.png" onclick="st(this,'dd')" alt="">
+      </div>
     </div>
-    <div class="project-content">
-      <h2>DishDash</h2>
-      <p>Restaurant chaos simulator built fully solo. Gameplay, UI, art and Steam release handled end-to-end.</p>
-      <div class="meta">Unity · PC · Steam · Solo Dev · 600+ Wishlists</div>
-      <a href="#">View on Steam →</a>
+    <div class="card-body">
+      <div>
+        <p class="card-genre" data-key="dd-genre">Time Management · Simulation</p>
+        <h2 class="card-name">DishDash</h2>
+        <div class="card-chips">
+          <span class="chip chip-hi">Steam</span><span class="chip">PC</span><span class="chip">Unity</span><span class="chip">Solo Dev</span>
+        </div>
+        <p class="card-desc" data-key="dd-desc">Solo-developed restaurant simulation — players prep meals, serve customers, and manage chaos under pressure. I owned every part: gameplay systems, UI/UX, art, audio, and Steam release. Launched with 600+ wishlists before going live.</p>
+        <table class="card-table">
+          <tr><td data-key="tr-role">Role</td><td data-key="dd-role">Solo Dev — Design, Code, Art, Audio</td></tr>
+          <tr><td data-key="tr-plat">Platform</td><td>PC (Steam)</td></tr>
+          <tr><td data-key="tr-eng">Engine</td><td>Unity</td></tr>
+        </table>
+      </div>
+      <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="btn btn-fill" data-key="dd-btn">View on Steam <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12"><path d="M4 2h8v8M12 2L4 10"/></svg></a>
     </div>
   </div>
 
-  <div class="grid">
-
-    <div class="small-project">
-      <div class="media">
-        <img src="Rumble.png">
-      </div>
-      <div class="content">
-        <h3>Restaurant Rumble</h3>
-        <p>VR physics-based interaction prototype.</p>
-      </div>
-    </div>
-
-    <div class="small-project">
-      <div class="media">
-        <img src="OyunEvi.png">
-      </div>
-      <div class="content">
-        <h3>Oyun Evi</h3>
-        <p>Children’s mobile game built freelance.</p>
+  <!-- RESTAURANT RUMBLE -->
+  <div class="project-card flip fade-up">
+    <div class="card-media">
+      <div class="card-main"><img id="rr" src="Rumble.png" alt="Restaurant Rumble" class="zoom" onclick="openLb(this.src)"></div>
+      <div class="card-strip">
+        <button class="tn-vid on" onclick="sv(this,'rr','https://www.youtube.com/embed/8wzO7yO2B2M?rel=0&modestbranding=1&autoplay=1')">
+          <svg viewBox="0 0 24 24" fill="var(--a)"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--a)" stroke-width="1.5"/><polygon points="10,8 16,12 10,16"/></svg>
+          <span data-key="vlbl">Video</span></button>
+        <img class="tn" src="Rumble.png"   onclick="st(this,'rr')" alt="">
+        <img class="tn" src="rumble_1.png" onclick="st(this,'rr')" alt="">
+        <img class="tn" src="rumble_2.png" onclick="st(this,'rr')" alt="">
+        <img class="tn" src="rumble_3.png" onclick="st(this,'rr')" alt="">
+        <img class="tn" src="rumble_4.png" onclick="st(this,'rr')" alt="">
+        <img class="tn" src="rumble_5.png" onclick="st(this,'rr')" alt="">
+        <img class="tn" src="rumble_6.png" onclick="st(this,'rr')" alt="">
+        <img class="tn" src="rumble_7.png" onclick="st(this,'rr')" alt="">
+        <img class="tn" src="rumble_8.png" onclick="st(this,'rr')" alt="">
       </div>
     </div>
-
+    <div class="card-body">
+      <div>
+        <p class="card-genre" data-key="rr-genre">VR · Physics · Prototype</p>
+        <h2 class="card-name">Restaurant Rumble</h2>
+        <div class="card-chips"><span class="chip">VR</span><span class="chip">Meta Quest</span><span class="chip">Unity</span></div>
+        <p class="card-desc" data-key="rr-desc">VR mechanic prototype exploring dishwashing and cooking interactions. Built physics-based hand interaction systems and object handling from scratch — focusing on the feel of objects in virtual hands.</p>
+        <table class="card-table">
+          <tr><td data-key="tr-role">Role</td><td data-key="rr-role">Developer</td></tr>
+          <tr><td data-key="tr-plat">Platform</td><td>PC / Meta Quest</td></tr>
+          <tr><td data-key="tr-eng">Engine</td><td>Unity</td></tr>
+        </table>
+      </div>
+    </div>
   </div>
 
+  <!-- OYUN EVİ -->
+  <div class="project-card fade-up">
+    <div class="card-media">
+      <div class="card-main"><img id="oe" src="OyunEvi.png" alt="Oyun Evi" class="zoom" onclick="openLb(this.src)"></div>
+      <div class="card-strip">
+        <button class="tn-vid on" onclick="sv(this,'oe','https://www.youtube.com/embed/12qCKQDFuFw?rel=0&modestbranding=1&autoplay=1')">
+          <svg viewBox="0 0 24 24" fill="var(--a)"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--a)" stroke-width="1.5"/><polygon points="10,8 16,12 10,16"/></svg>
+          <span data-key="vlbl">Video</span></button>
+        <img class="tn" src="OyunEvi.png"    onclick="st(this,'oe')" alt="">
+        <img class="tn" src="oyunevi_1.png"  onclick="st(this,'oe')" alt="">
+        <img class="tn" src="oyunevi_2.png"  onclick="st(this,'oe')" alt="">
+        <img class="tn" src="oyunevi_3.png"  onclick="st(this,'oe')" alt="">
+        <img class="tn" src="oyunevi_4.png"  onclick="st(this,'oe')" alt="">
+        <img class="tn" src="oyunevi_5.png"  onclick="st(this,'oe')" alt="">
+        <img class="tn" src="oyunevi_6.png"  onclick="st(this,'oe')" alt="">
+        <img class="tn" src="oyunevi_7.png"  onclick="st(this,'oe')" alt="">
+        <img class="tn" src="oyunevi_8.png"  onclick="st(this,'oe')" alt="">
+      </div>
+    </div>
+    <div class="card-body">
+      <div>
+        <p class="card-genre" data-key="oe-genre">Children · Mobile · Freelance</p>
+        <h2 class="card-name">Oyun Evi</h2>
+        <div class="card-chips"><span class="chip chip-pro">Professional</span><span class="chip">Android</span><span class="chip">iOS</span></div>
+        <p class="card-desc" data-key="oe-desc">Children's mobile game with painting and puzzle mechanics, built as a freelance project. Handled the entire pipeline independently — game logic, UI, asset integration, and deployment to both stores.</p>
+        <table class="card-table">
+          <tr><td data-key="tr-role">Role</td><td data-key="oe-role">Solo Developer</td></tr>
+          <tr><td data-key="tr-plat">Platform</td><td>Android, iOS</td></tr>
+          <tr><td data-key="tr-type">Type</td><td data-key="oe-type">Freelance</td></tr>
+        </table>
+        <p class="nda" data-key="oe-nda">Visuals pending client approval — NDA applies</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANA DİLİ 2 -->
+  <div class="project-card flip fade-up">
+    <div class="card-media">
+      <div class="card-main"><img id="ad" src="AnaDili.png" alt="Ana Dili 2" class="zoom" onclick="openLb(this.src)"></div>
+      <div class="card-strip">
+        <button class="tn-vid on" onclick="sv(this,'ad','https://www.youtube.com/embed/zCeYFex3bv8?rel=0&modestbranding=1&autoplay=1')">
+          <svg viewBox="0 0 24 24" fill="var(--a)"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--a)" stroke-width="1.5"/><polygon points="10,8 16,12 10,16"/></svg>
+          <span data-key="vlbl">Video</span></button>
+        <img class="tn" src="AnaDili.png"    onclick="st(this,'ad')" alt="">
+        <img class="tn" src="anadili_1.png"  onclick="st(this,'ad')" alt="">
+        <img class="tn" src="anadili_2.png"  onclick="st(this,'ad')" alt="">
+        <img class="tn" src="anadili_3.png"  onclick="st(this,'ad')" alt="">
+        <img class="tn" src="anadili_4.png"  onclick="st(this,'ad')" alt="">
+        <img class="tn" src="anadili_5.png"  onclick="st(this,'ad')" alt="">
+        <img class="tn" src="anadili_6.png"  onclick="st(this,'ad')" alt="">
+        <img class="tn" src="anadili_7.png"  onclick="st(this,'ad')" alt="">
+        <img class="tn" src="anadili_8.png"  onclick="st(this,'ad')" alt="">
+        <img class="tn" src="anadili_9.png"  onclick="st(this,'ad')" alt="">
+      </div>
+    </div>
+    <div class="card-body">
+      <div>
+        <p class="card-genre" data-key="ad-genre">Educational · Mobile · Internship</p>
+        <h2 class="card-name">Ana Dili 2</h2>
+        <div class="card-chips"><span class="chip chip-pro">Professional</span><span class="chip">Android</span><span class="chip">iOS</span><span class="chip">Educational</span></div>
+        <p class="card-desc" data-key="ad-desc">Educational mobile game teaching the Azerbaijani language to children through mini-games — number recognition, family vocabulary, animal education — delivered as simulated phone calls and interactive videos.</p>
+        <table class="card-table">
+          <tr><td data-key="tr-role">Role</td><td data-key="ad-role">Solo Developer</td></tr>
+          <tr><td data-key="tr-plat">Platform</td><td>Android, iOS</td></tr>
+          <tr><td data-key="tr-type">Type</td><td data-key="ad-type">Internship</td></tr>
+        </table>
+        <p class="nda" data-key="ad-nda">Visuals pending studio approval — NDA applies</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PICKER 3D -->
+  <div class="project-card fade-up">
+    <div class="card-media">
+      <div class="card-main"><img id="pk" src="Picker.png" alt="Picker 3D" class="zoom" onclick="openLb(this.src)"></div>
+      <div class="card-strip">
+        <button class="tn-vid on" onclick="sv(this,'pk','https://www.youtube.com/embed/O5bIFwww28c?rel=0&modestbranding=1&autoplay=1')">
+          <svg viewBox="0 0 24 24" fill="var(--a)"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--a)" stroke-width="1.5"/><polygon points="10,8 16,12 10,16"/></svg>
+          <span data-key="vlbl">Video</span></button>
+        <img class="tn" src="Picker.png"   onclick="st(this,'pk')" alt="">
+        <img class="tn" src="picker_1.png" onclick="st(this,'pk')" alt="">
+        <img class="tn" src="picker_2.png" onclick="st(this,'pk')" alt="">
+        <img class="tn" src="picker_3.png" onclick="st(this,'pk')" alt="">
+        <img class="tn" src="picker_4.png" onclick="st(this,'pk')" alt="">
+        <img class="tn" src="picker_5.png" onclick="st(this,'pk')" alt="">
+        <img class="tn" src="picker_6.png" onclick="st(this,'pk')" alt="">
+        <img class="tn" src="picker_7.png" onclick="st(this,'pk')" alt="">
+      </div>
+    </div>
+    <div class="card-body">
+      <div>
+        <p class="card-genre" data-key="pk-genre">Casual · 3D · University</p>
+        <h2 class="card-name">Picker 3D</h2>
+        <div class="card-chips"><span class="chip">3D</span><span class="chip">Casual</span><span class="chip">Unity</span></div>
+        <p class="card-desc" data-key="pk-desc">Casual 3D mobile game built solo as a university project. First time I independently designed and architected complete game systems from scratch — object pooling and core casual loop mechanics.</p>
+        <table class="card-table">
+          <tr><td data-key="tr-role">Role</td><td data-key="pk-role">Solo Developer</td></tr>
+          <tr><td data-key="tr-plat">Platform</td><td>PC / Mobile</td></tr>
+          <tr><td data-key="tr-eng">Engine</td><td>Unity</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="contact" class="contact">
-  <h2>Let’s Work Together</h2>
-  <a href="mailto:ahsennurilter@gmail.com">Send Email</a>
+<!-- ─── ABOUT ─── -->
+<section id="about" class="about-section section">
+  <div class="about-left fade-up">
+    <p class="s-eyebrow" data-key="about-ey">About</p>
+    <h2 class="about-heading"><span data-key="about-h1">I make things</span><br><span data-key="about-h2">work. And feel right.</span></h2>
+    <p class="about-p about-p0">Game developer with 4+ years of Unity and C# experience across mobile, VR, and PC. I focus on the full pipeline — from early prototyping to final deployment — with a strong emphasis on mechanics that feel good in the player's hands.</p>
+    <p class="about-p about-p1">Building DishDash solo meant owning every decision from prototype to Steam release. That pushed me to think clearly about scope, prioritise ruthlessly, and ship something real.</p>
+    <p class="about-p about-p2">I've worked across commercial, freelance, and academic projects — always adaptable, always looking for the next problem worth solving.</p>
+  </div>
+  <div class="about-right fade-up">
+    <div class="skill-group">
+      <div class="skill-label" data-key="sk-engines">Game Engines</div>
+      <div class="chips-row">
+        <span class="sk-chip hi">Unity</span>
+        <span class="sk-chip">Unreal Engine</span>
+        <span class="sk-chip">Godot</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-label" data-key="sk-langs">Languages</div>
+      <div class="chips-row">
+        <span class="sk-chip hi">C#</span>
+        <span class="sk-chip hi">Python</span>
+        <span class="sk-chip">Java</span>
+        <span class="sk-chip">C++</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-label" data-key="sk-tools">Tools &amp; Platforms</div>
+      <div class="chips-row">
+        <span class="sk-chip hi">Git / GitHub</span>
+        <span class="sk-chip hi">Android</span>
+        <span class="sk-chip hi">iOS</span>
+        <span class="sk-chip hi">Meta Quest</span>
+        <span class="sk-chip hi">Steam / PC</span>
+        <span class="sk-chip">Blender</span>
+        <span class="sk-chip">Figma</span>
+        <span class="sk-chip">Photoshop</span>
+        <span class="sk-chip">Rider</span>
+        <span class="sk-chip">WebGL</span>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- ─── CONTACT ─── -->
+<section id="contact" class="contact-section section">
+  <div class="fade-up">
+    <p class="s-eyebrow" data-key="contact-ey">Contact</p>
+    <h2 class="contact-heading" data-key="contact-h">Contact</h2>
+    <p class="contact-sub" data-key="contact-sub">Open to full-time positions and internships in game development. Feel free to reach out.</p>
+    <div class="contact-btns">
+      <a href="mailto:ahsennurilter@gmail.com" class="btn btn-fill" data-key="c-email">Send an Email <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
+      <a href="https://www.linkedin.com/in/ahsen-nur-ilter-a6a135207/" target="_blank" class="btn btn-outline" data-key="c-li">LinkedIn</a>
+    </div>
+  </div>
+  <div class="cright fade-up">
+    <div class="crow"><p class="crow-label" data-key="cl0">Email</p><a href="mailto:ahsennurilter@gmail.com" class="crow-val">ahsennurilter@gmail.com</a></div>
+    <div class="crow"><p class="crow-label" data-key="cl1">Alt Email</p><a href="mailto:ahsennurilter@hotmail.com" class="crow-val">ahsennurilter@hotmail.com</a></div>
+    <div class="crow"><p class="crow-label" data-key="cl2">LinkedIn</p><a href="https://www.linkedin.com/in/ahsen-nur-ilter-a6a135207/" target="_blank" class="crow-val">Ahsen Nur İlter</a></div>
+    <div class="crow"><p class="crow-label" data-key="cl3">Steam</p><a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="crow-val">DishDash · Steam Page</a></div>
+  </div>
+</section>
+
+<footer class="section">
+  <span class="footer-name">Ahsen Nur İlter</span>
+  <span class="footer-note" data-key="fn">Game Developer · <script>document.write(new Date().getFullYear())</script></span>
+</footer>
+
+<script>
+// lightbox
+function openLb(s){document.getElementById('lb-img').src=s;document.getElementById('lb').classList.add('open');document.body.style.overflow='hidden'}
+function closeLb(){document.getElementById('lb').classList.remove('open');document.body.style.overflow=''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
+
+// thumbnails
+function st(tn,id){
+  tn.closest('.card-strip').querySelectorAll('.tn,.tn-vid').forEach(t=>t.classList.remove('on'));
+  tn.classList.add('on');
+  const box=document.getElementById(id).closest('.card-main');
+  const fr=box.querySelector('iframe');if(fr)fr.remove();
+  const img=document.getElementById(id);img.style.display='block';img.src=tn.src;
+}
+function sv(btn,id,url){
+  btn.closest('.card-strip').querySelectorAll('.tn,.tn-vid').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  const box=document.getElementById(id).closest('.card-main');
+  const img=document.getElementById(id);img.style.display='none';
+  let fr=box.querySelector('iframe');
+  if(!fr){fr=document.createElement('iframe');fr.allow='accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture';fr.allowFullscreen=true;box.appendChild(fr)}
+  fr.src=url;
+}
+
+// i18n
+const T={
+  en:{
+    'nav-0':'Work','nav-1':'About','nav-2':'Contact',
+    'hero-tag':'Game Developer','hero-line2':'playing.',
+    'hero-desc':'4+ years building games across mobile, VR, and PC. Solo developer of DishDash — shipped on Steam with 600+ wishlists before launch.',
+    'hero-btn1':'View My Work','hero-btn2':'Get in Touch',
+    'stat-0':'Years','stat-1':'Wishlists','stat-2':'Shipped Titles','stat-3':'Meta Quest',
+    'work-eyebrow':'Selected Work','work-title':'Projects',
+    'vlbl':'Video',
+    'tr-role':'Role','tr-plat':'Platform','tr-eng':'Engine','tr-type':'Type',
+    'dd-genre':'Time Management · Simulation',
+    'dd-desc':'Solo-developed restaurant simulation — players prep meals, serve customers, and manage chaos under pressure. I owned every part: gameplay systems, UI/UX, art, audio, and Steam release.',
+    'dd-role':'Solo Dev — Design, Code, Art, Audio','dd-btn':'View on Steam',
+    'rr-genre':'VR · Physics · Prototype',
+    'rr-desc':'VR mechanic prototype exploring dishwashing and cooking interactions. Built physics-based hand interaction systems and object handling from scratch.',
+    'rr-role':'Developer',
+    'oe-genre':'Children · Mobile · Freelance',
+    'oe-desc':"Children's mobile game with painting and puzzle mechanics. Handled the entire pipeline independently — game logic, UI, asset integration, and deployment to both stores.",
+    'oe-role':'Solo Developer','oe-type':'Freelance','oe-nda':'Visuals pending client approval — NDA applies',
+    'ad-genre':'Educational · Mobile · Internship',
+    'ad-desc':'Educational mobile game teaching the Azerbaijani language through mini-games — number recognition, vocabulary, animal education — delivered as simulated phone calls and interactive videos.',
+    'ad-role':'Solo Developer','ad-type':'Internship','ad-nda':'Visuals pending studio approval — NDA applies',
+    'pk-genre':'Casual · 3D · University',
+    'pk-desc':'Casual 3D mobile game built solo as a university project. First time I independently designed and architected complete game systems from scratch.',
+    'pk-role':'Solo Developer',
+    'about-ey':'About','about-h1':'I make things','about-h2':'work. And feel right.',
+    'sk-engines':'Game Engines','sk-langs':'Languages','sk-tools':'Tools & Platforms',
+    'contact-ey':'Contact','contact-h':'Contact',
+    'contact-sub':'Open to full-time positions and internships in game development. Feel free to reach out.',
+    'c-email':'Send an Email','c-li':'LinkedIn',
+    'cl0':'Email','cl1':'Alt Email','cl2':'LinkedIn','cl3':'Steam',
+    'fn':'Game Developer',
+  },
+  tr:{
+    'nav-0':'Projeler','nav-1':'Hakkımda','nav-2':'İletişim',
+    'hero-tag':'Oyun Geliştirici','hero-line2':'oynanmaya değer.',
+    'hero-desc':'4+ yıldır mobil, VR ve PC platformlarında oyun geliştiriyorum. DishDash\'in solo geliştiricisi — Steam\'de 600+ istek listesiyle yayınlandı.',
+    'hero-btn1':'Projeleri Gör','hero-btn2':'İletişime Geç',
+    'stat-0':'Yıl','stat-1':'İstek Listesi','stat-2':'Yayınlanan','stat-3':'Meta Quest',
+    'work-eyebrow':'Seçili Projeler','work-title':'Projeler',
+    'vlbl':'Video',
+    'tr-role':'Rol','tr-plat':'Platform','tr-eng':'Motor','tr-type':'Tür',
+    'dd-genre':'Zaman Yönetimi · Simülasyon',
+    'dd-desc':'Oyuncuların yemek hazırlayıp müşteri servis ettiği solo geliştirme oyunu. Gameplay, UI/UX, sanat, ses ve Steam yayınını tek başıma yönettim.',
+    'dd-role':'Solo Geliştirici — Tasarım, Kod, Sanat, Ses','dd-btn':'Steam\'de Gör',
+    'rr-genre':'VR · Fizik · Prototip',
+    'rr-desc':'Bulaşık yıkama ve yemek pişirme etkileşimleri üzerine VR mekanik prototipi. Fizik tabanlı el etkileşim sistemleri sıfırdan geliştirildi.',
+    'rr-role':'Geliştirici',
+    'oe-genre':'Çocuk · Mobil · Freelance',
+    'oe-desc':'Freelance geliştirilen boyama ve puzzle mekanikli çocuk mobil oyunu. Tüm pipeline bağımsız yönetildi.',
+    'oe-role':'Solo Geliştirici','oe-type':'Freelance','oe-nda':'Görseller müşteri onayı bekleniyor (NDA)',
+    'ad-genre':'Eğitim · Mobil · Staj',
+    'ad-desc':'Azerbaycan dilini mini oyunlarla öğreten çocuk eğitim oyunu — simüle telefon görüşmeleri ve interaktif videolar aracılığıyla.',
+    'ad-role':'Solo Geliştirici','ad-type':'Staj','ad-nda':'Görseller stüdyo onayı bekleniyor (NDA)',
+    'pk-genre':'Casual · 3D · Üniversite',
+    'pk-desc':'Üniversite projesi olarak solo geliştirilen casual 3D mobil oyun. Object pooling dahil tüm sistemleri ilk kez sıfırdan kurdum.',
+    'pk-role':'Solo Geliştirici',
+    'about-ey':'Hakkımda','about-h1':'Çalışmasını','about-h2':'sağlarım. Ve doğru hissettiririm.',
+    'sk-engines':'Oyun Motorları','sk-langs':'Programlama Dilleri','sk-tools':'Araçlar ve Platformlar',
+    'contact-ey':'İletişim','contact-h':'İletişim',
+    'contact-sub':'Oyun geliştirme alanında tam zamanlı pozisyonlara ve staj tekliflerine açığım.',
+    'c-email':'E-posta Gönder','c-li':'LinkedIn',
+    'cl0':'E-posta','cl1':'Alt E-posta','cl2':'LinkedIn','cl3':'Steam',
+    'fn':'Oyun Geliştirici',
+    'about-p0':"Mobil, VR ve PC'de 4+ yıl Unity ve C# deneyimli oyun geliştiriciyim. Erken prototipten son deploy'a tam pipeline'a odaklanıyorum.",
+    'about-p1':"DishDash'i solo geliştirmek ilk prototipten Steam yayınına her kararı üstlenmekti. Kapsamı netleştirmeyi ve gerçek bir şey çıkarmayı öğretti.",
+    'about-p2':'Ticari, freelance ve akademik projelerde çalıştım — her zaman adapte olabilen biri olarak.',
+  }
+};
+
+function applyLang(lang){
+  const t=T[lang];if(!t)return;
+  document.querySelectorAll('[data-key]').forEach(el=>{
+    const k=el.dataset.key;if(!t[k])return;
+    if(el.tagName==='A'&&el.querySelector('svg'))el.childNodes[0].textContent=t[k]+' ';
+    else el.textContent=t[k];
+  });
+  document.querySelectorAll('.about-p').forEach((el,i)=>{if(t['about-p'+i])el.textContent=t['about-p'+i]});
+  const fn=document.querySelector('.footer-note');
+  if(fn)fn.innerHTML=(t['fn']||'')+' · '+new Date().getFullYear();
+}
+function setLang(lang){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  applyLang(lang);localStorage.setItem('lang',lang);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  applyLang(localStorage.getItem('lang')||'en');
+
+  // auto-load videos
+  [['dd','https://www.youtube.com/embed/qE7A8FPZLzA?rel=0&modestbranding=1'],
+   ['rr','https://www.youtube.com/embed/8wzO7yO2B2M?rel=0&modestbranding=1'],
+   ['oe','https://www.youtube.com/embed/12qCKQDFuFw?rel=0&modestbranding=1'],
+   ['ad','https://www.youtube.com/embed/zCeYFex3bv8?rel=0&modestbranding=1'],
+   ['pk','https://www.youtube.com/embed/O5bIFwww28c?rel=0&modestbranding=1'],
+  ].forEach(([id,url])=>{
+    const img=document.getElementById(id);if(!img)return;
+    const box=img.closest('.card-main');
+    img.style.display='none';
+    const fr=document.createElement('iframe');
+    fr.src=url;fr.allow='accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture';
+    fr.allowFullscreen=true;
+    Object.assign(fr.style,{position:'absolute',inset:'0',width:'100%',height:'100%',border:'none',display:'block'});
+    box.appendChild(fr);
+  });
+
+  // scroll reveal
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*60);obs.unobserve(e.target)}
+    });
+  },{threshold:0.07,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+});
+</script>
 </body>
 </html>
