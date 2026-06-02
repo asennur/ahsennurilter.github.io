@@ -150,10 +150,13 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem
 .project-table td:first-child{color:var(--muted);width:35%}
 .project-table td:last-child{font-weight:500}
 .nda-notice{font-size:0.7rem;color:var(--muted);font-style:italic;margin-top:0.5rem}
-.project-video-wrap{border-top:1px solid var(--border);flex-shrink:0}
-.project-video-label{font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:0.75rem 1rem;display:flex;align-items:center;gap:0.5rem}
-.project-video-label::before{content:'';width:16px;height:1px;background:var(--accent)}
-.project-video-wrap iframe{width:100%;aspect-ratio:16/9;border:none;display:block}
+.pthumb-video{flex:0 0 72px;height:45px;background:var(--bg);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0.55;transition:opacity 0.2s;flex-shrink:0;position:relative}
+.pthumb-video:hover{opacity:0.9}
+.pthumb-video.active{opacity:1;outline:2px solid var(--accent);outline-offset:-2px}
+.pthumb-video svg{width:18px;height:18px}
+.pthumb-video span{font-size:0.48rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);position:absolute;bottom:4px;left:0;right:0;text-align:center}
+.project-img-box iframe{width:100%;height:100%;border:none;display:block}
+
 
 /* LIGHTBOX */
 .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:1000;align-items:center;justify-content:center}
@@ -316,10 +319,10 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
         <img class="pthumb" src="Dishdash_9.png" onclick="selectThumb(this,'main-dd')" alt="">
         <img class="pthumb" src="Dishdash_10.png" onclick="selectThumb(this,'main-dd')" alt="">
         <img class="pthumb" src="Dishdash_11.png" onclick="selectThumb(this,'main-dd')" alt="">
-      </div>
-      <div class="project-video-wrap">
-        <p class="project-video-label" data-key="video-label">Gameplay</p>
-        <iframe src="https://www.youtube.com/embed/qE7A8FPZLzA?rel=0&modestbranding=1" title="DishDash Gameplay" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <button class="pthumb-video" onclick="selectVideo(this,'main-dd','https://www.youtube.com/embed/qE7A8FPZLzA?rel=0&modestbranding=1&autoplay=1')">
+          <svg viewBox="0 0 24 24" fill="var(--accent)"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--accent)" stroke-width="1.5"/><polygon points="10,8 16,12 10,16"/></svg>
+          <span>Video</span>
+        </button>
       </div>
     </div>
     <div class="project-info">
@@ -354,10 +357,10 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
         <img class="pthumb" src="rumble_6.png" onclick="selectThumb(this,'main-rr')" alt="">
         <img class="pthumb" src="rumble_7.png" onclick="selectThumb(this,'main-rr')" alt="">
         <img class="pthumb" src="rumble_8.png" onclick="selectThumb(this,'main-rr')" alt="">
-      </div>
-      <div class="project-video-wrap">
-        <p class="project-video-label" data-key="video-label">Gameplay</p>
-        <iframe src="https://www.youtube.com/embed/8wzO7yO2B2M?rel=0&modestbranding=1" title="Restaurant Rumble" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <button class="pthumb-video" onclick="selectVideo(this,'main-rr','https://www.youtube.com/embed/8wzO7yO2B2M?rel=0&modestbranding=1&autoplay=1')">
+          <svg viewBox="0 0 24 24" fill="var(--accent)"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--accent)" stroke-width="1.5"/><polygon points="10,8 16,12 10,16"/></svg>
+          <span>Video</span>
+        </button>
       </div>
     </div>
     <div class="project-info">
@@ -391,10 +394,10 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
         <img class="pthumb" src="oyunevi_6.png" onclick="selectThumb(this,'main-oe')" alt="">
         <img class="pthumb" src="oyunevi_7.png" onclick="selectThumb(this,'main-oe')" alt="">
         <img class="pthumb" src="oyunevi_8.png" onclick="selectThumb(this,'main-oe')" alt="">
-      </div>
-      <div class="project-video-wrap">
-        <p class="project-video-label" data-key="video-label">Gameplay</p>
-        <iframe src="https://www.youtube.com/embed/12qCKQDFuFw?rel=0&modestbranding=1" title="Oyun Evi" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <button class="pthumb-video" onclick="selectVideo(this,'main-oe','https://www.youtube.com/embed/12qCKQDFuFw?rel=0&modestbranding=1&autoplay=1')">
+          <svg viewBox="0 0 24 24" fill="var(--accent)"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--accent)" stroke-width="1.5"/><polygon points="10,8 16,12 10,16"/></svg>
+          <span>Video</span>
+        </button>
       </div>
     </div>
     <div class="project-info">
@@ -430,10 +433,10 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
         <img class="pthumb" src="anadili_7.png" onclick="selectThumb(this,'main-ad')" alt="">
         <img class="pthumb" src="anadili_8.png" onclick="selectThumb(this,'main-ad')" alt="">
         <img class="pthumb" src="anadili_9.png" onclick="selectThumb(this,'main-ad')" alt="">
-      </div>
-      <div class="project-video-wrap">
-        <p class="project-video-label" data-key="video-label">Gameplay</p>
-        <iframe src="https://www.youtube.com/embed/zCeYFex3bv8?rel=0&modestbranding=1" title="Ana Dili 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <button class="pthumb-video" onclick="selectVideo(this,'main-ad','https://www.youtube.com/embed/zCeYFex3bv8?rel=0&modestbranding=1&autoplay=1')">
+          <svg viewBox="0 0 24 24" fill="var(--accent)"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--accent)" stroke-width="1.5"/><polygon points="10,8 16,12 10,16"/></svg>
+          <span>Video</span>
+        </button>
       </div>
     </div>
     <div class="project-info">
@@ -467,10 +470,10 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
         <img class="pthumb" src="picker_5.png" onclick="selectThumb(this,'main-pk')" alt="">
         <img class="pthumb" src="picker_6.png" onclick="selectThumb(this,'main-pk')" alt="">
         <img class="pthumb" src="picker_7.png" onclick="selectThumb(this,'main-pk')" alt="">
-      </div>
-      <div class="project-video-wrap">
-        <p class="project-video-label" data-key="video-label">Gameplay</p>
-        <iframe src="https://www.youtube.com/embed/O5bIFwww28c?rel=0&modestbranding=1" title="Picker 3D" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <button class="pthumb-video" onclick="selectVideo(this,'main-pk','https://www.youtube.com/embed/O5bIFwww28c?rel=0&modestbranding=1&autoplay=1')">
+          <svg viewBox="0 0 24 24" fill="var(--accent)"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--accent)" stroke-width="1.5"/><polygon points="10,8 16,12 10,16"/></svg>
+          <span>Video</span>
+        </button>
       </div>
     </div>
     <div class="project-info">
@@ -587,9 +590,32 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
 
 function selectThumb(thumb,mainId){
   const strip=thumb.closest('.project-thumb-strip');
-  strip.querySelectorAll('.pthumb').forEach(t=>t.classList.remove('active'));
+  strip.querySelectorAll('.pthumb,.pthumb-video').forEach(t=>t.classList.remove('active'));
   thumb.classList.add('active');
-  const mainImg=document.getElementById(mainId);if(mainImg)mainImg.src=thumb.src;
+  const box=document.getElementById(mainId).closest('.project-img-box');
+  // restore img if video was showing
+  const iframe=box.querySelector('iframe');
+  if(iframe) iframe.remove();
+  const img=document.getElementById(mainId);
+  img.style.display='block';
+  img.src=thumb.src;
+}
+
+function selectVideo(btn,mainId,embedUrl){
+  const strip=btn.closest('.project-thumb-strip');
+  strip.querySelectorAll('.pthumb,.pthumb-video').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  const box=document.getElementById(mainId).closest('.project-img-box');
+  const img=document.getElementById(mainId);
+  img.style.display='none';
+  let iframe=box.querySelector('iframe');
+  if(!iframe){
+    iframe=document.createElement('iframe');
+    iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen=true;
+    box.appendChild(iframe);
+  }
+  iframe.src=embedUrl;
 }
 
 const T={
