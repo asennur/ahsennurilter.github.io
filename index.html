@@ -266,6 +266,9 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
     <div class="video-wrapper">
       <iframe src="https://www.youtube.com/embed/qE7A8FPZLzA?rel=0&modestbranding=1" title="DishDash Gameplay" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
+  </div>
+  <div style="padding:0 3rem 2.5rem;background:var(--bg2);">
+    <p class="video-label" style="padding-top:1.5rem;">Screenshots</p>
     <p class="video-label" style="padding-top:1.5rem;">Screenshots</p>
     <div class="gallery-strip" style="border-top:1px solid var(--border);">
           <div class="gallery-tn active" onclick="selectShot(this)"><img src="dishdash_1.png" alt="SS 1" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 1</div></div>
@@ -556,18 +559,39 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
 </footer>
 
 <script>
-let activeProject=null,activeThumb=null;
-function toggleProject(id,thumb){
-  const panel=document.getElementById('expand-'+id);
-  if(activeProject&&activeProject!==panel){activeProject.classList.remove('open');if(activeThumb)activeThumb.classList.remove('active');}
-  if(panel.classList.contains('open')){panel.classList.remove('open');thumb.classList.remove('active');activeProject=null;activeThumb=null;}
-  else{panel.classList.add('open');thumb.classList.add('active');activeProject=panel;activeThumb=thumb;setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),100);}
+// ── Project expand ──
+let activeProject=null, activeThumb=null;
+
+function toggleProject(id, thumb) {
+  const panel = document.getElementById('expand-' + id);
+  if (!panel) return;
+  if (activeProject && activeProject !== panel) {
+    activeProject.classList.remove('open');
+    if (activeThumb) activeThumb.classList.remove('active');
+  }
+  if (panel.classList.contains('open')) {
+    panel.classList.remove('open');
+    thumb.classList.remove('active');
+    activeProject = null;
+    activeThumb = null;
+  } else {
+    panel.classList.add('open');
+    thumb.classList.add('active');
+    activeProject = panel;
+    activeThumb = thumb;
+    setTimeout(() => panel.scrollIntoView({behavior:'smooth', block:'nearest'}), 150);
+  }
 }
-function selectShot(el){
-  el.closest('.gallery-strip').querySelectorAll('.gallery-tn').forEach(t=>t.classList.remove('active'));
+
+// ── Gallery thumbnails ──
+function selectShot(el) {
+  const strip = el.closest('.gallery-strip');
+  if (!strip) return;
+  strip.querySelectorAll('.gallery-tn').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
 }
 
+// ── Language ──
 const T={
   en:{
     'hero-tag-text':'Game Developer',
@@ -637,35 +661,39 @@ const T={
   }
 };
 
-function applyLang(lang){
-  const t=T[lang];
-  document.querySelectorAll('[data-key]').forEach(el=>{
-    const k=el.getAttribute('data-key');
-    if(!t[k])return;
-    if(['hero-title'].includes(k))el.innerHTML=t[k];
-    else el.textContent=t[k];
+
+function applyLang(lang) {
+  const t = T[lang];
+  if (!t) return;
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const k = el.getAttribute('data-key');
+    if (!t[k]) return;
+    if (k === 'hero-title') el.innerHTML = t[k];
+    else el.textContent = t[k];
   });
-  const ht=document.querySelector('.hero-tag-text');
-  if(ht)ht.textContent=t['hero-tag-text'];
-  const hd=document.querySelector('.hero-desc');
-  if(hd)hd.textContent=t['hero-desc'];
-  const hi=document.querySelector('.hero-intro');
-  if(hi)hi.textContent=t['hero-intro'];
-  document.querySelectorAll('.about-text').forEach((el,i)=>{el.textContent=t['about-p'+i]||el.textContent});
-  const fn=document.querySelector('.footer-note');
-  if(fn)fn.innerHTML=t['footer-role']+' · '+new Date().getFullYear();
-  localStorage.setItem('lang',lang);
+  const ht = document.querySelector('.hero-tag-text');
+  if (ht) ht.textContent = t['hero-tag-text'] || '';
+  const hd = document.querySelector('.hero-desc');
+  if (hd) hd.textContent = t['hero-desc'] || '';
+  const hi = document.querySelector('.hero-intro');
+  if (hi) hi.textContent = t['hero-intro'] || '';
+  document.querySelectorAll('.about-text').forEach((el, i) => {
+    if (t['about-p' + i]) el.textContent = t['about-p' + i];
+  });
+  const fn = document.querySelector('.footer-note');
+  if (fn) fn.innerHTML = (t['footer-role'] || '') + ' · ' + new Date().getFullYear();
+  localStorage.setItem('lang', lang);
 }
 
-function setLang(lang){
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  const btn=document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`);
-  if(btn)btn.classList.add('active');
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.querySelector('.lang-btn[onclick="setLang('' + lang + '')"]');
+  if (btn) btn.classList.add('active');
   applyLang(lang);
 }
 
-document.addEventListener('DOMContentLoaded',()=>{
-  applyLang(localStorage.getItem('lang')||'en');
+document.addEventListener('DOMContentLoaded', () => {
+  applyLang(localStorage.getItem('lang') || 'en');
 });
 </script>
 </body>
