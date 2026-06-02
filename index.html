@@ -88,7 +88,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem
 
 .project-img-box{
   width:100%;
-  height:280px;
+  height:380px;
   background:var(--bg3);
   display:flex;
   align-items:center;
@@ -150,6 +150,10 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem
 .project-table td:first-child{color:var(--muted);width:35%}
 .project-table td:last-child{font-weight:500}
 .nda-notice{font-size:0.7rem;color:var(--muted);font-style:italic;margin-top:0.5rem}
+.project-video-wrap{border-top:1px solid var(--border);flex-shrink:0}
+.project-video-label{font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:0.75rem 1rem;display:flex;align-items:center;gap:0.5rem}
+.project-video-label::before{content:'';width:16px;height:1px;background:var(--accent)}
+.project-video-wrap iframe{width:100%;aspect-ratio:16/9;border:none;display:block}
 
 /* LIGHTBOX */
 .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:1000;align-items:center;justify-content:center}
@@ -313,6 +317,10 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
         <img class="pthumb" src="Dishdash_10.png" onclick="selectThumb(this,'main-dd')" alt="">
         <img class="pthumb" src="Dishdash_11.png" onclick="selectThumb(this,'main-dd')" alt="">
       </div>
+      <div class="project-video-wrap">
+        <p class="project-video-label" data-key="video-label">Gameplay</p>
+        <iframe src="https://www.youtube.com/embed/qE7A8FPZLzA?rel=0&modestbranding=1" title="DishDash Gameplay" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </div>
     <div class="project-info">
       <div>
@@ -347,6 +355,10 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
         <img class="pthumb" src="rumble_7.png" onclick="selectThumb(this,'main-rr')" alt="">
         <img class="pthumb" src="rumble_8.png" onclick="selectThumb(this,'main-rr')" alt="">
       </div>
+      <div class="project-video-wrap">
+        <p class="project-video-label" data-key="video-label">Gameplay</p>
+        <iframe src="https://www.youtube.com/embed/8wzO7yO2B2M?rel=0&modestbranding=1" title="Restaurant Rumble" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </div>
     <div class="project-info">
       <div>
@@ -379,6 +391,10 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
         <img class="pthumb" src="oyunevi_6.png" onclick="selectThumb(this,'main-oe')" alt="">
         <img class="pthumb" src="oyunevi_7.png" onclick="selectThumb(this,'main-oe')" alt="">
         <img class="pthumb" src="oyunevi_8.png" onclick="selectThumb(this,'main-oe')" alt="">
+      </div>
+      <div class="project-video-wrap">
+        <p class="project-video-label" data-key="video-label">Gameplay</p>
+        <iframe src="https://www.youtube.com/embed/12qCKQDFuFw?rel=0&modestbranding=1" title="Oyun Evi" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
     <div class="project-info">
@@ -415,6 +431,10 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
         <img class="pthumb" src="anadili_8.png" onclick="selectThumb(this,'main-ad')" alt="">
         <img class="pthumb" src="anadili_9.png" onclick="selectThumb(this,'main-ad')" alt="">
       </div>
+      <div class="project-video-wrap">
+        <p class="project-video-label" data-key="video-label">Gameplay</p>
+        <iframe src="https://www.youtube.com/embed/zCeYFex3bv8?rel=0&modestbranding=1" title="Ana Dili 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </div>
     <div class="project-info">
       <div>
@@ -447,6 +467,10 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
         <img class="pthumb" src="picker_5.png" onclick="selectThumb(this,'main-pk')" alt="">
         <img class="pthumb" src="picker_6.png" onclick="selectThumb(this,'main-pk')" alt="">
         <img class="pthumb" src="picker_7.png" onclick="selectThumb(this,'main-pk')" alt="">
+      </div>
+      <div class="project-video-wrap">
+        <p class="project-video-label" data-key="video-label">Gameplay</p>
+        <iframe src="https://www.youtube.com/embed/O5bIFwww28c?rel=0&modestbranding=1" title="Picker 3D" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
     <div class="project-info">
@@ -590,7 +614,7 @@ const T={
     'contact-tag':'Contact','contact-title':"Let's work together.",'contact-sub':'Open to full-time positions, internships, and collaborative projects. Feel free to reach out.',
     'contact-email-btn':'Send an Email','contact-li-btn':'LinkedIn',
     'cl0':'Email','cl1':'Alternative Email','cl2':'LinkedIn','cl3':'Steam',
-    'footer-role':'Game Developer','unity-desc':'Primary engine. Mobile, VR, PC, Steam deployment.','unreal-desc':'Blueprints, basic level design, environment work.','godot-desc':'Basic scenes, GDScript, 2D prototyping.',
+    'footer-role':'Game Developer','video-label':'Gameplay','unity-desc':'Primary engine. Mobile, VR, PC, Steam deployment.','unreal-desc':'Blueprints, basic level design, environment work.','godot-desc':'Basic scenes, GDScript, 2D prototyping.',
   },
   tr:{
     'nav-0':'Projeler','nav-1':'Hakkımda','nav-2':'İletişim',
@@ -613,7 +637,7 @@ const T={
     'contact-tag':'İletişim','contact-title':'Birlikte çalışalım.','contact-sub':'İş fırsatları, staj teklifleri ve ortak projeler için açığım.',
     'contact-email-btn':'E-posta Gönder','contact-li-btn':'LinkedIn',
     'cl0':'E-posta','cl1':'Alternatif E-posta','cl2':'LinkedIn','cl3':'Steam',
-    'footer-role':'Oyun Geliştiricisi','unity-desc':'Ana motor. Mobil, VR, PC, Steam deployment.','unreal-desc':'Blueprint, temel seviye tasarımı, ortam çalışması.','godot-desc':'Temel sahneler, GDScript, 2D prototipleme.',
+    'footer-role':'Oyun Geliştiricisi','video-label':'Gameplay','unity-desc':'Ana motor. Mobil, VR, PC, Steam deployment.','unreal-desc':'Blueprint, temel seviye tasarımı, ortam çalışması.','godot-desc':'Temel sahneler, GDScript, 2D prototipleme.',
   }
 };
 
