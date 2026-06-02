@@ -155,6 +155,38 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
   .contact-section{grid-template-columns:1fr;gap:2.5rem;padding:3rem 1.5rem}
   footer{padding:1.2rem 1.5rem;flex-direction:column;gap:0.5rem;text-align:center}
 }
+
+/* SCROLL ANIMATIONS */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+
+/* PROJECT BLOCK HOVER */
+.project-block{transition:box-shadow 0.3s}
+.project-block:hover{box-shadow:0 0 0 1px var(--accent),0 20px 60px rgba(255,107,53,0.08)}
+
+/* STAT CELL HOVER NUMBER */
+.stat-cell .stat-number{transition:background 0.3s}
+.stat-cell:hover .stat-number{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ENGINE CARDS */
+.engines-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem}
+.engine-card{background:var(--bg3);border:1px solid var(--border);padding:1.5rem 1.2rem;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.2s}
+.engine-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.engine-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform 0.4s ease}
+.engine-card:hover::before{transform:scaleX(1)}
+.engine-name{font-family:var(--serif);font-size:1.1rem;font-weight:800;margin-bottom:0.3rem;letter-spacing:-0.01em}
+.engine-level-label{font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:1rem}
+.engine-circle{position:relative;width:64px;height:64px;margin-bottom:1rem}
+.engine-circle svg{width:64px;height:64px;transform:rotate(-90deg)}
+.engine-circle-bg{fill:none;stroke:var(--border2);stroke-width:4}
+.engine-circle-fill{fill:none;stroke:url(#engineGrad);stroke-width:4;stroke-linecap:round;stroke-dasharray:163;stroke-dashoffset:163;transition:stroke-dashoffset 1.2s ease}
+.engine-circle-fill.animated{stroke-dashoffset:var(--offset)}
+.engine-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.engine-desc{font-size:0.72rem;color:var(--muted);line-height:1.5;font-weight:300}
 </style>
 </head>
 <body>
@@ -199,10 +231,10 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
     </div>
     <p class="hero-intro" data-key="hero-intro">Experienced in the full game development pipeline — from prototyping and gameplay mechanics to debugging and deployment. Adaptable across genres and production environments, with a strong focus on delivering polished, player-centered experiences.</p>
     <div class="stats-grid">
-      <div class="stat-cell"><div class="stat-number">4+</div><div class="stat-label" data-key="stat-0">Years Experience</div></div>
-      <div class="stat-cell"><div class="stat-number">600+</div><div class="stat-label" data-key="stat-1">Steam Wishlists</div></div>
-      <div class="stat-cell"><div class="stat-number">2</div><div class="stat-label" data-key="stat-2">Commercial Titles</div></div>
-      <div class="stat-cell"><div class="stat-number">VR</div><div class="stat-label" data-key="stat-3">Experience</div></div>
+      <div class="stat-cell reveal"><div class="stat-number">4+</div><div class="stat-label" data-key="stat-0">Years Experience</div></div>
+      <div class="stat-cell reveal"><div class="stat-number">600+</div><div class="stat-label" data-key="stat-1">Steam Wishlists</div></div>
+      <div class="stat-cell reveal"><div class="stat-number">2</div><div class="stat-label" data-key="stat-2">Commercial Titles</div></div>
+      <div class="stat-cell reveal"><div class="stat-number">VR</div><div class="stat-label" data-key="stat-3">Experience</div></div>
     </div>
   </div>
 </section>
@@ -212,7 +244,7 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
   <p class="section-tag" data-key="section-work">Selected Work</p>
 
   <!-- DISHDASH -->
-  <div class="project-block">
+  <div class="project-block reveal">
     <div class="project-media">
       <img class="project-main-img" id="main-dd" src="Dishdash_1.png" alt="DishDash" onclick="openLb(this.src)">
       <div class="project-thumb-strip">
@@ -248,7 +280,7 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
   </div>
 
   <!-- RESTAURANT RUMBLE -->
-  <div class="project-block">
+  <div class="project-block reveal">
     <div class="project-media">
       <img class="project-main-img" id="main-rr" src="Rumble.png" alt="Restaurant Rumble" onclick="openLb(this.src)">
       <div class="project-thumb-strip">
@@ -281,7 +313,7 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
   </div>
 
   <!-- OYUN EVİ -->
-  <div class="project-block">
+  <div class="project-block reveal">
     <div class="project-media">
       <img class="project-main-img" id="main-oe" src="OyunEvi.png" alt="Oyun Evi" onclick="openLb(this.src)">
       <div class="project-thumb-strip">
@@ -315,7 +347,7 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
   </div>
 
   <!-- ANA DİLİ 2 -->
-  <div class="project-block">
+  <div class="project-block reveal">
     <div class="project-media">
       <img class="project-main-img" id="main-ad" src="AnaDili.png" alt="Ana Dili 2" onclick="openLb(this.src)">
       <div class="project-thumb-strip">
@@ -350,7 +382,7 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
   </div>
 
   <!-- PICKER 3D -->
-  <div class="project-block">
+  <div class="project-block reveal">
     <div class="project-media">
       <img class="project-main-img" id="main-pk" src="Picker.png" alt="Picker 3D" onclick="openLb(this.src)">
       <div class="project-thumb-strip">
@@ -394,9 +426,45 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
   <div class="about-right">
     <div class="skills-block">
       <div class="skills-block-title" data-key="sk-engines">Game Engines</div>
-      <div class="skill-row"><span class="skill-name">Unity</span><div class="skill-right"><div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div><span class="skill-level" data-key="sk-expert">Expert</span></div></div>
-      <div class="skill-row"><span class="skill-name">Unreal Engine</span><div class="skill-right"><div class="skill-bar-wrap"><div class="skill-bar" style="width:38%"></div></div><span class="skill-level" data-key="sk-familiar">Familiar</span></div></div>
-      <div class="skill-row"><span class="skill-name">Godot</span><div class="skill-right"><div class="skill-bar-wrap"><div class="skill-bar" style="width:28%"></div></div><span class="skill-level" data-key="sk-familiar2">Familiar</span></div></div>
+      <div class="engines-grid">
+        <div class="engine-card reveal">
+          <div class="engine-circle">
+            <svg viewBox="0 0 56 56">
+              <defs><linearGradient id="engineGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff6b35"/><stop offset="100%" stop-color="#ffb347"/></linearGradient></defs>
+              <circle class="engine-circle-bg" cx="28" cy="28" r="24"/>
+              <circle class="engine-circle-fill" cx="28" cy="28" r="24" style="--offset:8" data-offset="8"/>
+            </svg>
+            <div class="engine-pct">95%</div>
+          </div>
+          <div class="engine-name">Unity</div>
+          <div class="engine-level-label" data-key="sk-expert">Expert</div>
+          <div class="engine-desc" data-key="unity-desc">Primary engine. Mobile, VR, PC, Steam deployment.</div>
+        </div>
+        <div class="engine-card reveal">
+          <div class="engine-circle">
+            <svg viewBox="0 0 56 56">
+              <circle class="engine-circle-bg" cx="28" cy="28" r="24"/>
+              <circle class="engine-circle-fill" cx="28" cy="28" r="24" style="--offset:100" data-offset="100"/>
+            </svg>
+            <div class="engine-pct">38%</div>
+          </div>
+          <div class="engine-name">Unreal</div>
+          <div class="engine-level-label" data-key="sk-familiar">Familiar</div>
+          <div class="engine-desc" data-key="unreal-desc">Blueprints, basic level design, environment work.</div>
+        </div>
+        <div class="engine-card reveal">
+          <div class="engine-circle">
+            <svg viewBox="0 0 56 56">
+              <circle class="engine-circle-bg" cx="28" cy="28" r="24"/>
+              <circle class="engine-circle-fill" cx="28" cy="28" r="24" style="--offset:114" data-offset="114"/>
+            </svg>
+            <div class="engine-pct">28%</div>
+          </div>
+          <div class="engine-name">Godot</div>
+          <div class="engine-level-label" data-key="sk-familiar2">Familiar</div>
+          <div class="engine-desc" data-key="godot-desc">Basic scenes, GDScript, 2D prototyping.</div>
+        </div>
+      </div>
     </div>
     <div class="skills-block">
       <div class="skills-block-title" data-key="sk-langs">Languages</div>
@@ -469,7 +537,7 @@ const T={
     'contact-tag':'Contact','contact-title':"Let's work together.",'contact-sub':'Open to full-time positions, internships, and collaborative projects. Feel free to reach out.',
     'contact-email-btn':'Send an Email','contact-li-btn':'LinkedIn',
     'cl0':'Email','cl1':'Alternative Email','cl2':'LinkedIn','cl3':'Steam',
-    'footer-role':'Game Developer',
+    'footer-role':'Game Developer','unity-desc':'Primary engine. Mobile, VR, PC, Steam deployment.','unreal-desc':'Blueprints, basic level design, environment work.','godot-desc':'Basic scenes, GDScript, 2D prototyping.',
   },
   tr:{
     'nav-0':'Projeler','nav-1':'Hakkımda','nav-2':'İletişim',
@@ -492,7 +560,7 @@ const T={
     'contact-tag':'İletişim','contact-title':'Birlikte çalışalım.','contact-sub':'İş fırsatları, staj teklifleri ve ortak projeler için açığım.',
     'contact-email-btn':'E-posta Gönder','contact-li-btn':'LinkedIn',
     'cl0':'E-posta','cl1':'Alternatif E-posta','cl2':'LinkedIn','cl3':'Steam',
-    'footer-role':'Oyun Geliştiricisi',
+    'footer-role':'Oyun Geliştiricisi','unity-desc':'Ana motor. Mobil, VR, PC, Steam deployment.','unreal-desc':'Blueprint, temel seviye tasarımı, ortam çalışması.','godot-desc':'Temel sahneler, GDScript, 2D prototipleme.',
   }
 };
 
@@ -513,7 +581,22 @@ function applyLang(lang){
   const fn=document.querySelector('.footer-note');
   if(fn)fn.innerHTML=(t['footer-role']||'')+' · '+new Date().getFullYear();
 }
-document.addEventListener('DOMContentLoaded',()=>applyLang(localStorage.getItem('lang')||'en'));
+document.addEventListener('DOMContentLoaded',()=>{applyLang(localStorage.getItem('lang')||'en');// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // Animate engine circles
+      e.target.querySelectorAll('.engine-circle-fill').forEach(c => {
+        c.classList.add('animated');
+      });
+    }
+  });
+}, {threshold: 0.15});
+
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.engine-card').forEach(el => {
+  observer.observe(el);
+});});
 </script>
 </body>
 </html>
