@@ -100,7 +100,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem
 
 /* EXPAND */
 .project-expand{max-height:0;overflow:hidden;transition:max-height 0.65s cubic-bezier(0.4,0,0.2,1);background:var(--bg2);border-top:none}
-.project-expand.open{max-height:1000px}
+.project-expand.open{max-height:1400px}
 .expand-inner{display:grid;grid-template-columns:1.2fr 0.8fr;min-height:420px}
 .expand-left{display:flex;flex-direction:column;border-right:1px solid var(--border)}
 .expand-video{position:relative;flex:1;overflow:hidden;background:var(--bg3);min-height:260px}
@@ -268,17 +268,17 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
     </div>
     <p class="video-label" style="padding-top:1.5rem;">Screenshots</p>
     <div class="gallery-strip" style="border-top:1px solid var(--border);">
-          <div class="gallery-tn active"><img src="dishdash_1.png" alt="SS 1" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 1</div></div>
-          <div class="gallery-tn"><img src="dishdash_2.png" alt="SS 2" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 2</div></div>
-          <div class="gallery-tn"><img src="dishdash_3.png" alt="SS 3" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 3</div></div>
-          <div class="gallery-tn"><img src="dishdash_4.png" alt="SS 4" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 4</div></div>
-          <div class="gallery-tn"><img src="dishdash_5.png" alt="SS 5" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 5</div></div>
-          <div class="gallery-tn"><img src="dishdash_6.png" alt="SS 6" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 6</div></div>
-          <div class="gallery-tn"><img src="dishdash_7.png" alt="SS 7" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 7</div></div>
-          <div class="gallery-tn"><img src="dishdash_8.png" alt="SS 8" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 8</div></div>
-          <div class="gallery-tn"><img src="dishdash_9.png" alt="SS 9" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 9</div></div>
-          <div class="gallery-tn"><img src="dishdash_10.png" alt="SS 10" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 10</div></div>
-          <div class="gallery-tn"><img src="dishdash_11.png" alt="SS 11" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 11</div></div>
+          <div class="gallery-tn active" onclick="selectShot(this)"><img src="dishdash_1.png" alt="SS 1" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 1</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="dishdash_2.png" alt="SS 2" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 2</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="dishdash_3.png" alt="SS 3" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 3</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="dishdash_4.png" alt="SS 4" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 4</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="dishdash_5.png" alt="SS 5" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 5</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="dishdash_6.png" alt="SS 6" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 6</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="dishdash_7.png" alt="SS 7" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 7</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="dishdash_8.png" alt="SS 8" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 8</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="dishdash_9.png" alt="SS 9" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 9</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="dishdash_10.png" alt="SS 10" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 10</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="dishdash_11.png" alt="SS 11" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 11</div></div>
     </div>
   </div>
 </section>
@@ -340,14 +340,14 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
           <iframe src="https://www.youtube.com/embed/8wzO7yO2B2M?rel=0&modestbranding=1" title="Restaurant Rumble" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="gallery-strip">
-          <div class="gallery-tn active"><img src="rumble_1.png" alt="Screenshot 1" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 1</div></div>
-          <div class="gallery-tn"><img src="rumble_2.png" alt="Screenshot 2" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 2</div></div>
-          <div class="gallery-tn"><img src="rumble_3.png" alt="Screenshot 3" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 3</div></div>
-          <div class="gallery-tn"><img src="rumble_4.png" alt="Screenshot 4" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 4</div></div>
-          <div class="gallery-tn"><img src="rumble_5.png" alt="Screenshot 5" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 5</div></div>
-          <div class="gallery-tn"><img src="rumble_6.png" alt="Screenshot 6" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 6</div></div>
-          <div class="gallery-tn"><img src="rumble_7.png" alt="Screenshot 7" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 7</div></div>
-          <div class="gallery-tn"><img src="rumble_8.png" alt="Screenshot 8" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 8</div></div>
+          <div class="gallery-tn active" onclick="selectShot(this)"><img src="rumble_1.png" alt="Screenshot 1" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 1</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="rumble_2.png" alt="Screenshot 2" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 2</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="rumble_3.png" alt="Screenshot 3" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 3</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="rumble_4.png" alt="Screenshot 4" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 4</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="rumble_5.png" alt="Screenshot 5" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 5</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="rumble_6.png" alt="Screenshot 6" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 6</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="rumble_7.png" alt="Screenshot 7" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 7</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="rumble_8.png" alt="Screenshot 8" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 8</div></div>
         </div>
       </div>
       <div class="expand-content">
@@ -373,14 +373,14 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
           <iframe src="https://www.youtube.com/embed/12qCKQDFuFw?rel=0&modestbranding=1" title="Oyun Evi" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="gallery-strip">
-          <div class="gallery-tn active"><img src="oyunevi_1.png" alt="Screenshot 1" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 1</div></div>
-          <div class="gallery-tn"><img src="oyunevi_2.png" alt="Screenshot 2" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 2</div></div>
-          <div class="gallery-tn"><img src="oyunevi_3.png" alt="Screenshot 3" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 3</div></div>
-          <div class="gallery-tn"><img src="oyunevi_4.png" alt="Screenshot 4" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 4</div></div>
-          <div class="gallery-tn"><img src="oyunevi_5.png" alt="Screenshot 5" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 5</div></div>
-          <div class="gallery-tn"><img src="oyunevi_6.png" alt="Screenshot 6" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 6</div></div>
-          <div class="gallery-tn"><img src="oyunevi_7.png" alt="Screenshot 7" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 7</div></div>
-          <div class="gallery-tn"><img src="oyunevi_8.png" alt="Screenshot 8" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 8</div></div>
+          <div class="gallery-tn active" onclick="selectShot(this)"><img src="oyunevi_1.png" alt="Screenshot 1" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 1</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="oyunevi_2.png" alt="Screenshot 2" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 2</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="oyunevi_3.png" alt="Screenshot 3" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 3</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="oyunevi_4.png" alt="Screenshot 4" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 4</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="oyunevi_5.png" alt="Screenshot 5" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 5</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="oyunevi_6.png" alt="Screenshot 6" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 6</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="oyunevi_7.png" alt="Screenshot 7" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 7</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="oyunevi_8.png" alt="Screenshot 8" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 8</div></div>
         </div>
       </div>
       <div class="expand-content">
@@ -407,15 +407,15 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
           <iframe src="https://www.youtube.com/embed/zCeYFex3bv8?rel=0&modestbranding=1" title="Ana Dili 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="gallery-strip">
-          <div class="gallery-tn active"><img src="anadili_1.png" alt="SS 1" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 1</div></div>
-          <div class="gallery-tn"><img src="anadili_2.png" alt="SS 2" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 2</div></div>
-          <div class="gallery-tn"><img src="anadili_3.png" alt="SS 3" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 3</div></div>
-          <div class="gallery-tn"><img src="anadili_4.png" alt="SS 4" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 4</div></div>
-          <div class="gallery-tn"><img src="anadili_5.png" alt="SS 5" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 5</div></div>
-          <div class="gallery-tn"><img src="anadili_6.png" alt="SS 6" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 6</div></div>
-          <div class="gallery-tn"><img src="anadili_7.png" alt="SS 7" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 7</div></div>
-          <div class="gallery-tn"><img src="anadili_8.png" alt="SS 8" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 8</div></div>
-          <div class="gallery-tn"><img src="anadili_9.png" alt="SS 9" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 9</div></div>
+          <div class="gallery-tn active" onclick="selectShot(this)"><img src="anadili_1.png" alt="SS 1" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 1</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="anadili_2.png" alt="SS 2" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 2</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="anadili_3.png" alt="SS 3" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 3</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="anadili_4.png" alt="SS 4" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 4</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="anadili_5.png" alt="SS 5" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 5</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="anadili_6.png" alt="SS 6" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 6</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="anadili_7.png" alt="SS 7" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 7</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="anadili_8.png" alt="SS 8" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 8</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="anadili_9.png" alt="SS 9" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 9</div></div>
         </div>
       </div>
       <div class="expand-content">
@@ -442,13 +442,13 @@ footer{padding:1.8rem 3rem;display:flex;justify-content:space-between;align-item
           <iframe src="https://www.youtube.com/embed/O5bIFwww28c?rel=0&modestbranding=1" title="Picker 3D" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="gallery-strip">
-          <div class="gallery-tn active"><img src="picker_1.png" alt="SS 1" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 1</div></div>
-          <div class="gallery-tn"><img src="picker_2.png" alt="SS 2" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 2</div></div>
-          <div class="gallery-tn"><img src="picker_3.png" alt="SS 3" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 3</div></div>
-          <div class="gallery-tn"><img src="picker_4.png" alt="SS 4" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 4</div></div>
-          <div class="gallery-tn"><img src="picker_5.png" alt="SS 5" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 5</div></div>
-          <div class="gallery-tn"><img src="picker_6.png" alt="SS 6" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 6</div></div>
-          <div class="gallery-tn"><img src="picker_7.png" alt="SS 7" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 7</div></div>
+          <div class="gallery-tn active" onclick="selectShot(this)"><img src="picker_1.png" alt="SS 1" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 1</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="picker_2.png" alt="SS 2" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 2</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="picker_3.png" alt="SS 3" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 3</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="picker_4.png" alt="SS 4" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 4</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="picker_5.png" alt="SS 5" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 5</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="picker_6.png" alt="SS 6" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 6</div></div>
+          <div class="gallery-tn" onclick="selectShot(this)"><img src="picker_7.png" alt="SS 7" onerror="this.parentElement.style.display='none'"><div class="gallery-tn-border"></div><div class="gallery-tn-placeholder">SS 7</div></div>
         </div>
       </div>
       <div class="expand-content">
@@ -567,9 +567,6 @@ function selectShot(el){
   el.closest('.gallery-strip').querySelectorAll('.gallery-tn').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
 }
-document.querySelectorAll('.gallery-tn').forEach(tn=>{
-  tn.addEventListener('click',()=>selectShot(tn));
-});
 
 const T={
   en:{
