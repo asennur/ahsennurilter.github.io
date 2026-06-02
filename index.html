@@ -31,7 +31,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem
 /* HERO */
 .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(255,107,53,0.08) 0%,transparent 70%);pointer-events:none}
-.hero-left{padding:5rem 3rem 4rem 3rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;border-right:1px solid var(--border)}
+.hero-left{padding:3rem 3rem 4rem 3rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;border-right:1px solid var(--border)}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:0.6rem;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:2rem}
 .hero-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
@@ -45,7 +45,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem
 .btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
 
 /* HERO RIGHT */
-.hero-right{padding:4rem 3rem 4rem 3rem;display:flex;flex-direction:column;justify-content:flex-end;gap:2rem;position:relative;z-index:1}
+.hero-right{padding:3rem 3rem 4rem 3rem;display:flex;flex-direction:column;justify-content:flex-end;gap:2rem;position:relative;z-index:1}
 .hero-profile-area{display:flex;align-items:center;gap:1.2rem;margin-bottom:0.5rem}
 .hero-avatar{width:100px;height:100px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid var(--accent);flex-shrink:0}
 .hero-profile-text{}
@@ -66,12 +66,16 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem
 /* PROJECTS */
 .projects-section{padding:5rem 2rem;border-bottom:1px solid var(--border)}
 
-.project-block{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);margin-bottom:4rem;background:var(--bg2)}.project-block.reverse .project-media{order:2}.project-block.reverse .project-info{order:1;border-right:1px solid var(--border);border-left:none}
+.project-block{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);margin-bottom:4rem;background:var(--bg2)}
+.project-block .project-media{border-right:1px solid var(--border);border-left:none}
+.project-block .project-info{border-left:none;border-right:none}
+.project-block.reverse .project-media{order:2;border-right:none;border-left:1px solid var(--border)}
+.project-block.reverse .project-info{order:1}
 .project-block:last-child{margin-bottom:0}
 
 /* left: media */
-.project-media{border-right:1px solid var(--border);display:flex;flex-direction:column;min-height:320px}
-.project-main-img{width:100%;aspect-ratio:16/7;object-fit:cover;display:block;cursor:zoom-in;transition:opacity 0.3s}
+.project-media{display:flex;flex-direction:column}
+.project-main-img{width:100%;flex:1;min-height:240px;object-fit:cover;display:block;cursor:zoom-in;transition:opacity 0.3s}
 .project-main-img:hover{opacity:0.9}
 .project-thumb-strip{display:flex;gap:1px;background:var(--border);border-top:1px solid var(--border);overflow-x:auto}
 .project-thumb-strip::-webkit-scrollbar{height:3px}
@@ -82,7 +86,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem
 .pthumb.active{opacity:1;outline:2px solid var(--accent);outline-offset:-2px}
 
 /* right: info */
-.project-info{padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:space-between}
+.project-info{padding:2rem 2rem;display:flex;flex-direction:column;justify-content:space-between}
 .project-genre-tag{font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.6rem}
 .project-name{font-family:var(--serif);font-size:1.8rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:1rem;line-height:1.1}
 .project-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.2rem}
