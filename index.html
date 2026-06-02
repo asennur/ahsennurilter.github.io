@@ -1,120 +1,178 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ahsen Nur İlter — Game Developer</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --bg:#0a0a0a;
-  --card:#111;
-  --text:#f5f5f5;
-  --muted:#a1a1aa;
-  --accent:#ef4444;
+  --bg:#050507;
+  --bg2:#0a0a0d;
+
+  --surface:rgba(255,255,255,0.03);
+  --surface2:rgba(255,255,255,0.06);
+
   --border:rgba(255,255,255,0.08);
+  --border2:rgba(255,255,255,0.14);
+
+  --text:#f5f5f5;
+  --muted:#6b6b75;
+  --muted2:#a1a1aa;
+
+  --a:#ef4444;
+  --a2:#f87171;
+  --a3:#fecaca;
+
+  --serif:'Syne',sans-serif;
+  --sans:'Inter',system-ui,sans-serif;
 }
 
+html{scroll-behavior:smooth}
 body{
-  font-family:'Inter',sans-serif;
+  font-family:var(--sans);
   background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ─── ORBS ─── */
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:0}
+.orb{position:absolute;border-radius:50%;filter:blur(140px)}
+.orb1{width:700px;height:700px;background:rgba(239,68,68,0.12);top:-200px;right:-100px}
+.orb2{width:500px;height:500px;background:rgba(248,113,113,0.06);bottom:-100px;left:-150px}
+.orb3{width:400px;height:400px;background:rgba(185,28,28,0.08);top:40%;left:30%}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.1rem 3rem;
+  background:rgba(5,5,7,0.7);
+  backdrop-filter:blur(30px);
+  border-bottom:1px solid var(--border);
+}
+
+.nav-logo{
+  font-family:var(--serif);
+  font-weight:800;
+  text-decoration:none;
   color:var(--text);
 }
 
-/* NAV */
-nav{
-  position:fixed;
-  width:100%;
-  top:0;
-  display:flex;
-  justify-content:space-between;
-  padding:1.2rem 2rem;
-  background:rgba(10,10,10,0.7);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-  z-index:100;
+.nav-links{
+  display:flex;gap:2rem;list-style:none;
 }
 
-nav a{
-  color:white;
+.nav-links a{
+  font-size:0.75rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--muted2);
   text-decoration:none;
-  font-size:0.8rem;
 }
 
-.nav-right{
-  display:flex;
-  gap:2rem;
-}
+.nav-links a:hover{color:var(--text)}
 
-/* HERO */
+/* ─── HERO ─── */
 .hero{
-  height:100vh;
-  position:relative;
+  min-height:100vh;
   display:flex;
-  align-items:center;
-  padding:2rem;
-}
-
-.hero video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0.35;
-}
-
-.hero-content{
+  flex-direction:column;
+  justify-content:center;
+  padding:10rem 3rem 6rem;
   position:relative;
-  max-width:700px;
+  z-index:1;
 }
 
-.hero h1{
-  font-size:clamp(2.5rem,6vw,5rem);
-  font-weight:900;
-  line-height:1.1;
+.hero-grid-lines{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(239,68,68,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(239,68,68,0.04) 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:radial-gradient(circle at center,black 30%,transparent 70%);
 }
 
-.hero span{
-  color:var(--accent);
+.hero-title{
+  font-family:var(--serif);
+  font-size:clamp(3.5rem,9vw,9rem);
+  font-weight:800;
+  line-height:0.95;
+  letter-spacing:-0.04em;
+  margin-bottom:2rem;
+  text-shadow:0 0 40px rgba(239,68,68,0.25);
 }
 
-.hero p{
-  margin-top:1rem;
-  color:var(--muted);
+.hero-title span{
+  color:var(--a);
+}
+
+.hero-desc{
+  max-width:520px;
+  color:var(--muted2);
+  line-height:1.8;
+  margin-bottom:2rem;
+}
+
+.hero-btns{
+  display:flex;
+  gap:1rem;
 }
 
 .btn{
-  display:inline-block;
-  margin-top:1.5rem;
-  padding:0.8rem 1.5rem;
-  background:var(--accent);
+  padding:0.85rem 1.6rem;
+  font-size:0.75rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
   text-decoration:none;
-  color:white;
+  border:1px solid var(--border);
+  color:var(--text);
 }
 
-/* PROJECT */
+.btn-primary{
+  background:var(--a);
+  border:none;
+  color:#0a0a0a;
+}
+
+.btn-primary:hover{
+  background:var(--a2);
+  box-shadow:0 20px 50px rgba(239,68,68,0.45);
+  transform:translateY(-3px);
+}
+
+/* ─── SECTION ─── */
 .section{
-  padding:4rem 2rem;
+  padding:6rem 3rem;
   max-width:1200px;
   margin:auto;
+  position:relative;
+  z-index:1;
 }
 
+.section-title{
+  font-size:2.5rem;
+  margin-bottom:3rem;
+}
+
+/* ─── PROJECT ─── */
 .project{
-  margin-bottom:4rem;
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:2rem;
+  margin-bottom:5rem;
+  background:var(--bg2);
+  border:1px solid var(--border);
 }
 
 .project-media{
-  width:100%;
-  height:500px;
+  height:420px;
   overflow:hidden;
-  border-radius:8px;
-  margin-bottom:1.5rem;
 }
 
 .project-media img,
@@ -125,127 +183,144 @@ nav a{
   border:none;
 }
 
+.project-content{
+  padding:2rem;
+}
+
 .project h2{
   font-size:2rem;
+  margin-bottom:1rem;
 }
 
 .project p{
-  color:var(--muted);
-  max-width:600px;
-  margin-top:0.5rem;
+  color:var(--muted2);
+  margin-bottom:1rem;
 }
 
-.project-meta{
-  margin-top:0.8rem;
+.meta{
   font-size:0.8rem;
   color:var(--muted);
+  margin-bottom:1.5rem;
 }
 
 .project a{
-  display:inline-block;
-  margin-top:1rem;
-  color:var(--accent);
+  color:var(--a);
   text-decoration:none;
 }
 
-/* GRID */
+/* ─── GRID ─── */
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:2rem;
 }
 
-@media(max-width:768px){
-  .grid{grid-template-columns:1fr}
+.small-project{
+  background:var(--bg2);
+  border:1px solid var(--border);
 }
 
-/* CONTACT */
+.small-project .media{
+  height:220px;
+}
+
+.small-project .content{
+  padding:1.5rem;
+}
+
+/* ─── CONTACT ─── */
 .contact{
   text-align:center;
-  padding:5rem 2rem;
+  padding:7rem 3rem;
 }
 
 .contact a{
-  background:var(--accent);
+  background:var(--a);
   padding:1rem 2rem;
-  color:white;
+  color:#0a0a0a;
   text-decoration:none;
+  display:inline-block;
+  margin-top:1rem;
+}
+
+@media(max-width:900px){
+  .project{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr}
 }
 </style>
-
 </head>
 
 <body>
 
+<div class="ambient">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+</div>
+
 <nav>
-  <a href="#">Ahsen Nur İlter</a>
-  <div class="nav-right">
-    <a href="#work">Work</a>
-    <a href="#contact">Contact</a>
-  </div>
+  <a class="nav-logo" href="#">Ahsen Nur İlter</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
 
 <section class="hero">
-  <!-- HERO VIDEO -->
-  <video autoplay muted loop>
-    <source src="hero.mp4" type="video/mp4">
-  </video>
+  <div class="hero-grid-lines"></div>
 
-  <div class="hero-content">
-    <h1>
-      I build games that<br>
-      <span>feel good to play.</span>
-    </h1>
-    <p>
-      Solo developer shipping games on Steam, mobile and VR.
-    </p>
-    <a href="#work" class="btn">View Projects</a>
+  <h1 class="hero-title">
+    I build games that<br>
+    <span>feel good to play.</span>
+  </h1>
+
+  <p class="hero-desc">
+    Solo developer shipping games across Steam, mobile and VR. Focused on gameplay feel, systems and polish.
+  </p>
+
+  <div class="hero-btns">
+    <a class="btn btn-primary" href="#work">View Work</a>
+    <a class="btn" href="#contact">Contact</a>
   </div>
 </section>
 
 <section id="work" class="section">
 
-  <!-- MAIN PROJECT -->
+  <h2 class="section-title">Projects</h2>
 
   <div class="project">
     <div class="project-media">
-      <iframe src="https://www.youtube.com/embed/qE7A8FPZLzA" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/qE7A8FPZLzA"></iframe>
     </div>
-    <h2>DishDash</h2>
-    <p>
-      Restaurant chaos simulator. Fully developed solo — gameplay, UI, art, audio and Steam release.
-    </p>
-    <div class="project-meta">
-      Solo Dev · PC · Unity · Steam · 600+ wishlists
+    <div class="project-content">
+      <h2>DishDash</h2>
+      <p>Restaurant chaos simulator built fully solo. Gameplay, UI, art and Steam release handled end-to-end.</p>
+      <div class="meta">Unity · PC · Steam · Solo Dev · 600+ Wishlists</div>
+      <a href="#">View on Steam →</a>
     </div>
-    <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank">
-      View on Steam →
-    </a>
   </div>
-
-  <!-- GRID PROJECTS -->
 
   <div class="grid">
 
-```
-<div class="project">
-  <div class="project-media">
-    <img src="Rumble.png">
-  </div>
-  <h2>Restaurant Rumble</h2>
-  <p>VR interaction prototype with physics-based systems.</p>
-  <div class="project-meta">VR · Unity · Meta Quest</div>
-</div>
+    <div class="small-project">
+      <div class="media">
+        <img src="Rumble.png">
+      </div>
+      <div class="content">
+        <h3>Restaurant Rumble</h3>
+        <p>VR physics-based interaction prototype.</p>
+      </div>
+    </div>
 
-<div class="project">
-  <div class="project-media">
-    <img src="OyunEvi.png">
-  </div>
-  <h2>Oyun Evi</h2>
-  <p>Children’s mobile game with painting and puzzle systems.</p>
-  <div class="project-meta">Android · iOS · Freelance</div>
-</div>
-```
+    <div class="small-project">
+      <div class="media">
+        <img src="OyunEvi.png">
+      </div>
+      <div class="content">
+        <h3>Oyun Evi</h3>
+        <p>Children’s mobile game built freelance.</p>
+      </div>
+    </div>
 
   </div>
 
@@ -253,8 +328,6 @@ nav a{
 
 <section id="contact" class="contact">
   <h2>Let’s Work Together</h2>
-  <p>Open to full-time and internship roles.</p>
-  <br>
   <a href="mailto:ahsennurilter@gmail.com">Send Email</a>
 </section>
 
