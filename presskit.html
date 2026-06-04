@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DishDash — Press Kit</title>
+<title>DishDash — Game Overview</title>
+<meta property="og:title" content="DishDash — Restaurant Simulation Game">
+<meta property="og:description" content="A chaotic, fast-paced restaurant simulation. Solo developed on Unity. Available on Steam.">
+<meta property="og:image" content="Dishdash_1.png">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -15,10 +18,10 @@
   --serif:'Syne',sans-serif;--sans:'Inter',system-ui,sans-serif;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;min-height:100vh}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden}
 
 body::after{content:'';position:fixed;inset:0;z-index:999;pointer-events:none;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px 200px}
-.bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 80% 10%,rgba(230,57,70,0.12) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 10% 80%,rgba(180,30,40,0.08) 0%,transparent 60%)}
+.bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 70% 0%,rgba(230,57,70,0.14) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 10% 90%,rgba(180,30,40,0.08) 0%,transparent 60%)}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(13,6,8,0.75);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
@@ -27,89 +30,136 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 .nav-back:hover{color:var(--text)}
 .nav-back svg{transform:rotate(180deg)}
 
-/* HERO HEADER */
-.pk-hero{
+/* HERO */
+.hero{
   position:relative;z-index:1;
-  padding:10rem 3rem 6rem;
-  border-bottom:1px solid var(--border);
-  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
 }
-.pk-hero::before{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--a),transparent)}
-.pk-eyebrow{font-size:0.58rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--a2);font-weight:500;display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem}
-.pk-eyebrow::before{content:'';width:14px;height:1px;background:var(--a)}
-.pk-title{font-family:var(--serif);font-size:clamp(4rem,8vw,8rem);font-weight:800;line-height:0.9;letter-spacing:-0.04em;margin-bottom:1.5rem}
-.pk-title span{display:block;background:linear-gradient(120deg,var(--a),var(--a2),var(--a3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.pk-tagline{font-size:1rem;line-height:1.7;color:var(--muted2);font-weight:300;margin-bottom:2.5rem;max-width:440px}
-.pk-btns{display:flex;gap:0.75rem;flex-wrap:wrap}
+.hero-img{position:relative;overflow:hidden}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:saturate(0.9)}
+.hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent 50%,var(--bg) 100%),linear-gradient(to top,var(--bg) 0%,transparent 25%),linear-gradient(135deg,rgba(230,57,70,0.18) 0%,transparent 55%)}
+.hero-bar{position:absolute;top:0;left:0;bottom:0;width:2px;background:linear-gradient(180deg,transparent,var(--a) 30%,var(--a2) 70%,transparent);z-index:2}
 
-.btn-fill{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.8rem;background:linear-gradient(135deg,var(--a),#c0151f);color:#fff;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;text-decoration:none;border:none;cursor:pointer;font-family:var(--sans);transition:all 0.25s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));box-shadow:0 4px 24px rgba(230,57,70,0.3)}
-.btn-fill:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(230,57,70,0.45)}
+.hero-content{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:9rem 4rem 6rem 3.5rem;
+  border-left:1px solid rgba(230,57,70,0.08);
+}
+.hero-eyebrow{display:flex;align-items:center;gap:0.65rem;margin-bottom:2rem}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--a);box-shadow:0 0 12px var(--a);animation:glow 2s ease-in-out infinite alternate}
+@keyframes glow{from{box-shadow:0 0 6px var(--a)}to{box-shadow:0 0 18px var(--a),0 0 36px rgba(230,57,70,0.4)}}
+.hero-eyebrow-text{font-size:0.6rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--a2);font-weight:500}
+
+.hero-title{font-family:var(--serif);font-size:clamp(4rem,8vw,8rem);font-weight:800;line-height:0.9;letter-spacing:-0.04em;margin-bottom:1.5rem}
+.hero-title span{display:block;background:linear-gradient(120deg,var(--a),var(--a2),var(--a3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-divider{width:48px;height:1px;background:linear-gradient(90deg,var(--a),transparent);margin-bottom:1.8rem}
+.hero-desc{font-size:0.95rem;line-height:1.82;color:var(--muted2);max-width:420px;font-weight:300;margin-bottom:2rem}
+
+.hero-chips{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:3rem}
+.chip{font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.22rem 0.65rem;border:1px solid rgba(230,57,70,0.25);color:var(--a2);font-weight:500}
+
+.hero-btns{display:flex;flex-direction:column;gap:0.75rem;align-items:flex-start;margin-bottom:2.5rem}
+
+/* wishlist CTA */
+.btn-wishlist{
+  display:inline-flex;align-items:center;gap:0.65rem;
+  padding:1rem 2.2rem;
+  background:linear-gradient(135deg,var(--a),#c0151f);
+  color:#fff;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;
+  text-decoration:none;border:none;cursor:pointer;font-family:var(--sans);
+  transition:all 0.25s;
+  clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));
+  box-shadow:0 4px 28px rgba(230,57,70,0.35);
+}
+.btn-wishlist:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(230,57,70,0.5)}
+.btn-wishlist svg{width:18px;height:18px}
+
 .btn-outline{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.8rem;background:transparent;color:var(--text);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;text-decoration:none;border:1px solid rgba(230,57,70,0.25);cursor:pointer;font-family:var(--sans);transition:all 0.25s}
 .btn-outline:hover{border-color:var(--a);color:var(--a2)}
 
-.pk-cover{position:relative;border:1px solid var(--border);overflow:hidden;aspect-ratio:16/9}
-.pk-cover img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(0.9)}
-.pk-cover::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(230,57,70,0.15) 0%,transparent 60%);pointer-events:none}
+/* share row */
+.share-row{display:flex;align-items:center;gap:0.75rem;padding-top:1.5rem;border-top:1px solid rgba(230,57,70,0.1)}
+.share-label{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.share-btn{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  padding:0.38rem 0.85rem;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  color:var(--muted2);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;
+  text-decoration:none;cursor:pointer;font-family:var(--sans);transition:all 0.2s;
+}
+.share-btn:hover{border-color:var(--a);color:var(--a2);background:rgba(230,57,70,0.06)}
+.share-btn svg{flex-shrink:0}
 
-/* FACTS */
-.facts-section{position:relative;z-index:1;padding:5rem 3rem;background:var(--bg2);border-bottom:1px solid var(--border)}
-.s-eyebrow{font-size:0.58rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--a2);font-weight:500;display:flex;align-items:center;gap:0.75rem;margin-bottom:3rem}
+/* STATS BAR */
+.stats-bar{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  background:var(--bg2);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.stat-cell{padding:2.5rem 2rem;border-right:1px solid var(--border);transition:background 0.3s;position:relative;overflow:hidden}
+.stat-cell:last-child{border-right:none}
+.stat-cell::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--a),transparent);transform:scaleX(0);transform-origin:left;transition:transform 0.35s}
+.stat-cell:hover::after{transform:scaleX(1)}
+.stat-cell:hover{background:var(--bg3)}
+.stat-n{font-family:var(--serif);font-size:2.8rem;font-weight:800;line-height:1;margin-bottom:0.4rem;background:linear-gradient(135deg,var(--text),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-l{font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* SECTIONS */
+.section{position:relative;z-index:1}
+.s-eyebrow{font-size:0.58rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--a2);font-weight:500;display:flex;align-items:center;gap:0.75rem;margin-bottom:2.5rem}
 .s-eyebrow::before{content:'';width:14px;height:1px;background:var(--a)}
-.facts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
-.fact{background:var(--bg);padding:2rem;border:none;transition:background 0.3s}
-.fact:hover{background:var(--bg3)}
-.fact-n{font-family:var(--serif);font-size:2.5rem;font-weight:800;line-height:1;margin-bottom:0.4rem;background:linear-gradient(135deg,var(--text),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.fact-l{font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);font-weight:500}
 
-/* DESCRIPTION */
-.desc-section{position:relative;z-index:1;padding:5rem 3rem;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:5rem}
-.desc-text p{font-size:0.92rem;line-height:1.9;color:var(--muted2);font-weight:300}
-.desc-text p+p{margin-top:1.3rem}
-.desc-meta{}
+/* ABOUT */
+.about-section{padding:6rem 3rem;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1.1fr 0.9fr;gap:6rem}
+.about-body p{font-size:0.92rem;line-height:1.95;color:var(--muted2);font-weight:300}
+.about-body p+p{margin-top:1.3rem}
+.about-meta{}
 .meta-block{margin-bottom:2rem}
 .meta-block:last-child{margin-bottom:0}
-.meta-title{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:0.8rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)}
-.meta-row{display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:1px solid rgba(255,255,255,0.03);font-size:0.8rem}
+.meta-title{font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)}
+.meta-row{display:flex;justify-content:space-between;padding:0.55rem 0;border-bottom:1px solid rgba(255,255,255,0.03);font-size:0.8rem}
 .meta-row:last-child{border-bottom:none}
 .meta-row span:first-child{color:var(--muted)}
-.meta-row span:last-child{font-weight:500;color:var(--text)}
+.meta-row span:last-child{font-weight:500}
 .feature-list{list-style:none}
-.feature-list li{font-size:0.82rem;color:var(--muted2);padding:0.45rem 0;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:flex-start;gap:0.6rem;font-weight:300}
+.feature-list li{font-size:0.82rem;color:var(--muted2);padding:0.45rem 0;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;gap:0.6rem;font-weight:300}
 .feature-list li::before{content:'→';color:var(--a2);font-size:0.75rem;flex-shrink:0;margin-top:0.05rem}
 .feature-list li:last-child{border-bottom:none}
 
-/* SCREENSHOTS */
-.screenshots-section{position:relative;z-index:1;padding:5rem 3rem;background:var(--bg2);border-bottom:1px solid var(--border)}
-.shots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:0}
-.shot{position:relative;overflow:hidden;aspect-ratio:16/9;background:var(--bg3);cursor:pointer}
-.shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1),filter 0.3s;filter:saturate(0.85)}
-.shot:hover img{transform:scale(1.04);filter:saturate(1)}
-.shot::after{content:'';position:absolute;inset:0;border:1px solid transparent;transition:border-color 0.3s}
-.shot:hover::after{border-color:rgba(230,57,70,0.4)}
-.shot-overlay{position:absolute;inset:0;background:rgba(13,6,8,0.0);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s;backdrop-filter:blur(0px);transition:all 0.3s}
-.shot:hover .shot-overlay{opacity:1;background:rgba(13,6,8,0.35)}
-.shot-overlay span{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--a3);font-weight:600}
-
 /* TRAILER */
-.trailer-section{position:relative;z-index:1;padding:5rem 3rem;border-bottom:1px solid var(--border)}
-.trailer-wrap{margin-top:0;aspect-ratio:16/9;background:var(--bg2);overflow:hidden;border:1px solid var(--border);position:relative}
+.trailer-section{padding:6rem 3rem;background:var(--bg2);border-bottom:1px solid var(--border)}
+.trailer-wrap{aspect-ratio:16/9;overflow:hidden;border:1px solid var(--border);position:relative}
 .trailer-wrap::before{content:'';position:absolute;inset:0;border:1px solid rgba(230,57,70,0.15);pointer-events:none;z-index:1}
 .trailer-wrap iframe{width:100%;height:100%;border:none;display:block}
 
-/* CONTACT */
-.contact-section{position:relative;z-index:1;padding:5rem 3rem;background:var(--bg2);border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
-.contact-heading{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:1rem;line-height:1.1}
-.contact-note{font-size:0.85rem;color:var(--muted2);line-height:1.75;font-weight:300;margin-bottom:2rem}
-.contact-rows{}
-.crow{padding:1.1rem 0;border-bottom:1px solid var(--border)}
-.crow:first-child{border-top:1px solid var(--border)}
-.crow-l{font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:0.35rem;font-weight:600}
-.crow-v{font-size:0.88rem;font-weight:500;text-decoration:none;color:var(--text);transition:color 0.2s;display:block}
-.crow-v:hover{color:var(--a2)}
+/* SCREENSHOTS */
+.shots-section{padding:6rem 3rem;border-bottom:1px solid var(--border)}
+.shots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.shot{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--bg2);cursor:pointer}
+.shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1),filter 0.3s;filter:saturate(0.85)}
+.shot:hover img{transform:scale(1.05);filter:saturate(1)}
+.shot-overlay{position:absolute;inset:0;background:rgba(13,6,8,0);display:flex;align-items:center;justify-content:center;opacity:0;transition:all 0.3s}
+.shot:hover .shot-overlay{opacity:1;background:rgba(13,6,8,0.4)}
+.shot-overlay span{font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--a3);font-weight:600}
+.shot::after{content:'';position:absolute;inset:0;border:1px solid transparent;transition:border-color 0.3s;pointer-events:none}
+.shot:hover::after{border-color:rgba(230,57,70,0.35)}
+
+/* BOTTOM CTA */
+.cta-section{padding:7rem 3rem;background:var(--bg2);border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;position:relative;overflow:hidden}
+.cta-section::after{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(230,57,70,0.09) 0%,transparent 70%);right:-100px;top:50%;transform:translateY(-50%);pointer-events:none}
+.cta-heading{font-family:var(--serif);font-size:clamp(2.5rem,4vw,4rem);font-weight:800;line-height:1;letter-spacing:-0.04em;margin-bottom:1.2rem}
+.cta-sub{font-size:0.9rem;color:var(--muted2);line-height:1.8;font-weight:300;margin-bottom:2.5rem}
+.cta-btns{display:flex;gap:0.75rem;flex-wrap:wrap}
+.cta-right{display:flex;flex-direction:column;gap:1.5rem;position:relative;z-index:1}
+.cta-share-title{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:0.5rem}
+.share-btns{display:flex;flex-wrap:wrap;gap:0.5rem}
 
 footer{position:relative;z-index:1;padding:1.6rem 3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border)}
 .f-name{font-family:var(--serif);font-size:0.82rem;font-weight:800}
-.f-note{font-size:0.62rem;color:var(--muted);letter-spacing:0.07em}
+.f-back{font-size:0.62rem;color:var(--muted);letter-spacing:0.07em;text-decoration:none;transition:color 0.2s}
+.f-back:hover{color:var(--a2)}
 
 /* lightbox */
 .lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:1000;align-items:center;justify-content:center}
@@ -118,14 +168,21 @@ footer{position:relative;z-index:1;padding:1.6rem 3rem;display:flex;justify-cont
 .lb-x{position:absolute;top:1.5rem;right:1.5rem;background:none;border:1px solid rgba(255,255,255,0.15);color:var(--muted2);font-size:0.6rem;padding:0.45rem 1rem;cursor:pointer;letter-spacing:0.12em;text-transform:uppercase;font-family:var(--sans);transition:all 0.2s}
 .lb-x:hover{color:#fff;border-color:#fff}
 
+/* reveal */
+.up{opacity:0;transform:translateY(24px);transition:opacity 0.7s cubic-bezier(0.4,0,0.2,1),transform 0.7s cubic-bezier(0.4,0,0.2,1)}
+.up.in{opacity:1;transform:none}
+
 @media(max-width:900px){
   nav{padding:0.9rem 1.5rem}
-  .pk-hero{grid-template-columns:1fr;padding:8rem 1.5rem 4rem;gap:3rem}
-  .facts-grid{grid-template-columns:repeat(2,1fr)}
-  .desc-section{grid-template-columns:1fr;gap:3rem;padding:4rem 1.5rem}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-img{height:55vw;max-height:360px}
+  .hero-content{padding:4rem 1.5rem 4rem;border-left:none;border-top:1px solid var(--border)}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .stat-cell:nth-child(2){border-right:none}
+  .about-section{grid-template-columns:1fr;gap:3rem;padding:4rem 1.5rem}
   .shots-grid{grid-template-columns:repeat(2,1fr)}
-  .screenshots-section,.trailer-section,.facts-section{padding:4rem 1.5rem}
-  .contact-section{grid-template-columns:1fr;gap:3rem;padding:4rem 1.5rem}
+  .trailer-section,.shots-section{padding:4rem 1.5rem}
+  .cta-section{grid-template-columns:1fr;gap:3rem;padding:5rem 1.5rem}
   footer{padding:1.2rem 1.5rem;flex-direction:column;gap:0.4rem;text-align:center}
 }
 </style>
@@ -147,75 +204,101 @@ footer{position:relative;z-index:1;padding:1.6rem 3rem;display:flex;justify-cont
 </nav>
 
 <!-- HERO -->
-<section class="pk-hero">
-  <div>
-    <p class="pk-eyebrow">Press Kit</p>
-    <h1 class="pk-title">Dish<span>Dash</span></h1>
-    <p class="pk-tagline">A chaotic, fast-paced restaurant simulation game. Prep meals, serve customers, and survive the rush — solo developed by Ahsen Nur İlter.</p>
-    <div class="pk-btns">
-      <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="btn-fill">Steam Page <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="11" height="11"><path d="M4 2h8v8M12 2L4 10"/></svg></a>
-      <a href="https://www.youtube.com/watch?v=qE7A8FPZLzA" target="_blank" class="btn-outline">Watch Trailer <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="11" height="11"><path d="M4 2h8v8M12 2L4 10"/></svg></a>
+<section class="hero section">
+  <div class="hero-img">
+    <img src="Dishdash_1.png" alt="DishDash">
+    <div class="hero-bar"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="hero-dot"></span>
+      <span class="hero-eyebrow-text">Restaurant Simulation · PC</span>
+    </div>
+    <h1 class="hero-title">Dish<span>Dash</span></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">A chaotic, fast-paced restaurant simulation. Prep meals, serve customers, and manage the rush — all before time runs out.</p>
+    <div class="hero-chips">
+      <span class="chip">Time Management</span>
+      <span class="chip">Simulation</span>
+      <span class="chip">Unity</span>
+      <span class="chip">Solo Dev</span>
+    </div>
+    <div class="hero-btns">
+      <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="btn-wishlist">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Wishlist on Steam
+      </a>
+      <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="btn-outline">View Steam Page <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="11" height="11"><path d="M4 2h8v8M12 2L4 10"/></svg></a>
+    </div>
+    <div class="share-row">
+      <span class="share-label">Share</span>
+      <a class="share-btn" href="https://twitter.com/intent/tweet?text=Check%20out%20DishDash%20-%20a%20fast-paced%20restaurant%20sim%20on%20Steam!&url=https://store.steampowered.com/app/4260380/DishDash/" target="_blank">
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        X / Twitter
+      </a>
+      <a class="share-btn" href="https://www.reddit.com/submit?url=https://store.steampowered.com/app/4260380/DishDash/&title=DishDash%20-%20Fast-paced%20restaurant%20simulation%20on%20Steam" target="_blank">
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 8a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        Reddit
+      </a>
+      <button class="share-btn" onclick="copyLink()">
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        <span id="copy-label">Copy Link</span>
+      </button>
     </div>
   </div>
-  <div class="pk-cover">
-    <img src="Dishdash_1.png" alt="DishDash">
-  </div>
 </section>
 
-<!-- FACTS -->
-<section class="facts-section">
-  <p class="s-eyebrow">At a Glance</p>
-  <div class="facts-grid">
-    <div class="fact"><div class="fact-n">600+</div><div class="fact-l">Steam Wishlists</div></div>
-    <div class="fact"><div class="fact-n">Solo</div><div class="fact-l">Development</div></div>
-    <div class="fact"><div class="fact-n">PC</div><div class="fact-l">Platform</div></div>
-    <div class="fact"><div class="fact-n">Unity</div><div class="fact-l">Engine</div></div>
-  </div>
-</section>
+<!-- STATS BAR -->
+<div class="stats-bar section">
+  <div class="stat-cell"><div class="stat-n">600+</div><div class="stat-l">Steam Wishlists</div></div>
+  <div class="stat-cell"><div class="stat-n">Solo</div><div class="stat-l">Developed</div></div>
+  <div class="stat-cell"><div class="stat-n">PC</div><div class="stat-l">Platform</div></div>
+  <div class="stat-cell"><div class="stat-n">Unity</div><div class="stat-l">Engine</div></div>
+</div>
 
-<!-- DESCRIPTION -->
-<section class="desc-section">
-  <div class="desc-text">
+<!-- ABOUT -->
+<section class="about-section section up">
+  <div class="about-body">
     <p class="s-eyebrow">About the Game</p>
-    <p>DishDash is a fast-paced time management simulation game where players step into the shoes of a restaurant worker juggling orders, customers, and kitchen chaos. With each level the pace intensifies — demanding quick thinking and precise execution.</p>
-    <p>The game was entirely solo-developed: every mechanic, customer interaction system, UI/UX element, piece of art, and audio cue was designed and implemented by a single developer. AI tools were used to accelerate production, allowing a one-person team to reach a professional-quality release.</p>
-    <p>DishDash launched on Steam with over 600 wishlists prior to full release, demonstrating strong organic interest from the time management and simulation gaming community.</p>
+    <p>DishDash is a fast-paced time management simulation where players step into a busy restaurant kitchen — prepping dishes, serving customers, and managing resources before the clock runs out. Every level turns up the heat, demanding quick thinking and precise execution.</p>
+    <p>The game was built entirely solo: every mechanic, customer interaction system, UI element, piece of art, and audio cue was designed and coded by a single developer. AI tools were leveraged to speed up production, letting a one-person team hit a polished release standard.</p>
+    <p>The result: 600+ Steam wishlists before the full launch — built entirely on organic discovery.</p>
   </div>
-  <div class="desc-meta">
+  <div class="about-meta">
     <div class="meta-block">
-      <div class="meta-title">Game Details</div>
+      <div class="meta-title">Details</div>
       <div class="meta-row"><span>Title</span><span>DishDash</span></div>
       <div class="meta-row"><span>Genre</span><span>Time Management / Simulation</span></div>
       <div class="meta-row"><span>Platform</span><span>PC (Steam)</span></div>
       <div class="meta-row"><span>Engine</span><span>Unity</span></div>
       <div class="meta-row"><span>Developer</span><span>Ahsen Nur İlter</span></div>
-      <div class="meta-row"><span>Type</span><span>Indie / Solo</span></div>
+      <div class="meta-row"><span>Type</span><span>Indie · Solo</span></div>
     </div>
     <div class="meta-block">
-      <div class="meta-title">Key Features</div>
+      <div class="meta-title">What's in the game</div>
       <ul class="feature-list">
         <li>Fast-paced restaurant time management gameplay</li>
-        <li>Multiple levels with escalating difficulty</li>
+        <li>Multiple levels with escalating difficulty and chaos</li>
         <li>Customer satisfaction and resource management systems</li>
         <li>Original art direction and UI/UX design</li>
-        <li>Original sound design and audio</li>
-        <li>Solo developed — one person, full pipeline</li>
+        <li>Custom sound design and audio</li>
+        <li>Built by one developer — full pipeline, zero compromises</li>
       </ul>
     </div>
   </div>
 </section>
 
 <!-- TRAILER -->
-<section class="trailer-section">
-  <p class="s-eyebrow">Trailer</p>
+<section class="trailer-section section up">
+  <p class="s-eyebrow">Gameplay Trailer</p>
   <div class="trailer-wrap">
-    <iframe src="https://www.youtube.com/embed/qE7A8FPZLzA?rel=0&modestbranding=1" title="DishDash Trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/qE7A8FPZLzA?rel=0&modestbranding=1" title="DishDash Gameplay" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 </section>
 
 <!-- SCREENSHOTS -->
-<section class="screenshots-section">
-  <p class="s-eyebrow">Screenshots — click to enlarge</p>
+<section class="shots-section section up">
+  <p class="s-eyebrow">Screenshots</p>
   <div class="shots-grid">
     <div class="shot" onclick="openLb('Dishdash_1.png')"><img src="Dishdash_1.png" alt=""><div class="shot-overlay"><span>View Full</span></div></div>
     <div class="shot" onclick="openLb('Dishdash_2.png')"><img src="Dishdash_2.png" alt=""><div class="shot-overlay"><span>View Full</span></div></div>
@@ -231,32 +314,70 @@ footer{position:relative;z-index:1;padding:1.6rem 3rem;display:flex;justify-cont
   </div>
 </section>
 
-<!-- PRESS CONTACT -->
-<section class="contact-section">
-  <div>
-    <p class="s-eyebrow">Press Contact</p>
-    <h2 class="contact-heading">For press &amp;<br>media enquiries</h2>
-    <p class="contact-note">Covering DishDash? Feel free to reach out for interviews, review copies, additional assets, or any questions. I'll get back to you as soon as possible.</p>
-    <a href="mailto:ahsennurilter@gmail.com" class="btn-fill">Contact Press <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="11" height="11"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
+<!-- BOTTOM CTA -->
+<section class="cta-section section">
+  <div class="up">
+    <h2 class="cta-heading">Like what<br>you see?</h2>
+    <p class="cta-sub">Adding DishDash to your wishlist helps more players discover it — and notifies you the moment it launches.</p>
+    <div class="cta-btns">
+      <a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="btn-wishlist">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Wishlist on Steam
+      </a>
+    </div>
   </div>
-  <div class="contact-rows">
-    <div class="crow"><p class="crow-l">Developer</p><span class="crow-v">Ahsen Nur İlter</span></div>
-    <div class="crow"><p class="crow-l">Press Email</p><a href="mailto:ahsennurilter@gmail.com" class="crow-v">ahsennurilter@gmail.com</a></div>
-    <div class="crow"><p class="crow-l">Steam Page</p><a href="https://store.steampowered.com/app/4260380/DishDash/" target="_blank" class="crow-v">store.steampowered.com/app/4260380</a></div>
-    <div class="crow"><p class="crow-l">Trailer</p><a href="https://www.youtube.com/watch?v=qE7A8FPZLzA" target="_blank" class="crow-v">youtube.com/watch?v=qE7A8FPZLzA</a></div>
-    <div class="crow"><p class="crow-l">LinkedIn</p><a href="https://www.linkedin.com/in/ahsen-nur-ilter-a6a135207/" target="_blank" class="crow-v">Ahsen Nur İlter</a></div>
+  <div class="cta-right up">
+    <div>
+      <p class="cta-share-title">Share with your network</p>
+      <div class="share-btns">
+        <a class="share-btn" href="https://twitter.com/intent/tweet?text=Check%20out%20DishDash%20-%20a%20fast-paced%20restaurant%20sim%20on%20Steam!&url=https://store.steampowered.com/app/4260380/DishDash/" target="_blank">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          X / Twitter
+        </a>
+        <a class="share-btn" href="https://www.reddit.com/submit?url=https://store.steampowered.com/app/4260380/DishDash/&title=DishDash%20-%20Fast-paced%20restaurant%20simulation%20on%20Steam" target="_blank">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M16.5 12a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM7.5 12a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" fill="currentColor"/><path d="M12 16s-2-1-2-2.5M12 16s2-1 2-2.5"/><path d="M12 7V5M10 5.5l2-1.5 2 1.5"/></svg>
+          Reddit
+        </a>
+        <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https://store.steampowered.com/app/4260380/DishDash/" target="_blank">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+          Facebook
+        </a>
+        <button class="share-btn" onclick="copyLink()">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          <span id="copy-label2">Copy Link</span>
+        </button>
+      </div>
+    </div>
+    <div>
+      <p class="cta-share-title">Developer</p>
+      <a href="index.html" class="share-btn" style="display:inline-flex">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" width="11" height="11"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+        Ahsen Nur İlter · Portfolio
+      </a>
+    </div>
   </div>
 </section>
 
 <footer>
-  <span class="f-name">DishDash · Press Kit</span>
-  <span class="f-note">Developed by Ahsen Nur İlter · <script>document.write(new Date().getFullYear())</script></span>
+  <span class="f-name">DishDash</span>
+  <a href="index.html" class="f-back">← Back to Portfolio</a>
 </footer>
 
 <script>
-function openLb(src){document.getElementById('lb-img').src=src;document.getElementById('lb').classList.add('open');document.body.style.overflow='hidden'}
+function openLb(s){document.getElementById('lb-img').src=s;document.getElementById('lb').classList.add('open');document.body.style.overflow='hidden'}
 function closeLb(){document.getElementById('lb').classList.remove('open');document.body.style.overflow=''}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
+
+function copyLink(){
+  navigator.clipboard.writeText('https://store.steampowered.com/app/4260380/DishDash/').then(()=>{
+    ['copy-label','copy-label2'].forEach(id=>{const el=document.getElementById(id);if(el){el.textContent='Copied!';setTimeout(()=>el.textContent='Copy Link',2000)}});
+  });
+}
+
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*70);obs.unobserve(e.target)}});
+},{threshold:0.08});
+document.querySelectorAll('.up').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
