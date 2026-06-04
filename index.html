@@ -280,10 +280,11 @@ nav{
 .cnum{
   font-family:var(--serif);font-size:4rem;font-weight:800;
   color:rgba(230,57,70,0.08);line-height:1;
-  position:absolute;top:1.5rem;left:2rem;
+  position:absolute;top:1.5rem;right:2rem;
   letter-spacing:-0.05em;pointer-events:none;
   transition:color 0.4s;
 }
+.card-inner.flip .cnum{right:auto;left:2rem}
 .card-outer:hover .cnum{color:rgba(230,57,70,0.15)}
 .cgenre{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--a2);font-weight:500;margin-bottom:0.65rem}
 .cname{
